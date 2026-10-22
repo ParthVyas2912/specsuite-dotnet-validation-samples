@@ -1,0 +1,426 @@
+specforge_evaluation: 1.0.0
+project: source
+setup:
+  description: These test cases describe the expected behavior of the reconstructed application. Each test should be
+    translated into a concrete test in the target framework and executed against the rebuilt system.
+  requiredEnvVars: []
+  requiredServices: []
+  steps:
+    - Install dependencies in the reconstructed project
+    - Run the application (or its test suite) to verify each test case
+    - Compare results against the assertions listed in each test case
+test_cases:
+  - id: api-contract-0001
+    name: "Route exists: GET /"
+    category: api-contract
+    target: GET /
+    description: The endpoint GET / must exist and respond to GET requests.
+    assertions:
+      - type: exists
+        subject: GET /
+        expected: "true"
+        explanation: The GET / endpoint must be reachable and actively respond.
+      - type: behavior-check
+        subject: GET / method
+        expected: GET
+        explanation: The GET / endpoint must only respond appropriately to GET requests.
+    priority: critical
+    sourceRef: Controllers/QuoteController.cs:9
+  - id: api-contract-0002
+    name: "Route exists: GET /api/health"
+    category: api-contract
+    target: GET /api/health
+    description: The endpoint GET /api/health must exist and respond to GET requests.
+    assertions:
+      - type: exists
+        subject: GET /api/health
+        expected: "true"
+        explanation: The GET /api/health endpoint must be reachable and actively respond.
+      - type: behavior-check
+        subject: GET /api/health method
+        expected: GET
+        explanation: The GET /api/health endpoint must only respond appropriately to GET requests.
+    priority: critical
+    sourceRef: Controllers/QuoteController.cs:15
+  - id: api-contract-0003
+    name: "Route exists: GET /api/quote"
+    category: api-contract
+    target: GET /api/quote
+    description: The endpoint GET /api/quote must exist and respond to GET requests.
+    assertions:
+      - type: exists
+        subject: GET /api/quote
+        expected: "true"
+        explanation: The GET /api/quote endpoint must be reachable and actively respond.
+      - type: behavior-check
+        subject: GET /api/quote method
+        expected: GET
+        explanation: The GET /api/quote endpoint must only respond appropriately to GET requests.
+    priority: critical
+    sourceRef: Controllers/QuoteController.cs:21
+  - id: business-logic-0004
+    name: 'Function "Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index" implements: Serve the
+      index.html file.'
+    category: business-logic
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index
+    description: Serve the index.html file.
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index
+        expected: Serve the index.html file.
+        explanation: The function should correctly serve the index.html file when invoked.
+    priority: high
+    sourceRef: Controllers/QuoteController.cs:MiniQuote.Controllers.QuoteController.Index
+  - id: error-handling-0005
+    name: '"Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index" handles: file is missing'
+    category: error-handling
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index
+    description: When file is missing, the function should throw.
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index error
+        expected: IOException
+        explanation: If index.html is missing, the function should throw an appropriate exception.
+    priority: high
+  - id: side-effect-0006
+    name: '"Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index" side-effect: Reads
+      wwwroot/index.html file'
+    category: side-effect
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index
+    description: 'Function "Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index" must produce
+      side-effect: Reads wwwroot/index.html file'
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index side-effect
+        expected: filesystem-read
+        explanation: Reads wwwroot/index.html file
+    priority: medium
+  - id: business-logic-0007
+    name: 'Function "Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Health" implements: Provide health
+      status for the MiniQuote API.'
+    category: business-logic
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Health
+    description: Provide health status for the MiniQuote API.
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Health
+        expected: Provide health status for the MiniQuote API.
+        explanation: The function must return accurate health status as per API design.
+    priority: high
+    sourceRef: Controllers/QuoteController.cs:MiniQuote.Controllers.QuoteController.Health
+  - id: business-logic-0008
+    name: 'Function "Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote" implements: Calculate quote
+      costs for quantity and delivery type.'
+    category: business-logic
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+    description: Calculate quote costs for quantity and delivery type.
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+        expected: Calculate quote costs for quantity and delivery type.
+        explanation: The function should calculate valid costs for varying quantity and delivery types.
+    priority: high
+    sourceRef: Controllers/QuoteController.cs:MiniQuote.Controllers.QuoteController.Quote
+  - id: error-handling-0009
+    name: '"Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote" handles: when quantity input invalid'
+    category: error-handling
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+    description: When when quantity input invalid, the function should return.
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote error
+        expected: ValidationError
+        explanation: The function must respond with ValidationError for invalid quantities.
+    priority: high
+  - id: error-handling-0010
+    name: '"Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote" handles: when delivery input invalid'
+    category: error-handling
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+    description: When when delivery input invalid, the function should return.
+    assertions:
+      - type: behavior-check
+        subject: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote error
+        expected: ValidationError
+        explanation: The function must respond with ValidationError for invalid delivery inputs.
+    priority: high
+  - id: business-logic-0011
+    name: 'Function "Program.cs#__module_init__" implements: Initialize and run a basic web application with controllers.'
+    category: business-logic
+    target: Program.cs#__module_init__
+    description: Initialize and run a basic web application with controllers.
+    assertions:
+      - type: behavior-check
+        subject: Program.cs#__module_init__
+        expected: Initialize and run a basic web application with controllers.
+        explanation: The module must properly initialize and run the application.
+    priority: high
+    sourceRef: Program.cs:__module_init__
+  - id: side-effect-0012
+    name: '"Program.cs#__module_init__" side-effect: Starts listening for HTTP requests'
+    category: side-effect
+    target: Program.cs#__module_init__
+    description: 'Function "Program.cs#__module_init__" must produce side-effect: Starts listening for HTTP requests'
+    assertions:
+      - type: behavior-check
+        subject: Program.cs#__module_init__ side-effect
+        expected: network-request
+        explanation: Starts listening for HTTP requests
+    priority: medium
+  - id: error-handling-0013
+    name: "GET /api/quote error 400: VALIDATION_ERROR"
+    category: error-handling
+    target: GET /api/quote
+    description: When when the 'quantity' query parameter is missing, empty, not a single value, non-numeric, or outside the
+      range 1 to 100, route "GET /api/quote" returns HTTP 400 with code "VALIDATION_ERROR".
+    assertions:
+      - type: status-code
+        subject: GET /api/quote
+        expected: "400"
+        explanation: GET /api/quote must return 400 VALIDATION_ERROR for invalid or missing quantity parameters.
+      - type: behavior-check
+        subject: GET /api/quote error code
+        expected: VALIDATION_ERROR
+        explanation: Error code matches
+    priority: high
+  - id: error-handling-0014
+    name: "GET /api/quote error 400: VALIDATION_ERROR"
+    category: error-handling
+    target: GET /api/quote
+    description: When when the 'delivery' query parameter is missing, not a single value, or not 'standard' or 'rush', route
+      "GET /api/quote" returns HTTP 400 with code "VALIDATION_ERROR".
+    assertions:
+      - type: status-code
+        subject: GET /api/quote
+        expected: "400"
+        explanation: GET /api/quote must return 400 VALIDATION_ERROR for invalid or missing delivery parameters.
+      - type: behavior-check
+        subject: GET /api/quote error code
+        expected: VALIDATION_ERROR
+        explanation: Error code matches
+    priority: high
+  - id: data-flow-0015
+    name: "Data flow: GET /"
+    category: data-flow
+    target: GET /
+    description: Complete data flow for the GET / endpoint, which serves the static HTML content from 'wwwroot/index.html'.
+    assertions:
+      - type: behavior-check
+        subject: GET /
+        expected: completes
+        explanation: Flow runs end-to-end
+      - type: behavior-check
+        subject: GET / trigger
+        expected: http-request
+        explanation: Triggered by http-request
+      - type: behavior-check
+        subject: GET / steps
+        expected: The HTTP GET request hits the '/' route, which is handled by the Index method in QuoteController. → Reads the
+          content of the 'wwwroot/index.html' file from the file system. → The file content is wrapped in a
+          ContentResult object and returned as the HTTP response.
+        explanation: All steps execute in order
+    priority: medium
+  - id: data-flow-0016
+    name: "Data flow: GET /api/health"
+    category: data-flow
+    target: GET /api/health
+    description: This flow handles an HTTP GET request to the /api/health endpoint. It returns a JSON response indicating
+      the health status of the application.
+    assertions:
+      - type: behavior-check
+        subject: GET /api/health
+        expected: completes
+        explanation: Flow runs end-to-end
+      - type: behavior-check
+        subject: GET /api/health trigger
+        expected: http-request
+        explanation: Triggered by http-request
+      - type: behavior-check
+        subject: GET /api/health steps
+        expected: The Health() method is invoked to handle the HTTP GET request. The method constructs a JSON object with health
+          status details and returns it as a response.
+        explanation: All steps execute in order
+    priority: medium
+  - id: data-flow-0017
+    name: "Data flow: GET /api/quote"
+    category: data-flow
+    target: GET /api/quote
+    description: This data flow handles a GET request to the /api/quote endpoint. It validates query parameters, performs
+      calculations based on business rules, and returns a JSON response with the computed quote details.
+    assertions:
+      - type: behavior-check
+        subject: GET /api/quote
+        expected: completes
+        explanation: Flow runs end-to-end
+      - type: behavior-check
+        subject: GET /api/quote trigger
+        expected: http-request
+        explanation: Triggered by http-request
+      - type: behavior-check
+        subject: GET /api/quote steps
+        expected: Extracts 'quantity' and 'delivery' query parameters from the HTTP request. → Validates the 'quantity'
+          parameter to ensure it is a single, non-empty integer between 1 and 100. → Validates the 'delivery' parameter
+          to ensure it is either 'standard' or 'rush'. → Calculates the subtotal in cents based on the quantity and unit
+          price (1250 cents per unit). → Calculates the discount in cents if the quantity is 10 or more. → Calculates
+          shipping costs in cents based on delivery type and quantity. → Computes the total cost in cents by adding
+          subtotal, subtracting discounts, and adding shipping costs. → Returns a JSON response containing all
+          calculated data including quantity, delivery type, subtotal, discount, shipping, total, and currency.
+        explanation: All steps execute in order
+    priority: medium
+  - id: component-rendering-0018
+    name: Component "Wwwroot" renders
+    category: component-rendering
+    target: Wwwroot
+    description: Component "Wwwroot" mounts and renders without errors.
+    assertions:
+      - type: exists
+        subject: Wwwroot
+        expected: renders
+        explanation: Wwwroot must mount and render cleanly in the application.
+    priority: high
+    sourceRef: wwwroot/index.html
+  - id: api-contract-0019
+    name: Unsupported HTTP methods at GET /
+    category: api-contract
+    target: GET /
+    description: Ensure the GET / endpoint returns method not allowed for unsupported methods.
+    assertions:
+      - type: status-code
+        subject: GET / with POST
+        expected: "405"
+        explanation: The server should reject POST requests on GET endpoints.
+    priority: medium
+  - id: api-contract-0020
+    name: Unexpected query params in GET /api/health
+    category: api-contract
+    target: GET /api/health
+    description: Verify the endpoint tolerates additional query parameters gracefully.
+    assertions:
+      - type: status-code
+        subject: GET /api/health with random query
+        expected: "200"
+        explanation: Unexpected query parameters must not break the endpoint.
+    priority: medium
+  - id: api-contract-0021
+    name: Unsupported HTTP methods at GET /api/quote
+    category: api-contract
+    target: GET /api/quote
+    description: Ensure the GET /api/quote endpoint returns method not allowed for unsupported methods.
+    assertions:
+      - type: status-code
+        subject: POST /api/quote
+        expected: "405"
+        explanation: POST requests targeting GET /api/quote must return method not allowed.
+    priority: medium
+  - id: business-logic-0022
+    name: Missing index.html
+    category: business-logic
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Index
+    description: Ensure appropriate action when index.html is unavailable.
+    assertions:
+      - type: behavior-check
+        subject: Serve index.html error case
+        expected: Error response
+        explanation: The function should return an error if index.html is missing.
+    priority: medium
+  - id: business-logic-0023
+    name: Health endpoint under high concurrency
+    category: business-logic
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Health
+    description: Verify consistent health status under load.
+    assertions:
+      - type: behavior-check
+        subject: Parallel GET /api/health
+        expected: "200"
+        explanation: Health endpoint response should remain consistent under high concurrency.
+    priority: medium
+  - id: business-logic-0024
+    name: Extreme delivery types
+    category: business-logic
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+    description: Validate quote accuracy when delivery types have edge definitions.
+    assertions:
+      - type: behavior-check
+        subject: Edge definition delivery types
+        expected: Valid cost
+        explanation: The function must gracefully handle edge-case delivery types.
+    priority: medium
+  - id: error-handling-0025
+    name: Boundary quantity values
+    category: error-handling
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+    description: Validate how the function handles boundary input like 0 or 101.
+    assertions:
+      - type: behavior-check
+        subject: Invalid quantities out of range
+        expected: ValidationError
+        explanation: Out-of-range input should trigger appropriate validation errors.
+    priority: medium
+  - id: error-handling-0026
+    name: Empty delivery type
+    category: error-handling
+    target: Controllers/QuoteController.cs#MiniQuote.Controllers.QuoteController.Quote
+    description: Verify the function handles blanks or null delivery types.
+    assertions:
+      - type: behavior-check
+        subject: Empty or null delivery input
+        expected: ValidationError
+        explanation: Delivery type cannot be blank or null.
+    priority: medium
+  - id: business-logic-0027
+    name: Fail gracefully for port conflict
+    category: business-logic
+    target: Program.cs#__module_init__
+    description: Verify application shutdown or fallback on startup port conflicts.
+    assertions:
+      - type: behavior-check
+        subject: Port conflict handling
+        expected: Graceful fallback or shutdown
+        explanation: The app should not crash on encountering port conflicts.
+    priority: medium
+  - id: error-handling-0028
+    name: Excessive query parameters including invalid quantity
+    category: error-handling
+    target: GET /api/quote
+    description: Validate behavior with excessive query parameters that include an invalid quantity.
+    assertions:
+      - type: status-code
+        subject: Invalid quantity with excessive queries
+        expected: "400"
+        explanation: Additional query args must not alter validation behavior.
+    priority: medium
+  - id: error-handling-0029
+    name: Delivery type with mixed-case letters
+    category: error-handling
+    target: GET /api/quote
+    description: Verify the handling of delivery input with unexpected casing such as 'Standard' or 'RUSH'.
+    assertions:
+      - type: behavior-check
+        subject: Mixed-case delivery fields
+        expected: VALIDATION_ERROR
+        explanation: Delivery inputs should be validated case-insensitively or raise errors correctly.
+    priority: medium
+  - id: component-rendering-0030
+    name: Wwwroot under invalid asset URLs
+    category: component-rendering
+    target: Wwwroot
+    description: Ensure component tolerates invalid assets reported through WWW root.
+    assertions:
+      - type: behavior-check
+        subject: Invalid URL assets in rendering
+        expected: User-friendly error notice
+        explanation: Should report invalid asset issues without breaking main render.
+    priority: medium
+summary:
+  total: 30
+  byCategory:
+    api-contract: 6
+    business-logic: 8
+    error-handling: 9
+    side-effect: 2
+    data-flow: 3
+    component-rendering: 2
+  byPriority:
+    critical: 3
+    high: 10
+    medium: 17
+  criticalCount: 3

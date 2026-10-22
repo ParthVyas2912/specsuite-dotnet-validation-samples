@@ -1,0 +1,625 @@
+specforge_gap_analysis: 1.0.0
+summary:
+  totalGaps: 45
+  bySeverity:
+    critical: 7
+    high: 22
+    medium: 16
+    low: 0
+  byCategory:
+    low-confidence: 13
+    ai-analysis-failed: 3
+    missing-algorithm: 12
+    unresolved-type: 1
+    missing-error-handling: 15
+    missing-side-effects: 1
+  overallFidelityScore: 21.2
+  remediationEstimate: ~1.3 person-days
+gaps:
+  - id: gap-12
+    severity: critical
+    category: low-confidence
+    entity: BillingService.BuildInvoiceNumber
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    sourceLines:
+      - 231
+      - 234
+    description: Function "BillingService.BuildInvoiceNumber" has low AI confidence (0%). The spec may not accurately
+      represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/BillingService.cs:231 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0
+  - id: gap-14
+    severity: critical
+    category: low-confidence
+    entity: BillingService.Round
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    sourceLines:
+      - 236
+      - 239
+    description: Function "BillingService.Round" has low AI confidence (0%). The spec may not accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/BillingService.cs:236 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0
+  - id: gap-22
+    severity: critical
+    category: low-confidence
+    entity: InventoryService.GetDepotInventoryValue
+    entityType: function
+    sourceFile: FleetManager.Business/InventoryService.cs
+    sourceLines:
+      - 164
+      - 166
+    description: Function "InventoryService.GetDepotInventoryValue" has low AI confidence (0%). The spec may not accurately
+      represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/InventoryService.cs:164 and manually verify/correct the
+      spec description, algorithm, and side effects.
+    confidence: 0
+  - id: gap-4
+    severity: critical
+    category: ai-analysis-failed
+    entity: RecordService
+    entityType: function
+    sourceFile: FleetManager.Data/VehicleRepository.cs
+    sourceLines:
+      - 109
+      - 113
+    description: Function "RecordService" could not be analyzed by AI — its behavior is unknown.
+    impact: This function will be missing or stubbed in the reconstructed application. Any callers will break.
+    remediation: Manually describe what "RecordService" does, its inputs/outputs, algorithm, and side effects. Add to the
+      spec under the appropriate module.
+    confidence: 0.1
+  - id: gap-29
+    severity: critical
+    category: ai-analysis-failed
+    entity: DriverRepository.GetEndorsements
+    entityType: function
+    sourceFile: FleetManager.Data/DriverRepository.cs
+    sourceLines:
+      - 84
+      - 94
+    description: Function "DriverRepository.GetEndorsements" could not be analyzed by AI — its behavior is unknown.
+    impact: This function will be missing or stubbed in the reconstructed application. Any callers will break.
+    remediation: Manually describe what "DriverRepository.GetEndorsements" does, its inputs/outputs, algorithm, and side
+      effects. Add to the spec under the appropriate module.
+    confidence: 0.1
+  - id: gap-30
+    severity: critical
+    category: ai-analysis-failed
+    entity: DriverRepository.Deactivate
+    entityType: function
+    sourceFile: FleetManager.Data/DriverRepository.cs
+    sourceLines:
+      - 102
+      - 105
+    description: Function "DriverRepository.Deactivate" could not be analyzed by AI — its behavior is unknown.
+    impact: This function will be missing or stubbed in the reconstructed application. Any callers will break.
+    remediation: Manually describe what "DriverRepository.Deactivate" does, its inputs/outputs, algorithm, and side effects.
+      Add to the spec under the appropriate module.
+    confidence: 0.1
+  - id: gap-5
+    severity: critical
+    category: low-confidence
+    entity: CountOpenForVehicle
+    entityType: function
+    sourceFile: FleetManager.Data/WorkOrderRepository.cs
+    sourceLines:
+      - 154
+      - 159
+    description: Function "CountOpenForVehicle" has low AI confidence (30%). The spec may not accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Data/WorkOrderRepository.cs:154 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0.3
+  - id: gap-13
+    severity: high
+    category: missing-algorithm
+    entity: BillingService.BuildInvoiceNumber
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    sourceLines:
+      - 231
+      - 234
+    description: Function "BillingService.BuildInvoiceNumber" has no algorithm steps. Reconstruction will only have a
+      description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "BillingService.BuildInvoiceNumber": break down its logic into numbered steps
+      describing what happens in sequence.'
+    confidence: 0
+  - id: gap-15
+    severity: high
+    category: missing-algorithm
+    entity: BillingService.Round
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    sourceLines:
+      - 236
+      - 239
+    description: Function "BillingService.Round" has no algorithm steps. Reconstruction will only have a description, not
+      step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "BillingService.Round": break down its logic into numbered steps describing what
+      happens in sequence.'
+    confidence: 0
+  - id: gap-23
+    severity: high
+    category: missing-algorithm
+    entity: InventoryService.GetDepotInventoryValue
+    entityType: function
+    sourceFile: FleetManager.Business/InventoryService.cs
+    sourceLines:
+      - 164
+      - 166
+    description: Function "InventoryService.GetDepotInventoryValue" has no algorithm steps. Reconstruction will only have a
+      description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "InventoryService.GetDepotInventoryValue": break down its logic into numbered
+      steps describing what happens in sequence.'
+    confidence: 0
+  - id: gap-45
+    severity: high
+    category: unresolved-type
+    entity: components
+    entityType: component
+    description: "68 of 68 component state/prop type annotations are unresolved (type: any) — 100% unresolved."
+    impact: Reconstructed components will lack type safety. State shapes, prop contracts, and data flow cannot be validated.
+    remediation: Ensure components have explicit TypeScript type annotations on useState<T>() generics and props interfaces.
+    confidence: 0
+  - id: gap-6
+    severity: high
+    category: missing-algorithm
+    entity: CountOpenForVehicle
+    entityType: function
+    sourceFile: FleetManager.Data/WorkOrderRepository.cs
+    sourceLines:
+      - 154
+      - 159
+    description: Function "CountOpenForVehicle" has no algorithm steps. Reconstruction will only have a description, not
+      step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "CountOpenForVehicle": break down its logic into numbered steps describing what
+      happens in sequence.'
+    confidence: 0.3
+  - id: gap-1
+    severity: high
+    category: low-confidence
+    entity: GetDecimal
+    entityType: function
+    sourceFile: FleetManager.Data/DbHelper.cs
+    sourceLines:
+      - 98
+      - 101
+    description: Function "GetDecimal" has low AI confidence (50%). The spec may not accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Data/DbHelper.cs:98 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-3
+    severity: high
+    category: low-confidence
+    entity: GetDueForService
+    entityType: function
+    sourceFile: FleetManager.Data/VehicleRepository.cs
+    sourceLines:
+      - 73
+      - 82
+    description: Function "GetDueForService" has low AI confidence (50%). The spec may not accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Data/VehicleRepository.cs:73 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-9
+    severity: high
+    category: low-confidence
+    entity: BillingService.GetCostPerKilometre
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    sourceLines:
+      - 207
+      - 220
+    description: Function "BillingService.GetCostPerKilometre" has low AI confidence (50%). The spec may not accurately
+      represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/BillingService.cs:207 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-10
+    severity: high
+    category: missing-algorithm
+    entity: BillingService.GetCostPerKilometre
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    sourceLines:
+      - 207
+      - 220
+    description: Function "BillingService.GetCostPerKilometre" has no algorithm steps. Reconstruction will only have a
+      description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "BillingService.GetCostPerKilometre": break down its logic into numbered steps
+      describing what happens in sequence.'
+    confidence: 0.5
+  - id: gap-17
+    severity: high
+    category: low-confidence
+    entity: DriverAssignmentService.GetComplianceWatchList
+    entityType: function
+    sourceFile: FleetManager.Business/DriverAssignmentService.cs
+    sourceLines:
+      - 195
+      - 197
+    description: Function "DriverAssignmentService.GetComplianceWatchList" has low AI confidence (50%). The spec may not
+      accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/DriverAssignmentService.cs:195 and manually verify/correct
+      the spec description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-18
+    severity: high
+    category: missing-algorithm
+    entity: DriverAssignmentService.GetComplianceWatchList
+    entityType: function
+    sourceFile: FleetManager.Business/DriverAssignmentService.cs
+    sourceLines:
+      - 195
+      - 197
+    description: Function "DriverAssignmentService.GetComplianceWatchList" has no algorithm steps. Reconstruction will only
+      have a description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "DriverAssignmentService.GetComplianceWatchList": break down its logic into
+      numbered steps describing what happens in sequence.'
+    confidence: 0.5
+  - id: gap-20
+    severity: high
+    category: low-confidence
+    entity: AssignmentResult.AssignmentResult
+    entityType: function
+    sourceFile: FleetManager.Business/DriverAssignmentService.cs
+    sourceLines:
+      - 201
+      - 203
+    description: Function "AssignmentResult.AssignmentResult" has low AI confidence (50%). The spec may not accurately
+      represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/DriverAssignmentService.cs:201 and manually verify/correct
+      the spec description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-21
+    severity: high
+    category: missing-algorithm
+    entity: AssignmentResult.AssignmentResult
+    entityType: function
+    sourceFile: FleetManager.Business/DriverAssignmentService.cs
+    sourceLines:
+      - 201
+      - 203
+    description: Function "AssignmentResult.AssignmentResult" has no algorithm steps. Reconstruction will only have a
+      description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "AssignmentResult.AssignmentResult": break down its logic into numbered steps
+      describing what happens in sequence.'
+    confidence: 0.5
+  - id: gap-27
+    severity: high
+    category: low-confidence
+    entity: MaintenanceScheduler.GetLabourRate
+    entityType: function
+    sourceFile: FleetManager.Business/MaintenanceScheduler.cs
+    sourceLines:
+      - 253
+      - 270
+    description: Function "MaintenanceScheduler.GetLabourRate" has low AI confidence (50%). The spec may not accurately
+      represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Business/MaintenanceScheduler.cs:253 and manually verify/correct the
+      spec description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-28
+    severity: high
+    category: missing-algorithm
+    entity: MaintenanceScheduler.GetLabourRate
+    entityType: function
+    sourceFile: FleetManager.Business/MaintenanceScheduler.cs
+    sourceLines:
+      - 253
+      - 270
+    description: Function "MaintenanceScheduler.GetLabourRate" has no algorithm steps. Reconstruction will only have a
+      description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "MaintenanceScheduler.GetLabourRate": break down its logic into numbered steps
+      describing what happens in sequence.'
+    confidence: 0.5
+  - id: gap-36
+    severity: high
+    category: low-confidence
+    entity: Part.InventoryValue
+    entityType: function
+    sourceFile: FleetManager.Domain/Part.cs
+    sourceLines:
+      - 27
+      - 29
+    description: Function "Part.InventoryValue" has low AI confidence (50%). The spec may not accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Domain/Part.cs:27 and manually verify/correct the spec description,
+      algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-37
+    severity: high
+    category: missing-algorithm
+    entity: Part.InventoryValue
+    entityType: function
+    sourceFile: FleetManager.Domain/Part.cs
+    sourceLines:
+      - 27
+      - 29
+    description: Function "Part.InventoryValue" has no algorithm steps. Reconstruction will only have a description, not
+      step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "Part.InventoryValue": break down its logic into numbered steps describing what
+      happens in sequence.'
+    confidence: 0.5
+  - id: gap-38
+    severity: high
+    category: low-confidence
+    entity: Vehicle.ToString
+    entityType: function
+    sourceFile: FleetManager.Domain/Vehicle.cs
+    sourceLines:
+      - 34
+      - 36
+    description: Function "Vehicle.ToString" has low AI confidence (50%). The spec may not accurately represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Domain/Vehicle.cs:34 and manually verify/correct the spec
+      description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-39
+    severity: high
+    category: missing-algorithm
+    entity: Vehicle.ToString
+    entityType: function
+    sourceFile: FleetManager.Domain/Vehicle.cs
+    sourceLines:
+      - 34
+      - 36
+    description: Function "Vehicle.ToString" has no algorithm steps. Reconstruction will only have a description, not
+      step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "Vehicle.ToString": break down its logic into numbered steps describing what
+      happens in sequence.'
+    confidence: 0.5
+  - id: gap-41
+    severity: high
+    category: low-confidence
+    entity: DashboardController.RunReorderSweep
+    entityType: function
+    sourceFile: FleetManager.Web/Controllers/DashboardController.cs
+    sourceLines:
+      - 99
+      - 105
+    description: Function "DashboardController.RunReorderSweep" has low AI confidence (50%). The spec may not accurately
+      represent its behavior.
+    impact: The reconstructed function may have incorrect logic or incomplete behavior.
+    remediation: Review the source code at FleetManager.Web/Controllers/DashboardController.cs:99 and manually
+      verify/correct the spec description, algorithm, and side effects.
+    confidence: 0.5
+  - id: gap-42
+    severity: high
+    category: missing-algorithm
+    entity: DashboardController.RunReorderSweep
+    entityType: function
+    sourceFile: FleetManager.Web/Controllers/DashboardController.cs
+    sourceLines:
+      - 99
+      - 105
+    description: Function "DashboardController.RunReorderSweep" has no algorithm steps. Reconstruction will only have a
+      description, not step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "DashboardController.RunReorderSweep": break down its logic into numbered steps
+      describing what happens in sequence.'
+    confidence: 0.5
+  - id: gap-35
+    severity: high
+    category: missing-algorithm
+    entity: Invoice.Invoice
+    entityType: function
+    sourceFile: FleetManager.Domain/Invoice.cs
+    sourceLines:
+      - 8
+      - 12
+    description: Function "Invoice.Invoice" has no algorithm steps. Reconstruction will only have a description, not
+      step-by-step logic.
+    impact: Code generator will have to guess the implementation from the purpose description alone.
+    remediation: 'Add algorithm steps for "Invoice.Invoice": break down its logic into numbered steps describing what
+      happens in sequence.'
+    confidence: 0.95
+  - id: gap-24
+    severity: medium
+    category: missing-error-handling
+    entity: InventoryService.GetDepotInventoryValue
+    entityType: function
+    sourceFile: FleetManager.Business/InventoryService.cs
+    description: Function "InventoryService.GetDepotInventoryValue" has no error cases documented but appears to handle user
+      input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0
+  - id: gap-11
+    severity: medium
+    category: missing-error-handling
+    entity: BillingService.GetCostPerKilometre
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    description: Function "BillingService.GetCostPerKilometre" has no error cases documented but appears to handle user
+      input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.5
+  - id: gap-19
+    severity: medium
+    category: missing-error-handling
+    entity: DriverAssignmentService.GetComplianceWatchList
+    entityType: function
+    sourceFile: FleetManager.Business/DriverAssignmentService.cs
+    description: Function "DriverAssignmentService.GetComplianceWatchList" has no error cases documented but appears to
+      handle user input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.5
+  - id: gap-32
+    severity: medium
+    category: missing-error-handling
+    entity: PartRepository.Receive
+    entityType: function
+    sourceFile: FleetManager.Data/PartRepository.cs
+    description: Function "PartRepository.Receive" has no error cases documented but appears to handle user input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.7
+  - id: gap-2
+    severity: medium
+    category: missing-error-handling
+    entity: Search
+    entityType: function
+    sourceFile: FleetManager.Data/VehicleRepository.cs
+    description: Function "Search" has no error cases documented but appears to handle user input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-16
+    severity: medium
+    category: missing-error-handling
+    entity: DriverAssignmentService.FindEligibleDrivers
+    entityType: function
+    sourceFile: FleetManager.Business/DriverAssignmentService.cs
+    description: Function "DriverAssignmentService.FindEligibleDrivers" has no error cases documented but appears to handle
+      user input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-25
+    severity: medium
+    category: missing-error-handling
+    entity: IssueResult.IssueResult
+    entityType: function
+    sourceFile: FleetManager.Business/InventoryService.cs
+    description: Function "IssueResult.IssueResult" has no error cases documented but appears to handle user input or
+      external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-33
+    severity: medium
+    category: missing-error-handling
+    entity: PartRepository.GetOpenRequisitions
+    entityType: function
+    sourceFile: FleetManager.Data/PartRepository.cs
+    description: Function "PartRepository.GetOpenRequisitions" has no error cases documented but appears to handle user
+      input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-34
+    severity: medium
+    category: missing-side-effects
+    entity: Driver.HasEndorsement
+    entityType: function
+    sourceFile: FleetManager.Domain/Driver.cs
+    description: Function "Driver.HasEndorsement" likely has side effects (based on its name/context) but none were captured.
+    impact: Missing side effects (DB writes, API calls, events) will cause the reconstructed app to behave differently.
+    remediation: 'Review "Driver.HasEndorsement" and add side effects: database operations, network calls, file I/O, events
+      emitted.'
+    confidence: 0.95
+  - id: gap-40
+    severity: medium
+    category: missing-error-handling
+    entity: DashboardController.Index
+    entityType: function
+    sourceFile: FleetManager.Web/Controllers/DashboardController.cs
+    description: Function "DashboardController.Index" has no error cases documented but appears to handle user input or
+      external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-43
+    severity: medium
+    category: missing-error-handling
+    entity: VehiclesController.Index
+    entityType: function
+    sourceFile: FleetManager.Web/Controllers/VehiclesController.cs
+    description: Function "VehiclesController.Index" has no error cases documented but appears to handle user input or
+      external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-44
+    severity: medium
+    category: missing-error-handling
+    entity: WorkOrdersController.Index
+    entityType: function
+    sourceFile: FleetManager.Web/Controllers/WorkOrdersController.cs
+    description: Function "WorkOrdersController.Index" has no error cases documented but appears to handle user input or
+      external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 0.95
+  - id: gap-7
+    severity: medium
+    category: missing-error-handling
+    entity: RegisterRoutes
+    entityType: function
+    sourceFile: FleetManager.Web/RouteConfig.cs
+    description: Function "RegisterRoutes" has no error cases documented but appears to handle user input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 1
+  - id: gap-8
+    severity: medium
+    category: missing-error-handling
+    entity: BillingService.GetTaxRate
+    entityType: function
+    sourceFile: FleetManager.Business/BillingService.cs
+    description: Function "BillingService.GetTaxRate" has no error cases documented but appears to handle user input or
+      external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 1
+  - id: gap-26
+    severity: medium
+    category: missing-error-handling
+    entity: MaintenanceScheduler.BuildSchedule
+    entityType: function
+    sourceFile: FleetManager.Business/MaintenanceScheduler.cs
+    description: Function "MaintenanceScheduler.BuildSchedule" has no error cases documented but appears to handle user
+      input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 1
+  - id: gap-31
+    severity: medium
+    category: missing-error-handling
+    entity: PartRepository.GetAll
+    entityType: function
+    sourceFile: FleetManager.Data/PartRepository.cs
+    description: Function "PartRepository.GetAll" has no error cases documented but appears to handle user input or external calls.
+    impact: Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.
+    remediation: "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures
+      are handled."
+    confidence: 1

@@ -1,0 +1,247 @@
+{
+  "publication": "Public owner-requested curated specification export",
+  "exported_on": "2026-10-22",
+  "artifacts": [
+    {
+      "path": "fleet-manager/analysis-report.json",
+      "bytes": 2117,
+      "sha256": "104167a6ccbfdc6113ea5e383a2eec947b04aa1f20c89620a445e4be1c4c0c01",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/analysis-report.json",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/architecture.mmd",
+      "bytes": 3549,
+      "sha256": "556b3fcee363b0ef6103162d743566dd0260a174448c4052ba6dbd530fe493af",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/architecture.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/component-hierarchy.mmd",
+      "bytes": 563,
+      "sha256": "a20209eca0c841f7dc90f3bcf2f3d6a59ba98f4802aaaee51b118c62d5c867cb",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/component-hierarchy.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/data-flows-overview.mmd",
+      "bytes": 4560,
+      "sha256": "06df2c0bd741c85098dbcaaca08702bf78ded6738b3cfecf4ca0b1faa6bca49a",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/data-flows-overview.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/flow-post.mmd",
+      "bytes": 1118,
+      "sha256": "27496274725f8092a92b26e102667d1f5328978cd3bb05d7f627b152b66b6701",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/flow-post.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/module-dependencies.mmd",
+      "bytes": 2858,
+      "sha256": "01415913c083eb8275adf066c5d29089364e14647f1040808d91fa50168f2712",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/module-dependencies.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/route-map.mmd",
+      "bytes": 594,
+      "sha256": "d64d3623a76e3075fd62109d7d8c5b300eb5c76887989b567e2da44487766954",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/route-map.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/diagrams/seq-POST-.mmd",
+      "bytes": 730,
+      "sha256": "9324b0532d5c37a09fed0660d92ee03374352b77cfc450e16b4494206bb57b74",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/diagrams/seq-POST-.mmd",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/evaluation-harness.yaml",
+      "bytes": 453791,
+      "sha256": "0ccf67cf4900ef0a0205405cb2cab258ea4180c74c087e49ebbccd58a2570b22",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/evaluation-harness.yaml",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/gap-analysis.json",
+      "bytes": 32688,
+      "sha256": "4668a01cc91dce4449804a045110a3e964aa059bb967f69ab2c1d7af92c9f0a1",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/gap-analysis.json",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/gap-analysis.yaml",
+      "bytes": 28909,
+      "sha256": "b0ab6b6bac9ec7bf6ab59a4cb643c9b214b49a972b9e0ec2f2f56f9f879d6024",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/gap-analysis.yaml",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/knowledge-graph.html",
+      "bytes": 83767,
+      "sha256": "6df5c9d81afae88b68ef03b1aa4bad17d892d540f332193366b8919eb5fb5a8b",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/knowledge-graph.html",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/knowledge-graph.json",
+      "bytes": 188025,
+      "sha256": "99a3337d74471eddd8fe1833becee93b9fd930def2ad512749ca0097128efb2c",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/knowledge-graph.json",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/knowledge-graph.yaml",
+      "bytes": 147286,
+      "sha256": "86ce665ddc99edf29ef22730582d0f6fe0b05c4cc27ca32b99df7dec3e81de29",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/knowledge-graph.yaml",
+      "transformations": []
+    },
+    {
+      "path": "fleet-manager/spec.yaml",
+      "bytes": 1228075,
+      "sha256": "d39a0c4107f5b6c0759309c03281db570f85fc1a72ea39667ec85a7730c497be",
+      "origin": "ADO partvyas/GHAS-demo build 82: specforge-output-82/spec.yaml",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/analysis-report.json",
+      "bytes": 902,
+      "sha256": "523f518e993b7067afa374f72077b3b6938f4e7fe89c4fbb0fe0b2ef45d2e7be",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/analysis-report.json",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/diagrams/architecture.mmd",
+      "bytes": 738,
+      "sha256": "b1211f9d41532204452c393a2461f963893aea928b7ea6126cbaca27918a3c8e",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/diagrams/architecture.mmd",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/diagrams/er-diagram.mmd",
+      "bytes": 87,
+      "sha256": "8394a274c60ce84c1b26ef00f44ab645ccc74242b45041b27e9a7b958f05045b",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/diagrams/er-diagram.mmd",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/diagrams/module-dependencies.mmd",
+      "bytes": 541,
+      "sha256": "8439af083c4e495abdc0ebfeca3052c3956586ab9bc1cd46ba117fdf6b7a57f9",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/diagrams/module-dependencies.mmd",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/evaluation-harness.yaml",
+      "bytes": 18848,
+      "sha256": "23e485a0f2cc01d8c88dd9804c784ab82ee64c791e34af062c79325bd8fe77c4",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/evaluation-harness.yaml",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/gap-analysis.json",
+      "bytes": 847,
+      "sha256": "f28ea314785c4cfbc7025345d425ec13695809d912d647a998f21c0bc5b97ec4",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/gap-analysis.json",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/gap-analysis.yaml",
+      "bytes": 668,
+      "sha256": "b3eb29fd5c4ea13b3f8b4c668517f72e93a5c633d4749e6b0ad4577ac7bb3f56",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/gap-analysis.yaml",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/knowledge-graph.html",
+      "bytes": 13650,
+      "sha256": "b607eb5201fcf15e1d27c1e0464416533f91ab7bbc56b9cf0a1ac0fea76fd90c",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/knowledge-graph.html",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/knowledge-graph.json",
+      "bytes": 16494,
+      "sha256": "7e0bf7d5b10d3bd22b7c7592aae26f32f0512134ab4800b71e5312a3ea53bfdb",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/knowledge-graph.json",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/knowledge-graph.yaml",
+      "bytes": 12434,
+      "sha256": "ba56160b63f4b0672050bebc783db8db15889e8f72f4c22dbd80b52189c5d539",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/knowledge-graph.yaml",
+      "transformations": []
+    },
+    {
+      "path": "legacy-orders/spec.yaml",
+      "bytes": 39262,
+      "sha256": "2794a73084285fbef7cc3647d66b1f293f2e82294942d1fbf0fc12e94614e674",
+      "origin": "ADO partvyas/GHAS-demo build 87: specforge-output-87/spec.yaml",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/forge-01/analysis-report.json",
+      "bytes": 882,
+      "sha256": "2e55132bce894793092d509fab359e24a0c575f52f0405a0e4fd82b0f96b93c9",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/forge-01/analysis-report.json",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/forge-01/evaluation-harness.yaml",
+      "bytes": 19511,
+      "sha256": "f40332cbce5050380a0ac20f6d5f8862cd0d02050424c9e901f09330e481be8c",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/forge-01/evaluation-harness.yaml",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/forge-01/gap-analysis.json",
+      "bytes": 2002,
+      "sha256": "7a4f8046f2f2519ceaad129d6d23010a6c080b50a145d55e80f718bde8354353",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/forge-01/gap-analysis.json",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/forge-01/knowledge-graph.json",
+      "bytes": 20001,
+      "sha256": "421e04486c7e7e913b08e73017d6e1228befad13cdea1d04e974637ac854e02c",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/forge-01/knowledge-graph.json",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/forge-01/spec.yaml",
+      "bytes": 45973,
+      "sha256": "3e537f90f537362e1e9af5bd416626ef5b40eb1b12b17d45be076cc1e0ae71fb",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/forge-01/spec.yaml",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/reviewed-01/evaluation-harness.yaml",
+      "bytes": 19511,
+      "sha256": "f40332cbce5050380a0ac20f6d5f8862cd0d02050424c9e901f09330e481be8c",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/reviewed-01/evaluation-harness.yaml",
+      "transformations": []
+    },
+    {
+      "path": "mini-quote/reviewed-01/spec.yaml",
+      "bytes": 44455,
+      "sha256": "38cb34ef21140afafd675d54ad60d2de60bfb52d551aa4e9a761e23432be40ad",
+      "origin": "GitHub ParthVyas2912/specsuite-mini-quote@83254f93396c4c7b4653d7e3edc55ccdfed278bd:specification/reviewed-01/spec.yaml",
+      "transformations": []
+    }
+  ],
+  "excluded": [
+    "private product/runtime code",
+    "credentials",
+    "analysis caches",
+    "attachment manifests",
+    "model telemetry and operational logs",
+    "repository history",
+    "generated application builds"
+  ],
+  "limitations": "See README.md and each sample's original analysis/gap reports."
+}

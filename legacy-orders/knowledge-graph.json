@@ -1,0 +1,674 @@
+{
+  "specforge_knowledge_graph": "1.0.0",
+  "project": "source",
+  "entities": [
+    {
+      "id": "project:root",
+      "name": "source",
+      "type": "project",
+      "description": "A backend-focused application for order processing with a modular architecture built using ASP.NET Core.",
+      "sourceFiles": [],
+      "domain": "e-commerce",
+      "properties": {
+        "type": "fullstack",
+        "totalFiles": 8,
+        "sourceFiles": 7
+      },
+      "tags": [
+        "project"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:LegacyOrderProcessor",
+      "name": "LegacyOrderProcessor",
+      "type": "module",
+      "description": "Legacy module responsible for processing orders, with a potential for re-architecting to align with modern code practices.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/App.config",
+        "LegacyOrderProcessor/DiscountEngine.cs",
+        "LegacyOrderProcessor/LegacyOrderProcessor.csproj",
+        "LegacyOrderProcessor/OrderRepository.cs",
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "domain": "order processing",
+      "properties": {
+        "directory": "LegacyOrderProcessor",
+        "fileCount": 5
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:LegacyOrderProcessor.sln",
+      "name": "LegacyOrderProcessor.sln",
+      "type": "module",
+      "description": "Module: LegacyOrderProcessor.sln",
+      "sourceFiles": [
+        "LegacyOrderProcessor.sln"
+      ],
+      "properties": {
+        "directory": "LegacyOrderProcessor.sln",
+        "fileCount": 1
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:DiscountEngine.cs/DiscountEngine",
+      "name": "DiscountEngine",
+      "type": "function",
+      "description": "Initializes the DiscountEngine class for applying discounts.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/DiscountEngine.cs"
+      ],
+      "domain": "business logic",
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 4
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:DiscountEngine.cs/Apply",
+      "name": "Apply",
+      "type": "function",
+      "description": "Function Apply",
+      "sourceFiles": [
+        "LegacyOrderProcessor/DiscountEngine.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 8
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:OrderRepository.cs/OrderRepository",
+      "name": "OrderRepository",
+      "type": "function",
+      "description": "Function OrderRepository",
+      "sourceFiles": [
+        "LegacyOrderProcessor/OrderRepository.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 3
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:OrderRepository.cs/Save",
+      "name": "Save",
+      "type": "function",
+      "description": "Function Save",
+      "sourceFiles": [
+        "LegacyOrderProcessor/OrderRepository.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 18
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:Program.cs/Main",
+      "name": "Main",
+      "type": "function",
+      "description": "Function Main",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": false,
+        "complexity": 1,
+        "lineCount": 15
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:Program.cs/Load",
+      "name": "Load",
+      "type": "function",
+      "description": "Function Load",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 21
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "class:DiscountEngine",
+      "name": "DiscountEngine",
+      "type": "class",
+      "description": "A component for calculating and applying discounts on orders.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/DiscountEngine.cs"
+      ],
+      "domain": "business logic",
+      "properties": {
+        "abstract": false,
+        "exported": true,
+        "methodCount": 0
+      },
+      "tags": [
+        "class"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "class:OrderRepository",
+      "name": "OrderRepository",
+      "type": "class",
+      "description": "Manages data persistence and transactions related to orders.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/OrderRepository.cs"
+      ],
+      "domain": "data management",
+      "properties": {
+        "abstract": false,
+        "exported": true,
+        "methodCount": 0
+      },
+      "tags": [
+        "class"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "class:Program",
+      "name": "Program",
+      "type": "class",
+      "description": "Main entry point for initializing and executing the application.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "abstract": false,
+        "exported": false,
+        "methodCount": 0
+      },
+      "tags": [
+        "class"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "class:Order",
+      "name": "Order",
+      "type": "class",
+      "description": "Represents an order entity central to the system's core functionality.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "domain": "e-commerce",
+      "properties": {
+        "abstract": false,
+        "exported": true,
+        "methodCount": 0
+      },
+      "tags": [
+        "class"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "class:CsvOrderLoader",
+      "name": "CsvOrderLoader",
+      "type": "class",
+      "description": "Responsible for importing orders from CSV files into the system.",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "domain": "data ingestion",
+      "properties": {
+        "abstract": false,
+        "exported": true,
+        "methodCount": 0
+      },
+      "tags": [
+        "class"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "model:Order",
+      "name": "Order",
+      "type": "model",
+      "description": "Data model Order (orm)",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "source": "orm",
+        "fieldCount": 3,
+        "relationCount": 0
+      },
+      "tags": [
+        "model"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "field:Order.Id",
+      "name": "Order.Id",
+      "type": "field",
+      "description": "Field Id on Order",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "type": "[object Object]",
+        "nullable": false,
+        "unique": false,
+        "generated": false
+      },
+      "tags": [
+        "field"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "field:Order.CustomerName",
+      "name": "Order.CustomerName",
+      "type": "field",
+      "description": "Field CustomerName on Order",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "type": "[object Object]",
+        "nullable": false,
+        "unique": false,
+        "generated": false
+      },
+      "tags": [
+        "field"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "field:Order.TotalAmount",
+      "name": "Order.TotalAmount",
+      "type": "field",
+      "description": "Field TotalAmount on Order",
+      "sourceFiles": [
+        "LegacyOrderProcessor/Program.cs"
+      ],
+      "properties": {
+        "type": "[object Object]",
+        "nullable": false,
+        "unique": false,
+        "generated": false
+      },
+      "tags": [
+        "field"
+      ],
+      "confidence": 1
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-1",
+      "source": "module:LegacyOrderProcessor",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-2",
+      "source": "module:LegacyOrderProcessor.sln",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-3",
+      "source": "module:LegacyOrderProcessor",
+      "target": "function:DiscountEngine.cs/DiscountEngine",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-4",
+      "source": "module:LegacyOrderProcessor",
+      "target": "function:DiscountEngine.cs/Apply",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-5",
+      "source": "module:LegacyOrderProcessor",
+      "target": "function:OrderRepository.cs/OrderRepository",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-6",
+      "source": "module:LegacyOrderProcessor",
+      "target": "function:OrderRepository.cs/Save",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-7",
+      "source": "module:LegacyOrderProcessor",
+      "target": "function:Program.cs/Main",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-8",
+      "source": "module:LegacyOrderProcessor",
+      "target": "function:Program.cs/Load",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-9",
+      "source": "module:LegacyOrderProcessor",
+      "target": "class:DiscountEngine",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-10",
+      "source": "module:LegacyOrderProcessor",
+      "target": "class:OrderRepository",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-11",
+      "source": "module:LegacyOrderProcessor",
+      "target": "class:Program",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-12",
+      "source": "module:LegacyOrderProcessor",
+      "target": "class:Order",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-13",
+      "source": "module:LegacyOrderProcessor",
+      "target": "class:CsvOrderLoader",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-14",
+      "source": "model:Order",
+      "target": "field:Order.Id",
+      "type": "has-field",
+      "label": "Id",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-15",
+      "source": "model:Order",
+      "target": "field:Order.CustomerName",
+      "type": "has-field",
+      "label": "CustomerName",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-16",
+      "source": "model:Order",
+      "target": "field:Order.TotalAmount",
+      "type": "has-field",
+      "label": "TotalAmount",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-17",
+      "source": "project:root",
+      "target": "module:LegacyOrderProcessor",
+      "type": "contains",
+      "label": "Contains module",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-18",
+      "source": "module:LegacyOrderProcessor",
+      "target": "module:LegacyOrderProcessor.sln",
+      "type": "implements",
+      "label": "Module solution structure",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-19",
+      "source": "function:DiscountEngine.cs/DiscountEngine",
+      "target": "class:DiscountEngine",
+      "type": "implements",
+      "label": "Function belongs to class",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-20",
+      "source": "function:DiscountEngine.cs/Apply",
+      "target": "class:DiscountEngine",
+      "type": "implements",
+      "label": "Function belongs to class",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-21",
+      "source": "function:OrderRepository.cs/OrderRepository",
+      "target": "class:OrderRepository",
+      "type": "implements",
+      "label": "Function belongs to class",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-22",
+      "source": "function:OrderRepository.cs/Save",
+      "target": "class:OrderRepository",
+      "type": "implements",
+      "label": "Function belongs to class",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-23",
+      "source": "function:Program.cs/Main",
+      "target": "class:Program",
+      "type": "implements",
+      "label": "Function belongs to class",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-24",
+      "source": "function:Program.cs/Load",
+      "target": "class:Program",
+      "type": "implements",
+      "label": "Function belongs to class",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-25",
+      "source": "class:Program",
+      "target": "class:Order",
+      "type": "uses",
+      "label": "Program processes orders",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-26",
+      "source": "class:OrderRepository",
+      "target": "model:Order",
+      "type": "manages",
+      "label": "Order repository manages order data",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-27",
+      "source": "class:DiscountEngine",
+      "target": "class:Order",
+      "type": "applies",
+      "label": "Discount Engine applies discounts to orders",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-28",
+      "source": "class:CsvOrderLoader",
+      "target": "class:Order",
+      "type": "loads",
+      "label": "CSV Loader loads orders",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-29",
+      "source": "module:LegacyOrderProcessor",
+      "target": "class:Order",
+      "type": "focuses_on",
+      "label": "Module focuses on Order domain",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-30",
+      "source": "project:root",
+      "target": "model:Order",
+      "type": "primary_model",
+      "label": "Project's primary data model",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    }
+  ],
+  "metadata": {
+    "totalEntities": 18,
+    "totalRelationships": 30,
+    "entityTypeCounts": {
+      "project": 1,
+      "module": 2,
+      "function": 6,
+      "class": 5,
+      "model": 1,
+      "field": 3
+    },
+    "relationshipTypeCounts": {
+      "contained-in": 2,
+      "contains": 12,
+      "has-field": 3,
+      "implements": 7,
+      "uses": 1,
+      "manages": 1,
+      "applies": 1,
+      "loads": 1,
+      "focuses_on": 1,
+      "primary_model": 1
+    },
+    "averageConfidence": 1,
+    "generatedAt": "2026-09-09T19:11:46.212Z"
+  }
+}

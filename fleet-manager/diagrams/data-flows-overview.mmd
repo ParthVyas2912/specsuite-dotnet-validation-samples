@@ -1,0 +1,132 @@
+graph TD
+  subgraph "POST /"
+    F0_S1["The controller action 'Index' is trig..."]
+    F0_S2["Determine the vehicle list (fleet) fr..."]
+    F0_S1 --> F0_S2
+    F0_S3["Iterate through the fleet to calculat..."]
+    F0_S2 --> F0_S3
+    F0_S4["Populate open work orders using WorkO..."]
+    F0_S3 --> F0_S4
+    F0_S5["Generate a maintenance schedule via M..."]
+    F0_S4 --> F0_S5
+    F0_S6["Retrieve parts below reorder points u..."]
+    F0_S5 --> F0_S6
+    F0_S7["Fetch open parts requisitions using P..."]
+    F0_S6 --> F0_S7
+    F0_S8["Calculate inventory value using Inven..."]
+    F0_S7 --> F0_S8
+    F0_S9["Fetch driver's compliance watch list ..."]
+    F0_S8 --> F0_S9
+    F0_S10["Calculate availability percentage if ..."]
+    F0_S9 --> F0_S10
+    F0_S11["Iterate through the open work orders ..."]
+    F0_S10 --> F0_S11
+    F0_S12["Render the populated DashboardViewMod..."]
+    F0_S11 --> F0_S12
+  end
+  subgraph "POST /"
+    F1_S1["POST request is routed to the UpdateO..."]
+    F1_S2["Retrieve the vehicle record by ID usi..."]
+    F1_S1 --> F1_S2
+    F1_S3["Check if the new odometer reading is ..."]
+    F1_S2 --> F1_S3
+    F1_S4["Validate if the odometer jump exceeds..."]
+    F1_S3 --> F1_S4
+    F1_S5["Update the odometer reading in the da..."]
+    F1_S4 --> F1_S5
+    F1_S6["Set a success message in TempData and..."]
+    F1_S5 --> F1_S6
+  end
+  subgraph "POST /"
+    F2_S1["Receive HTTP POST request with vehicl..."]
+    F2_S2["Retrieve vehicle object from the data..."]
+    F2_S1 --> F2_S2
+    F2_S3["Check if the retrieved vehicle object..."]
+    F2_S2 --> F2_S3
+    F2_S4["Validate if the new odometerKm is les..."]
+    F2_S3 --> F2_S4
+    F2_S5["Calculate the jump in kilometers (odo..."]
+    F2_S4 --> F2_S5
+    F2_S6["Update the vehicle's odometer in the ..."]
+    F2_S5 --> F2_S6
+    F2_S7["Set success message in TempData and r..."]
+    F2_S6 --> F2_S7
+  end
+  subgraph "POST /"
+    F3_S1["Receive HTTP POST request with 'id' a..."]
+    F3_S2["Retrieve vehicle by ID from the Vehic..."]
+    F3_S1 --> F3_S2
+    F3_S3["Check if the vehicle exists."]
+    F3_S2 --> F3_S3
+    F3_S4["Validate new odometer reading."]
+    F3_S3 --> F3_S4
+    F3_S5["Update the vehicle's odometer in the ..."]
+    F3_S4 --> F3_S5
+    F3_S6["Set a success message in TempData."]
+    F3_S5 --> F3_S6
+    F3_S7["Redirect user to the Details action."]
+    F3_S6 --> F3_S7
+  end
+  subgraph "POST /"
+    F4_S1["Accepts a work order ID and processes..."]
+    F4_S2["Accepts a work order ID and a technic..."]
+    F4_S1 --> F4_S2
+    F4_S3["Attempts to close a work order. Valid..."]
+    F4_S2 --> F4_S3
+  end
+  subgraph "POST /"
+    F5_S1["Calls the InventoryService to issue p..."]
+    F5_S2["Sets TempData message to communicate ..."]
+    F5_S1 --> F5_S2
+    F5_S3["Redirects to the Details action for t..."]
+    F5_S2 --> F5_S3
+    F5_S4["Validates that a technician name is p..."]
+    F5_S3 --> F5_S4
+    F5_S5["Assigns a technician to the work orde..."]
+    F5_S4 --> F5_S5
+    F5_S6["Sets TempData message to communicate ..."]
+    F5_S5 --> F5_S6
+    F5_S7["Redirects to the Details action for t..."]
+    F5_S6 --> F5_S7
+    F5_S8["Fetches the work order by ID and vali..."]
+    F5_S7 --> F5_S8
+    F5_S9["Validates the work order status to en..."]
+    F5_S8 --> F5_S9
+    F5_S10["Updates the status of the work order ..."]
+    F5_S9 --> F5_S10
+    F5_S11["Sets TempData message to communicate ..."]
+    F5_S10 --> F5_S11
+    F5_S12["Redirects to the Details action for t..."]
+    F5_S11 --> F5_S12
+  end
+  subgraph "POST /"
+    F6_S1["Receive HTTP POST request for issuing..."]
+    F6_S2["Handles part issuance for the specifi..."]
+    F6_S1 --> F6_S2
+    F6_S3["Receive HTTP POST request to assign a..."]
+    F6_S2 --> F6_S3
+    F6_S4["Assign a technician to the work order..."]
+    F6_S3 --> F6_S4
+    F6_S5["Update the status of a work order in ..."]
+    F6_S4 --> F6_S5
+    F6_S6["Receive HTTP POST request to close a ..."]
+    F6_S5 --> F6_S6
+    F6_S7["Fetch work order details from the dat..."]
+    F6_S6 --> F6_S7
+  end
+  subgraph "POST /"
+    F7_S1["POST request is routed to the appropr..."]
+    F7_S2["Calls InventoryService.IssuePartsForW..."]
+    F7_S1 --> F7_S2
+    F7_S3["Assigns a technician to a work order ..."]
+    F7_S2 --> F7_S3
+    F7_S4["Validates work order state and attemp..."]
+    F7_S3 --> F7_S4
+  end
+  subgraph "POST /"
+    F8_S1["Entry point for issuing parts for a w..."]
+    F8_S2["Handles assignment of a technician to..."]
+    F8_S1 --> F8_S2
+    F8_S3["Handles closing of a work order after..."]
+    F8_S2 --> F8_S3
+  end

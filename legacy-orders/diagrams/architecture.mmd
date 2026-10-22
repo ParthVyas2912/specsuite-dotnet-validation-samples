@@ -1,0 +1,21 @@
+%% SpecForge Architecture Diagrams — /work/source
+%% Generated: 2026-09-09T19:12:11.654Z
+
+%% === Architecture Overview ===
+graph TB
+  subgraph "Data Layer"
+  end
+
+
+%% === Module Dependencies ===
+graph LR
+  subgraph "LegacyOrderProcessor"
+    LegacyOrderProcessor_App_config["LegacyOrderProcessor/App"]
+    LegacyOrderProcessor_DiscountEngine_cs["LegacyOrderProcessor/DiscountEngine"]
+    LegacyOrderProcessor_LegacyOrderProcessor_csproj["LegacyOrderProcessor/LegacyOrderProcessor"]
+    LegacyOrderProcessor_OrderRepository_cs["LegacyOrderProcessor/OrderRepository"]
+    LegacyOrderProcessor_Program_cs["LegacyOrderProcessor/Program"]
+  end
+  subgraph "LegacyOrderProcessor.sln"
+    LegacyOrderProcessor_sln["LegacyOrderProcessor"]
+  end

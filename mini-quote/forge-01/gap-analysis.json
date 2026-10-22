@@ -1,0 +1,55 @@
+{
+  "specforge_gap_analysis": "1.0.0",
+  "summary": {
+    "totalGaps": 3,
+    "bySeverity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "byCategory": {
+      "missing-error-handling": 3
+    },
+    "overallFidelityScore": 68.4,
+    "remediationEstimate": "~15 minutes"
+  },
+  "gaps": [
+    {
+      "id": "gap-2",
+      "severity": "medium",
+      "category": "missing-error-handling",
+      "entity": "GET /",
+      "entityType": "route",
+      "sourceFile": "Controllers/QuoteController.cs",
+      "description": "Route GET / has no error responses documented.",
+      "impact": "Reconstructed endpoint will not handle error cases properly.",
+      "remediation": "Document all error responses for GET /: status codes, error codes, conditions that trigger them.",
+      "confidence": 0.9
+    },
+    {
+      "id": "gap-3",
+      "severity": "medium",
+      "category": "missing-error-handling",
+      "entity": "GET /api/health",
+      "entityType": "route",
+      "sourceFile": "Controllers/QuoteController.cs",
+      "description": "Route GET /api/health has no error responses documented.",
+      "impact": "Reconstructed endpoint will not handle error cases properly.",
+      "remediation": "Document all error responses for GET /api/health: status codes, error codes, conditions that trigger them.",
+      "confidence": 0.9
+    },
+    {
+      "id": "gap-1",
+      "severity": "medium",
+      "category": "missing-error-handling",
+      "entity": "__module_init__",
+      "entityType": "function",
+      "sourceFile": "Program.cs",
+      "description": "Function \"__module_init__\" has no error cases documented but appears to handle user input or external calls.",
+      "impact": "Reconstructed function may not handle errors correctly, leading to crashes or wrong behavior.",
+      "remediation": "Document error conditions: what can go wrong, what exceptions/error codes are returned, and how failures are handled.",
+      "confidence": 0.95
+    }
+  ]
+}

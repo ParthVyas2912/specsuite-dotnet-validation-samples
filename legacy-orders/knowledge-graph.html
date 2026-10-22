@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>source — Knowledge Graph</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #c9d1d9; overflow: hidden; }
+  #controls { position: fixed; top: 12px; left: 12px; z-index: 10; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px; max-width: 320px; }
+  #controls h2 { font-size: 14px; margin-bottom: 8px; color: #58a6ff; }
+  #controls label { display: block; font-size: 12px; margin: 4px 0; cursor: pointer; }
+  #controls input[type=checkbox] { margin-right: 6px; }
+  #controls input[type=range] { width: 100%; }
+  #search { width: 100%; padding: 4px 8px; background: #0d1117; border: 1px solid #30363d; color: #c9d1d9; border-radius: 4px; margin-bottom: 8px; font-size: 12px; }
+  #tooltip { position: fixed; display: none; background: #161b22; border: 1px solid #58a6ff; border-radius: 6px; padding: 10px; max-width: 360px; font-size: 12px; z-index: 20; pointer-events: none; }
+  #tooltip h3 { font-size: 13px; color: #58a6ff; margin-bottom: 4px; }
+  #tooltip .type { color: #f0883e; font-size: 11px; }
+  #tooltip .desc { color: #8b949e; margin-top: 4px; }
+  #stats { position: fixed; bottom: 12px; right: 12px; font-size: 11px; color: #484f58; }
+  svg { width: 100vw; height: 100vh; }
+  .link { stroke-opacity: 0.3; }
+  .link:hover { stroke-opacity: 1; }
+  .node text { font-size: 9px; fill: #8b949e; pointer-events: none; }
+  .legend { position: fixed; bottom: 12px; left: 12px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 10px; font-size: 11px; }
+  .legend-item { display: flex; align-items: center; margin: 2px 0; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div id="controls">
+  <h2>source — Knowledge Graph</h2>
+  <input type="text" id="search" placeholder="Search entities..." />
+  <div id="type-filters"></div>
+  <label>Link distance: <input type="range" id="distance" min="30" max="300" value="100"></label>
+  <label>Charge strength: <input type="range" id="charge" min="-500" max="-10" value="-120"></label>
+</div>
+<div id="tooltip"><h3></h3><div class="type"></div><div class="desc"></div></div>
+<div id="stats"></div>
+<svg></svg>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const DATA = {"nodes":[{"id":"project:root","name":"source","type":"project","domain":"e-commerce","description":"A backend-focused application for order processing with a modular architecture built using ASP.NET Core.","confidence":1},{"id":"module:LegacyOrderProcessor","name":"LegacyOrderProcessor","type":"module","domain":"order processing","description":"Legacy module responsible for processing orders, with a potential for re-architecting to align with modern code practices.","confidence":1},{"id":"module:LegacyOrderProcessor.sln","name":"LegacyOrderProcessor.sln","type":"module","domain":"unknown","description":"Module: LegacyOrderProcessor.sln","confidence":1},{"id":"function:DiscountEngine.cs/DiscountEngine","name":"DiscountEngine","type":"function","domain":"business logic","description":"Initializes the DiscountEngine class for applying discounts.","confidence":1},{"id":"function:DiscountEngine.cs/Apply","name":"Apply","type":"function","domain":"unknown","description":"Function Apply","confidence":1},{"id":"function:OrderRepository.cs/OrderRepository","name":"OrderRepository","type":"function","domain":"unknown","description":"Function OrderRepository","confidence":1},{"id":"function:OrderRepository.cs/Save","name":"Save","type":"function","domain":"unknown","description":"Function Save","confidence":1},{"id":"function:Program.cs/Main","name":"Main","type":"function","domain":"unknown","description":"Function Main","confidence":1},{"id":"function:Program.cs/Load","name":"Load","type":"function","domain":"unknown","description":"Function Load","confidence":1},{"id":"class:DiscountEngine","name":"DiscountEngine","type":"class","domain":"business logic","description":"A component for calculating and applying discounts on orders.","confidence":1},{"id":"class:OrderRepository","name":"OrderRepository","type":"class","domain":"data management","description":"Manages data persistence and transactions related to orders.","confidence":1},{"id":"class:Program","name":"Program","type":"class","domain":"unknown","description":"Main entry point for initializing and executing the application.","confidence":1},{"id":"class:Order","name":"Order","type":"class","domain":"e-commerce","description":"Represents an order entity central to the system's core functionality.","confidence":1},{"id":"class:CsvOrderLoader","name":"CsvOrderLoader","type":"class","domain":"data ingestion","description":"Responsible for importing orders from CSV files into the system.","confidence":1},{"id":"model:Order","name":"Order","type":"model","domain":"unknown","description":"Data model Order (orm)","confidence":1},{"id":"field:Order.Id","name":"Order.Id","type":"field","domain":"unknown","description":"Field Id on Order","confidence":1},{"id":"field:Order.CustomerName","name":"Order.CustomerName","type":"field","domain":"unknown","description":"Field CustomerName on Order","confidence":1},{"id":"field:Order.TotalAmount","name":"Order.TotalAmount","type":"field","domain":"unknown","description":"Field TotalAmount on Order","confidence":1}],"links":[{"source":"module:LegacyOrderProcessor","target":"project:root","type":"contained-in","label":"part of project"},{"source":"module:LegacyOrderProcessor.sln","target":"project:root","type":"contained-in","label":"part of project"},{"source":"module:LegacyOrderProcessor","target":"function:DiscountEngine.cs/DiscountEngine","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"function:DiscountEngine.cs/Apply","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"function:OrderRepository.cs/OrderRepository","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"function:OrderRepository.cs/Save","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"function:Program.cs/Main","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"function:Program.cs/Load","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"class:DiscountEngine","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"class:OrderRepository","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"class:Program","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"class:Order","type":"contains","label":"defines"},{"source":"module:LegacyOrderProcessor","target":"class:CsvOrderLoader","type":"contains","label":"defines"},{"source":"model:Order","target":"field:Order.Id","type":"has-field","label":"Id"},{"source":"model:Order","target":"field:Order.CustomerName","type":"has-field","label":"CustomerName"},{"source":"model:Order","target":"field:Order.TotalAmount","type":"has-field","label":"TotalAmount"},{"source":"project:root","target":"module:LegacyOrderProcessor","type":"contains","label":"Contains module"},{"source":"module:LegacyOrderProcessor","target":"module:LegacyOrderProcessor.sln","type":"implements","label":"Module solution structure"},{"source":"function:DiscountEngine.cs/DiscountEngine","target":"class:DiscountEngine","type":"implements","label":"Function belongs to class"},{"source":"function:DiscountEngine.cs/Apply","target":"class:DiscountEngine","type":"implements","label":"Function belongs to class"},{"source":"function:OrderRepository.cs/OrderRepository","target":"class:OrderRepository","type":"implements","label":"Function belongs to class"},{"source":"function:OrderRepository.cs/Save","target":"class:OrderRepository","type":"implements","label":"Function belongs to class"},{"source":"function:Program.cs/Main","target":"class:Program","type":"implements","label":"Function belongs to class"},{"source":"function:Program.cs/Load","target":"class:Program","type":"implements","label":"Function belongs to class"},{"source":"class:Program","target":"class:Order","type":"uses","label":"Program processes orders"},{"source":"class:OrderRepository","target":"model:Order","type":"manages","label":"Order repository manages order data"},{"source":"class:DiscountEngine","target":"class:Order","type":"applies","label":"Discount Engine applies discounts to orders"},{"source":"class:CsvOrderLoader","target":"class:Order","type":"loads","label":"CSV Loader loads orders"},{"source":"module:LegacyOrderProcessor","target":"class:Order","type":"focuses_on","label":"Module focuses on Order domain"},{"source":"project:root","target":"model:Order","type":"primary_model","label":"Project's primary data model"}]};
+
+const typeColors = {
+  project: '#f0883e', module: '#58a6ff', function: '#7ee787', class: '#d2a8ff',
+  interface: '#bc8cff', type: '#b392f0', route: '#f778ba', component: '#ff7b72',
+  model: '#ffa657', field: '#484f58', middleware: '#56d4dd', service: '#79c0ff',
+  configuration: '#8b949e', 'environment-variable': '#7d8590', dependency: '#636c76',
+  integration: '#d29922', 'data-flow': '#3fb950', event: '#db61a2',
+};
+
+const width = window.innerWidth, height = window.innerHeight;
+const svg = d3.select('svg').attr('width', width).attr('height', height);
+const g = svg.append('g');
+
+// Zoom
+svg.call(d3.zoom().scaleExtent([0.1, 8]).on('zoom', (e) => g.attr('transform', e.transform)));
+
+const simulation = d3.forceSimulation(DATA.nodes)
+  .force('link', d3.forceLink(DATA.links).id(d => d.id).distance(100))
+  .force('charge', d3.forceManyBody().strength(-120))
+  .force('center', d3.forceCenter(width / 2, height / 2))
+  .force('collision', d3.forceCollide().radius(20));
+
+const link = g.append('g').selectAll('line')
+  .data(DATA.links).join('line')
+  .attr('class', 'link')
+  .attr('stroke', '#30363d')
+  .attr('stroke-width', 1);
+
+const node = g.append('g').selectAll('g')
+  .data(DATA.nodes).join('g')
+  .attr('class', 'node')
+  .call(d3.drag().on('start', dragStart).on('drag', dragged).on('end', dragEnd));
+
+node.append('circle')
+  .attr('r', d => sizeFor(d.type))
+  .attr('fill', d => typeColors[d.type] || '#8b949e')
+  .attr('stroke', '#0d1117')
+  .attr('stroke-width', 1.5);
+
+node.append('text')
+  .attr('dx', d => sizeFor(d.type) + 3)
+  .attr('dy', 3)
+  .text(d => d.name.length > 24 ? d.name.slice(0, 22) + '…' : d.name);
+
+function sizeFor(type) {
+  if (type === 'project') return 16;
+  if (type === 'module') return 10;
+  if (['function', 'class', 'route', 'model', 'component'].includes(type)) return 6;
+  return 4;
+}
+
+// Tooltip
+const tooltip = d3.select('#tooltip');
+node.on('mouseover', (e, d) => {
+  tooltip.style('display', 'block')
+    .style('left', (e.pageX + 12) + 'px').style('top', (e.pageY - 12) + 'px');
+  tooltip.select('h3').text(d.name);
+  tooltip.select('.type').text(d.type + (d.domain !== 'unknown' ? ' · ' + d.domain : ''));
+  tooltip.select('.desc').text(d.description);
+}).on('mouseout', () => tooltip.style('display', 'none'));
+
+// Search
+d3.select('#search').on('input', function() {
+  const q = this.value.toLowerCase();
+  node.style('opacity', d => !q || d.name.toLowerCase().includes(q) || d.type.includes(q) ? 1 : 0.1);
+  link.style('opacity', l => {
+    if (!q) return 1;
+    const sn = typeof l.source === 'object' ? l.source.name : l.source;
+    const tn = typeof l.target === 'object' ? l.target.name : l.target;
+    return sn.toLowerCase().includes(q) || tn.toLowerCase().includes(q) ? 1 : 0.05;
+  });
+});
+
+// Type filters
+const types = [...new Set(DATA.nodes.map(n => n.type))].sort();
+const filtersDiv = d3.select('#type-filters');
+types.forEach(t => {
+  const label = filtersDiv.append('label');
+  label.append('input').attr('type', 'checkbox').attr('checked', true).on('change', applyFilters);
+  label.append('span').style('color', typeColors[t] || '#8b949e').text(' ' + t + ' (' + DATA.nodes.filter(n => n.type === t).length + ')');
+});
+
+function applyFilters() {
+  const active = new Set();
+  filtersDiv.selectAll('input').each(function(d, i) { if (this.checked) active.add(types[i]); });
+  node.style('display', d => active.has(d.type) ? null : 'none');
+  link.style('display', l => {
+    const st = typeof l.source === 'object' ? l.source.type : null;
+    const tt = typeof l.target === 'object' ? l.target.type : null;
+    return (st && active.has(st)) && (tt && active.has(tt)) ? null : 'none';
+  });
+}
+
+// Sliders
+d3.select('#distance').on('input', function() { simulation.force('link').distance(+this.value); simulation.alpha(0.3).restart(); });
+d3.select('#charge').on('input', function() { simulation.force('charge').strength(+this.value); simulation.alpha(0.3).restart(); });
+
+simulation.on('tick', () => {
+  link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  node.attr('transform', d => 'translate(' + d.x + ',' + d.y + ')');
+});
+
+function dragStart(e, d) { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; }
+function dragged(e, d) { d.fx = e.x; d.fy = e.y; }
+function dragEnd(e, d) { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }
+
+d3.select('#stats').text(DATA.nodes.length + ' entities · ' + DATA.links.length + ' relationships');
+</script>
+</body>
+</html>

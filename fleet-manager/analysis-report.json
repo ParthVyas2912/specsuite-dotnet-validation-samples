@@ -1,0 +1,63 @@
+{
+  "schemaValid": false,
+  "referentialIntegrity": {
+    "totalRefs": 655,
+    "resolvedRefs": 646,
+    "brokenRefs": [
+      {
+        "location": "#/routes/api/endpoints[0]/handler",
+        "ref": "#/modules/controllers/dashboardcontroller/functions/RunReorderSweep",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[1]/handler",
+        "ref": "#/modules/controllers/vehiclescontroller/functions/UpdateOdometer",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[2]/handler",
+        "ref": "#/modules/controllers/vehiclescontroller/functions/AssignDriver",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[3]/handler",
+        "ref": "#/modules/controllers/vehiclescontroller/functions/Retire",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[4]/handler",
+        "ref": "#/modules/controllers/workorderscontroller/functions/IssueParts",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[5]/handler",
+        "ref": "#/modules/controllers/workorderscontroller/functions/AssignTechnician",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[6]/handler",
+        "ref": "#/modules/controllers/workorderscontroller/functions/Close",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[7]/handler",
+        "ref": "#/modules/controllers/workorderscontroller/functions/GenerateInvoice",
+        "reason": "Path not found in spec"
+      },
+      {
+        "location": "#/routes/api/endpoints[8]/handler",
+        "ref": "#/modules/controllers/workorderscontroller/functions/RaiseDueOrders",
+        "reason": "Path not found in spec"
+      }
+    ]
+  },
+  "completeness": {
+    "score": 100,
+    "missingEntities": []
+  },
+  "confidenceDistribution": {
+    "high (>0.9)": "71%",
+    "medium (0.7-0.9)": "15%",
+    "low (<0.7)": "14%"
+  }
+}

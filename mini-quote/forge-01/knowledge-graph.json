@@ -1,0 +1,765 @@
+{
+  "specforge_knowledge_graph": "1.0.0",
+  "project": "source",
+  "entities": [
+    {
+      "id": "project:root",
+      "name": "source",
+      "type": "project",
+      "description": "A minimalistic fullstack application designed to process user API requests and provide lightweight UI functionality for a mock-ordering system.",
+      "sourceFiles": [],
+      "domain": "order processing",
+      "properties": {
+        "type": "fullstack",
+        "totalFiles": 5,
+        "sourceFiles": 5
+      },
+      "tags": [
+        "project"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:Controllers",
+      "name": "Controllers",
+      "type": "module",
+      "description": "Module: Controllers",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "properties": {
+        "directory": "Controllers",
+        "fileCount": 1
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:MiniQuote.csproj",
+      "name": "MiniQuote.csproj",
+      "type": "module",
+      "description": "Module: MiniQuote.csproj",
+      "sourceFiles": [
+        "MiniQuote.csproj"
+      ],
+      "properties": {
+        "directory": "MiniQuote.csproj",
+        "fileCount": 1
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:NuGet.Config",
+      "name": "NuGet.Config",
+      "type": "module",
+      "description": "Module: NuGet.Config",
+      "sourceFiles": [
+        "NuGet.Config"
+      ],
+      "properties": {
+        "directory": "NuGet.Config",
+        "fileCount": 1
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:Program.cs",
+      "name": "Program.cs",
+      "type": "module",
+      "description": "Module: Program.cs",
+      "sourceFiles": [
+        "Program.cs"
+      ],
+      "properties": {
+        "directory": "Program.cs",
+        "fileCount": 1
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "module:wwwroot",
+      "name": "wwwroot",
+      "type": "module",
+      "description": "Module: wwwroot",
+      "sourceFiles": [
+        "wwwroot/index.html"
+      ],
+      "properties": {
+        "directory": "wwwroot",
+        "fileCount": 1
+      },
+      "tags": [
+        "module"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Index",
+      "name": "MiniQuote.Controllers.QuoteController.Index",
+      "type": "function",
+      "description": "Function MiniQuote.Controllers.QuoteController.Index",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 3
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Health",
+      "name": "MiniQuote.Controllers.QuoteController.Health",
+      "type": "function",
+      "description": "Function MiniQuote.Controllers.QuoteController.Health",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 3
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Quote",
+      "name": "MiniQuote.Controllers.QuoteController.Quote",
+      "type": "function",
+      "description": "Function MiniQuote.Controllers.QuoteController.Quote",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": true,
+        "complexity": 1,
+        "lineCount": 28
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "function:Program.cs/__module_init__",
+      "name": "__module_init__",
+      "type": "function",
+      "description": "Top-level program initialization and host lifetime.",
+      "sourceFiles": [
+        "Program.cs"
+      ],
+      "properties": {
+        "async": false,
+        "exported": false,
+        "complexity": 1,
+        "lineCount": 5
+      },
+      "tags": [
+        "function"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "class:QuoteController",
+      "name": "QuoteController",
+      "type": "class",
+      "description": "Class QuoteController",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "properties": {
+        "abstract": false,
+        "exported": true,
+        "methodCount": 0
+      },
+      "tags": [
+        "class"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "route:GET /",
+      "name": "GET /",
+      "type": "route",
+      "description": "Frontend entry point rendering a minimalistic static page for user interaction.",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "domain": "order processing",
+      "properties": {
+        "method": "GET",
+        "path": "/"
+      },
+      "tags": [
+        "route"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "route:GET /api/health",
+      "name": "GET /api/health",
+      "type": "route",
+      "description": "API route serving real-time application health status for monitoring purposes.",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "domain": "system monitoring",
+      "properties": {
+        "method": "GET",
+        "path": "/api/health"
+      },
+      "tags": [
+        "route"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "route:GET /api/quote",
+      "name": "GET /api/quote",
+      "type": "route",
+      "description": "API route providing dynamic price quotes based on client-provided parameters like quantity and delivery.",
+      "sourceFiles": [
+        "Controllers/QuoteController.cs"
+      ],
+      "domain": "order processing",
+      "properties": {
+        "method": "GET",
+        "path": "/api/quote"
+      },
+      "tags": [
+        "route"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": "component:Wwwroot",
+      "name": "Wwwroot",
+      "type": "component",
+      "description": "A static frontend component that performs synthetic order calculations and interacts with backend APIs for live quoting services.",
+      "sourceFiles": [
+        "wwwroot/index.html"
+      ],
+      "domain": "order processing",
+      "properties": {
+        "type": "template",
+        "framework": "static-html",
+        "propCount": 0
+      },
+      "tags": [
+        "component"
+      ],
+      "confidence": 1
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-1",
+      "source": "module:Controllers",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-2",
+      "source": "module:MiniQuote.csproj",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-3",
+      "source": "module:NuGet.Config",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-4",
+      "source": "module:Program.cs",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-5",
+      "source": "module:wwwroot",
+      "target": "project:root",
+      "type": "contained-in",
+      "label": "part of project",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-6",
+      "source": "module:Controllers",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Index",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-7",
+      "source": "module:Controllers",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Health",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-8",
+      "source": "module:Controllers",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Quote",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-9",
+      "source": "module:Program.cs",
+      "target": "function:Program.cs/__module_init__",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-10",
+      "source": "module:Controllers",
+      "target": "class:QuoteController",
+      "type": "contains",
+      "label": "defines",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-11",
+      "source": "class:QuoteController",
+      "target": "type:ControllerBase",
+      "type": "implements",
+      "label": "implements ControllerBase",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-12",
+      "source": "module:Controllers",
+      "target": "route:GET /",
+      "type": "contains",
+      "label": "defines route",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-13",
+      "source": "route:GET /",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.Index",
+      "type": "handles",
+      "label": "handled by",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-14",
+      "source": "module:Controllers",
+      "target": "route:GET /api/health",
+      "type": "contains",
+      "label": "defines route",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-15",
+      "source": "route:GET /api/health",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.Health",
+      "type": "handles",
+      "label": "handled by",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-16",
+      "source": "module:Controllers",
+      "target": "route:GET /api/quote",
+      "type": "contains",
+      "label": "defines route",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-17",
+      "source": "route:GET /api/quote",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.Quote",
+      "type": "handles",
+      "label": "handled by",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-18",
+      "source": "module:wwwroot",
+      "target": "component:Wwwroot",
+      "type": "contains",
+      "label": "defines component",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-19",
+      "source": "function:Program.cs/__module_init__",
+      "target": "function:WebApplication.CreateBuilder",
+      "type": "calls",
+      "label": "calls WebApplication.CreateBuilder",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-20",
+      "source": "function:Program.cs/__module_init__",
+      "target": "function:builder.Services.AddControllers",
+      "type": "calls",
+      "label": "calls builder.Services.AddControllers",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-21",
+      "source": "function:Program.cs/__module_init__",
+      "target": "function:builder.Build",
+      "type": "calls",
+      "label": "calls builder.Build",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-22",
+      "source": "function:Program.cs/__module_init__",
+      "target": "function:app.MapControllers",
+      "type": "calls",
+      "label": "calls app.MapControllers",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-23",
+      "source": "function:Program.cs/__module_init__",
+      "target": "function:app.Run",
+      "type": "calls",
+      "label": "calls app.Run",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-24",
+      "source": "Controllers/QuoteController.cs/Index",
+      "target": "System.IO.File.ReadAllText",
+      "type": "triggers",
+      "label": "step 1 → 2 in GET /",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-25",
+      "source": "System.IO.File.ReadAllText",
+      "target": "Controllers/QuoteController.cs/Index",
+      "type": "triggers",
+      "label": "step 2 → 3 in GET /",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-26",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 1 → 2 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-27",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 2 → 3 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-28",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 3 → 4 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-29",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 4 → 5 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-30",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 5 → 6 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-31",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 6 → 7 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-32",
+      "source": "QuoteController.cs/Quote()",
+      "target": "QuoteController.cs/Quote()",
+      "type": "triggers",
+      "label": "step 7 → 8 in GET /api/quote",
+      "directed": true,
+      "properties": {},
+      "confidence": 1
+    },
+    {
+      "id": "rel-33",
+      "source": "project:root",
+      "target": "module:Controllers",
+      "type": "composition",
+      "label": "is composed of",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-34",
+      "source": "project:root",
+      "target": "module:MiniQuote.csproj",
+      "type": "composition",
+      "label": "includes project file",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-35",
+      "source": "project:root",
+      "target": "module:wwwroot",
+      "type": "composition",
+      "label": "contains static UI",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-36",
+      "source": "project:root",
+      "target": "module:Program.cs",
+      "type": "dependency",
+      "label": "application startup logic",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-37",
+      "source": "module:Program.cs",
+      "target": "class:QuoteController",
+      "type": "instantiation",
+      "label": "initializes controller",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-38",
+      "source": "class:QuoteController",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Health",
+      "type": "ownership",
+      "label": "owns function",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-39",
+      "source": "class:QuoteController",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Index",
+      "type": "ownership",
+      "label": "owns function",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-40",
+      "source": "class:QuoteController",
+      "target": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Quote",
+      "type": "ownership",
+      "label": "owns function",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-41",
+      "source": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Index",
+      "target": "route:GET /",
+      "type": "maps",
+      "label": "handles route",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-42",
+      "source": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Health",
+      "target": "route:GET /api/health",
+      "type": "maps",
+      "label": "handles route",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-43",
+      "source": "function:QuoteController.cs/MiniQuote.Controllers.QuoteController.MiniQuote.Controllers.QuoteController.Quote",
+      "target": "route:GET /api/quote",
+      "type": "maps",
+      "label": "handles route",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-44",
+      "source": "module:wwwroot",
+      "target": "component:Wwwroot",
+      "type": "ownership",
+      "label": "holds static files for component",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-45",
+      "source": "component:Wwwroot",
+      "target": "route:GET /api/quote",
+      "type": "interaction",
+      "label": "queries API",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    },
+    {
+      "id": "rel-46",
+      "source": "component:Wwwroot",
+      "target": "route:GET /",
+      "type": "dependency",
+      "label": "delivers frontend",
+      "directed": true,
+      "properties": {},
+      "confidence": 0.7
+    }
+  ],
+  "metadata": {
+    "totalEntities": 15,
+    "totalRelationships": 46,
+    "entityTypeCounts": {
+      "project": 1,
+      "module": 5,
+      "function": 4,
+      "class": 1,
+      "route": 3,
+      "component": 1
+    },
+    "relationshipTypeCounts": {
+      "contained-in": 5,
+      "contains": 9,
+      "implements": 1,
+      "handles": 3,
+      "calls": 5,
+      "triggers": 9,
+      "composition": 3,
+      "dependency": 2,
+      "instantiation": 1,
+      "ownership": 4,
+      "maps": 3,
+      "interaction": 1
+    },
+    "averageConfidence": 1,
+    "generatedAt": "2026-09-25T19:24:50.609Z"
+  }
+}

@@ -1,0 +1,48 @@
+graph LR
+  subgraph "FleetManager.Business"
+    FleetManager_Business_BillingService_cs["FleetManager.Business/BillingService"]
+    FleetManager_Business_DriverAssignmentService_cs["FleetManager.Business/DriverAssignmentService"]
+    FleetManager_Business_FleetManager_Business_csproj["FleetManager.Business/FleetManager.Business"]
+    FleetManager_Business_InventoryService_cs["FleetManager.Business/InventoryService"]
+    FleetManager_Business_MaintenanceScheduler_cs["FleetManager.Business/MaintenanceScheduler"]
+  end
+  subgraph "FleetManager.Data"
+    FleetManager_Data_DbHelper_cs["FleetManager.Data/DbHelper"]
+    FleetManager_Data_DriverRepository_cs["FleetManager.Data/DriverRepository"]
+    FleetManager_Data_FleetManager_Data_csproj["FleetManager.Data/FleetManager.Data"]
+    FleetManager_Data_PartRepository_cs["FleetManager.Data/PartRepository"]
+    FleetManager_Data_VehicleRepository_cs["FleetManager.Data/VehicleRepository"]
+    FleetManager_Data_WorkOrderRepository_cs["FleetManager.Data/WorkOrderRepository"]
+  end
+  subgraph "FleetManager.Domain"
+    FleetManager_Domain_Driver_cs["FleetManager.Domain/Driver"]
+    FleetManager_Domain_FleetManager_Domain_csproj["FleetManager.Domain/FleetManager.Domain"]
+    FleetManager_Domain_Invoice_cs["FleetManager.Domain/Invoice"]
+    FleetManager_Domain_Part_cs["FleetManager.Domain/Part"]
+    FleetManager_Domain_Vehicle_cs["FleetManager.Domain/Vehicle"]
+    FleetManager_Domain_WorkOrder_cs["FleetManager.Domain/WorkOrder"]
+  end
+  subgraph "FleetManager.Web"
+    FleetManager_Web_Controllers_DashboardController_c["Controllers/DashboardController"]
+    FleetManager_Web_Controllers_VehiclesController_cs["Controllers/VehiclesController"]
+    FleetManager_Web_Controllers_WorkOrdersController_["Controllers/WorkOrdersController"]
+    FleetManager_Web_FleetManager_Web_csproj["FleetManager.Web/FleetManager.Web"]
+    FleetManager_Web_RouteConfig_cs["FleetManager.Web/RouteConfig"]
+    FleetManager_Web_Views_Dashboard_Index_cshtml["Dashboard/Index"]
+    FleetManager_Web_Views_Dashboard_Inventory_cshtml["Dashboard/Inventory"]
+    FleetManager_Web_Views_Shared_NotFound_cshtml["Shared/NotFound"]
+    FleetManager_Web_Views_Shared_Layout_cshtml["Shared/_Layout"]
+    FleetManager_Web_Views_Vehicles_Details_cshtml["Vehicles/Details"]
+    FleetManager_Web_Views_Vehicles_Index_cshtml["Vehicles/Index"]
+    FleetManager_Web_Views_WorkOrders_Details_cshtml["WorkOrders/Details"]
+    FleetManager_Web_Views_WorkOrders_Index_cshtml["WorkOrders/Index"]
+    FleetManager_Web_Views_WorkOrders_Invoice_cshtml["WorkOrders/Invoice"]
+    FleetManager_Web_packages_config["FleetManager.Web/packages"]
+  end
+  subgraph "FleetManager.sln"
+    FleetManager_sln["FleetManager"]
+  end
+  subgraph "database"
+    database_01_schema_sql["database/01-schema"]
+    database_02_seed_data_sql["database/02-seed-data"]
+  end

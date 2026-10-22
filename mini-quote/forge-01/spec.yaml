@@ -1,0 +1,1257 @@
+# ═══════════════════════════════════════════════════════
+# SpecForge Specification — MiniQuote
+# Generated: 2026-09-25T19:24:31.863Z
+# Version: 1.0.0
+# ═══════════════════════════════════════════════════════
+specforge: 1.0.0
+project:
+  name: MiniQuote
+  description: The application is a minimalistic fullstack system built with C# and ASP.NET Core, intended to handle
+    simple API requests and serve a lightweight user interface. Its purpose appears to be the provision of basic data or
+    status checks through three API endpoints, including a root endpoint, a health check, and a quote retrieval
+    endpoint. The architecture prioritizes simplicity and modularity, with two distinct modules, one likely focused on
+    API controllers and the other serving auxiliary purposes. Despite its sparse feature set, the design relies on
+    ASP.NET Core to enable scalable and maintainable backend logic, with a single UI component for user interaction. The
+    absence of data models suggests this application primarily processes ephemeral or external data rather than
+    interacting with a database. Key design decisions include a clean separation of concerns between infrastructure
+    layers and adherence to standard REST API practices.
+  source:
+    type: local
+    rootPath: /source
+    analyzedAt: 2026-09-25T19:24:29.451Z
+  projectType: fullstack
+  architecturePattern: unknown
+  coreDomains:
+    - infrastructure
+    - serviceInterface
+  keyWorkflows:
+    - process API endpoint requests
+    - serve lightweight UI component
+  designPhilosophy: The design approach emphasizes minimalism and modularity while leveraging ASP.NET Core for scalability
+    and maintainability.
+stack:
+  languages:
+    primary: csharp
+    secondary: []
+  runtime:
+    - name: csharp
+      version: latest
+  frameworks:
+    backend:
+      - name: ASP.NET Core
+        version: net8.0
+        config: {}
+  infrastructure: {}
+dependencies:
+  runtime: []
+  development: []
+configuration:
+  environment_variables: []
+  config_files: []
+models: {}
+modules:
+  controllers/quotecontroller:
+    description: This module provides HTTP endpoints for the MiniQuote application, functioning as the primary entry point
+      for client interactions. It includes routes for serving the main HTML page, providing application health status,
+      and other API-related responses.
+    domain: infrastructure
+    role: controller
+    sourcePath: Controllers
+    dependencies: []
+    exports:
+      - "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Index'"
+      - "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Health'"
+      - "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    functions:
+      MiniQuote.Controllers.QuoteController.Index:
+        description: Serve the index.html file.
+        parameters: []
+        returns:
+          type: ContentResult
+          description: HTML with UTF-8 encoding
+        algorithm:
+          - step: 1
+            action: Read index.html from filesystem
+            details: Retrieve content using System.IO.File.ReadAllText
+            calls: System.IO.File.ReadAllText
+            literals:
+              path: wwwroot/index.html
+            references: []
+            expression: System.IO.File.ReadAllText("wwwroot/index.html")
+            controlFlow:
+              type: branch
+          - step: 2
+            action: Return content as ContentResult
+            details: Wrap HTML and set MIME type
+            calls: Content
+            literals:
+              MIME: text/html; charset=utf-8
+            references: []
+            expression: Content(html, "text/html; charset=utf-8")
+            controlFlow:
+              type: branch
+        sideEffects:
+          - type: filesystem-read
+            description: Reads wwwroot/index.html file
+        security:
+          - Potential exposure of sensitive file if path altered.
+        postconditions:
+          - always => returns HTML content of wwwroot/index.html
+          - "on file is missing: raises IOException"
+        implementation: full
+        sourceFile: Controllers/QuoteController.cs
+        sourceLines:
+          - 9
+          - 13
+        sourceCode: "    [HttpGet(\"/\")]\r
+
+          \    public ContentResult Index()\r
+
+          \    {\r
+
+          \        return Content(System.IO.File.ReadAllText(\"wwwroot/index.html\"), \"text/html; charset=utf-8\");\r
+
+          \    }\r"
+        confidence: 1
+        confidenceDetails:
+          score: 1
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: controller"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: MiniQuote.Controllers.QuoteController.Health,
+              MiniQuote.Controllers.QuoteController.Quote"
+            - "route handlers: GET /"
+          warnings: []
+          signals:
+            staticEvidence: 0.22
+            semanticCoverage: 0.615
+            graphContext: 0.38
+            determinism: 1
+        errorCases:
+          - condition: file is missing
+            errorType: IOException
+            handling: throw
+      MiniQuote.Controllers.QuoteController.Health:
+        description: Provide health status for the MiniQuote API.
+        parameters: []
+        returns:
+          type: IActionResult
+          description: HTTP response with health status.
+        algorithm:
+          - step: 1
+            action: Create response object.
+            details: Construct JSON with status data.
+            literals:
+              status: ok
+              application: mini-quote
+              synthetic: "true"
+            expression: new { status = "ok", application = "mini-quote", synthetic = true }
+          - step: 2
+            action: Return OK result.
+            details: Send 200 status with response.
+            calls: Ok(object)
+        sideEffects: []
+        security: []
+        postconditions:
+          - always => returns HTTP 200 with a status message.
+        implementation: full
+        sourceFile: Controllers/QuoteController.cs
+        sourceLines:
+          - 15
+          - 19
+        sourceCode: "    [HttpGet(\"/api/health\")]\r
+
+          \    public IActionResult Health()\r
+
+          \    {\r
+
+          \        return Ok(new { status = \"ok\", application = \"mini-quote\", synthetic = true });\r
+
+          \    }\r"
+        confidence: 1
+        confidenceDetails:
+          score: 1
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: controller"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: MiniQuote.Controllers.QuoteController.Index, MiniQuote.Controllers.QuoteController.Quote"
+            - "route handlers: GET /api/health"
+          warnings: []
+          signals:
+            staticEvidence: 0.22
+            semanticCoverage: 0.49
+            graphContext: 0.38
+            determinism: 1
+      MiniQuote.Controllers.QuoteController.Quote:
+        description: Calculate quote costs for quantity and delivery type.
+        parameters:
+          - name: quantity
+            type: any
+            description: Quantity from query string
+          - name: delivery
+            type: any
+            description: Delivery type
+        returns:
+          type: JSON object
+          description: Quote details including costs
+        algorithm:
+          - step: 1
+            action: Parse quantity input
+            details: Checks format and range
+            controlFlow:
+              type: branch
+              condition: invalid input
+              branches:
+                - condition: quantity invalid
+                  action: return BadRequest
+          - step: 2
+            action: Parse delivery input
+            details: Ensure standard or rush
+            controlFlow:
+              type: branch
+              condition: invalid input
+              branches:
+                - condition: delivery invalid
+                  action: return BadRequest
+          - step: 3
+            action: Calculate costs
+            details: Compute subtotal, discount, shipping, and total
+            literals:
+              unitPriceCents: "1250"
+            expression: subtotalCents = quantity * unitPriceCents
+        sideEffects: []
+        security:
+          - Input validation for quantity and delivery
+        preconditions:
+          - "quantity: 1 to 100"
+          - "quantity: integer only"
+          - "delivery: rush or standard"
+        postconditions:
+          - when valid inputs => returns cost breakdown object
+          - "on when quantity input invalid: raises ValidationError"
+          - "on when delivery input invalid: raises ValidationError"
+        implementation: full
+        sourceFile: Controllers/QuoteController.cs
+        sourceLines:
+          - 21
+          - 50
+        sourceCode: "    [HttpGet(\"/api/quote\")]\r
+
+          \    public IActionResult Quote()\r
+
+          \    {\r
+
+          \        var quantityValues = Request.Query[\"quantity\"];\r
+
+          \        var deliveryValues = Request.Query[\"delivery\"];\r
+
+          \        var quantityText = quantityValues.ToString();\r
+
+          \        if (quantityValues.Count != 1 || quantityText.Length == 0\r
+
+          \            || quantityText.Any(c => c < '0' || c > '9')\r
+
+          \            || !int.TryParse(quantityText, NumberStyles.None, CultureInfo.InvariantCulture, out var
+          quantity)\r
+
+          \            || quantity < 1 || quantity > 100)\r
+
+          \        {\r
+
+          \            return BadRequest(new { error = \"Quantity must be an integer from 1 to 100.\" });\r
+
+          \        }\r
+
+          \        var delivery = deliveryValues.ToString();\r
+
+          \        if (deliveryValues.Count != 1 || (delivery != \"standard\" && delivery != \"rush\"))\r
+
+          \        {\r
+
+          \            return BadRequest(new { error = \"Delivery must be standard or rush.\" });\r
+
+          \        }\r
+
+          \r
+
+          \        const int unitPriceCents = 1250;\r
+
+          \        var subtotalCents = quantity * unitPriceCents;\r
+
+          \        var discountCents = quantity >= 10 ? subtotalCents / 10 : 0;\r
+
+          \        var shippingCents = delivery == \"rush\" ? 750 : quantity >= 10 ? 0 : 250;\r
+
+          \        var totalCents = subtotalCents - discountCents + shippingCents;\r
+
+          \        return Ok(new\r
+
+          \        {\r
+
+          \            quantity, delivery, currency = \"CAD\", unitPriceCents,\r
+
+          \            subtotalCents, discountCents, shippingCents, totalCents\r
+
+          \        });\r
+
+          \    }\r"
+        confidence: 0.95
+        confidenceDetails:
+          score: 0.95
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: controller"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: MiniQuote.Controllers.QuoteController.Index,
+              MiniQuote.Controllers.QuoteController.Health"
+            - "route handlers: GET /api/quote"
+          warnings:
+            - Potential side effects were not explicitly described.
+          signals:
+            staticEvidence: 0.48
+            semanticCoverage: 0.71
+            graphContext: 0.38
+            determinism: 1
+        errorCases:
+          - condition: when quantity input invalid
+            errorType: ValidationError
+            handling: return
+          - condition: when delivery input invalid
+            errorType: ValidationError
+            handling: return
+        businessInvariants:
+          - rule: Calculate quotes based on valid inputs
+            enforcement: app-only
+        validationRules:
+          - field: quantity
+            rule: Must be 1 to 100
+            expression: quantity >= 1 && quantity <= 100
+            errorType: ValidationError
+          - field: delivery
+            rule: Must be rush or standard
+            expression: delivery == 'standard' || delivery == 'rush'
+            errorType: ValidationError
+    validationRules:
+      - field: quantity
+        entity: MiniQuote.Controllers.QuoteController.Quote
+        rules:
+          - type: custom
+            value: quantity >= 1 && quantity <= 100
+            message: Must be 1 to 100
+        usedIn:
+          - MiniQuote.Controllers.QuoteController.Quote
+      - field: delivery
+        entity: MiniQuote.Controllers.QuoteController.Quote
+        rules:
+          - type: custom
+            value: delivery == 'standard' || delivery == 'rush'
+            message: Must be rush or standard
+        usedIn:
+          - MiniQuote.Controllers.QuoteController.Quote
+    uiTemplates:
+      - functionRef: MiniQuote.Controllers.QuoteController.Index
+        markup: HTML content from wwwroot/index.html
+        framework: html
+        styleClasses: []
+        bindings: []
+    confidence: 0.96
+    confidenceDetails:
+      score: 0.96
+      reason: LLM module classification grounded in module exports, imports, and code snippet.
+      strategy: derived
+      evidence:
+        - "functions: 3"
+        - "exports: 4"
+        - "imports: 2"
+        - "module role: controller"
+        - "callers: 0"
+        - "callees: 0"
+      warnings:
+        - Potential side effects were not explicitly described.
+      signals:
+        staticEvidence: 0.36
+        semanticCoverage: 0.64
+        graphContext: 0.35
+        determinism: 0.98
+  program:
+    description: This module initializes and configures the core application infrastructure, including setting up a web
+      application with controller support and running the application. It focuses on the foundational setup rather than
+      a specific business domain.
+    domain: infrastructure
+    role: other
+    sourcePath: .
+    dependencies: []
+    exports: []
+    functions:
+      __module_init__:
+        description: Initialize and run a basic web application with controllers.
+        parameters:
+          - name: args
+            type: any
+            description: Command-line arguments
+        returns:
+          type: void
+          description: No return value
+        algorithm:
+          - step: 1
+            action: Create builder
+            details: Create a WebApplicationBuilder with args
+            references:
+              - args
+            expression: WebApplication.CreateBuilder(args)
+          - step: 2
+            action: Add services
+            details: Register controllers with dependency injection
+            calls: builder.Services.AddControllers()
+            references:
+              - builder.Services
+            expression: builder.Services.AddControllers()
+          - step: 3
+            action: Build app
+            details: Build and configure the WebApplication
+            references:
+              - builder
+            expression: builder.Build()
+          - step: 4
+            action: Map controllers
+            details: Add endpoint routing for controllers
+            calls: app.MapControllers()
+            references:
+              - app
+            expression: app.MapControllers()
+          - step: 5
+            action: Run app
+            details: Start the application
+            calls: app.Run()
+            references:
+              - app
+            expression: app.Run()
+        sideEffects:
+          - type: network-request
+            description: Starts listening for HTTP requests
+        security: []
+        implementation: full
+        sourceFile: Program.cs
+        sourceLines:
+          - 1
+          - 5
+        sourceCode: "var builder = WebApplication.CreateBuilder(args);\r
+
+          builder.Services.AddControllers();\r
+
+          var app = builder.Build();\r
+
+          app.MapControllers();\r
+
+          app.Run();\r"
+        confidence: 0.95
+        confidenceDetails:
+          score: 0.95
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+          warnings: []
+          signals:
+            staticEvidence: 0.22
+            semanticCoverage: 0.75
+            graphContext: 0
+            determinism: 0.95
+    confidence: 0.93
+    confidenceDetails:
+      score: 0.93
+      reason: LLM module classification grounded in module exports, imports, and code snippet.
+      strategy: derived
+      evidence:
+        - "functions: 1"
+        - "exports: 0"
+        - "imports: 0"
+        - "module role: module"
+        - "callers: 0"
+        - "callees: 0"
+      signals:
+        staticEvidence: 0.14
+        semanticCoverage: 0.75
+        graphContext: 0
+        determinism: 0.93
+routes:
+  api:
+    basePath: ""
+    globalMiddleware: []
+    endpoints:
+      - method: GET
+        path: /
+        handler: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Index'"
+        middleware: []
+        responses:
+          "200":
+            description: returns the contents of the 'wwwroot/index.html' file
+            body: HTML document
+        confidence: 0.9
+        confidenceDetails:
+          score: 0.9
+      - method: GET
+        path: /api/health
+        handler: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Health'"
+        middleware: []
+        responses:
+          "200":
+            description: returns a JSON object with the health status of the application
+            body:
+              status: ok
+              application: mini-quote
+              synthetic: true
+        confidence: 0.9
+        confidenceDetails:
+          score: 0.9
+      - method: GET
+        path: /api/quote
+        handler: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+        middleware: []
+        responses:
+          "200":
+            description: returns a detailed quote
+            body:
+              quantity: integer representing the quantity in the request
+              delivery: string representing the delivery type ('standard' or 'rush')
+              currency: string, always 'CAD'
+              unitPriceCents: integer, always 1250
+              subtotalCents: integer, calculated as quantity * unitPriceCents
+              discountCents: integer, equal to 10% of subtotal if quantity >= 10, otherwise 0
+              shippingCents: integer, 750 if 'rush', 0 if 'standard' and quantity >= 10, otherwise 250
+              totalCents: integer, subtotal - discount + shipping
+          "400":
+            description: when the 'quantity' query parameter is missing, empty, not a single value, non-numeric, or outside the
+              range 1 to 100; when the 'delivery' query parameter is missing, not a single value, or not 'standard' or
+              'rush'
+        confidence: 0.9
+        confidenceDetails:
+          score: 0.9
+components:
+  pages:
+    Wwwroot:
+      description: This component is a standalone HTML page that provides a simple quote calculator for a mock product
+        ordering system. It calculates the order subtotal, discounts, shipping costs, and total price based on user
+        inputs, and communicates with an API for real-time price calculation. Its role is to demonstrate synthetic order
+        calculation with themes and minimal interaction, with no external dependencies or persistent functionality.
+      type: template
+      sourceFile: wwwroot/index.html
+      sourceLines:
+        - 1
+        - 139
+      sourceCode: "<!doctype html>\r
+
+        <html lang=\"en\">\r
+
+        <head>\r
+
+        \  <meta charset=\"utf-8\">\r
+
+        \  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r
+
+        \  <title>Mini Quote</title>\r
+
+        \  <script>\r
+
+        \    (() => {\r
+
+        \      const param = new URLSearchParams(window.location.search).get(\"scoutTheme\");\r
+
+        \      const theme =\r
+
+        \        param || (window.matchMedia(\"(prefers-color-scheme: dark)\").matches ? \"dark\" : \"light\");\r
+
+        \      document.documentElement.setAttribute(\"data-theme\", theme);\r
+
+        \    })();\r
+
+        \  </script>\r
+
+        \  <style>\r
+
+        \    :root {\r
+
+        \      color-scheme: light;\r
+
+        \      --cp-bg: #f7f4ef;\r
+
+        \      --cp-bg-elevated: #fcfbf8;\r
+
+        \      --cp-surface: #ffffff;\r
+
+        \      --cp-surface-soft: #f5f5f5;\r
+
+        \      --cp-border: #dedede;\r
+
+        \      --cp-border-strong: #919191;\r
+
+        \      --cp-text: #242424;\r
+
+        \      --cp-text-muted: #5c5c5c;\r
+
+        \      --cp-text-soft: #6f6f6f;\r
+
+        \      --cp-accent: #b11f4b;\r
+
+        \      --cp-accent-hover: #9a1a41;\r
+
+        \      --cp-accent-soft: rgba(177, 31, 75, 0.08);\r
+
+        \      --cp-accent-fg: #ffffff;\r
+
+        \      --cp-success: #16a34a;\r
+
+        \      --cp-danger: #dc2626;\r
+
+        \      --cp-warning: #f59e0b;\r
+
+        \      --cp-link: #0078d4;\r
+
+        \      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);\r
+
+        \      --cp-overlay: rgba(255, 255, 255, 0.8);\r
+
+        \      --cp-panel: rgba(255, 255, 255, 0.86);\r
+
+        \      --cp-panel-strong: rgba(255, 255, 255, 0.96);\r
+
+        \      --cp-sheen: rgba(255, 255, 255, 0.55);\r
+
+        \      --cp-highlight: rgba(177, 31, 75, 0.12);\r
+
+        \    }\r
+
+        \    html[data-theme=\"dark\"] {\r
+
+        \      color-scheme: dark;\r
+
+        \      --cp-bg: #3d3b3a;\r
+
+        \      --cp-bg-elevated: #343231;\r
+
+        \      --cp-surface: #292929;\r
+
+        \      --cp-surface-soft: #2e2e2e;\r
+
+        \      --cp-border: #474747;\r
+
+        \      --cp-border-strong: #5f5f5f;\r
+
+        \      --cp-text: #dedede;\r
+
+        \      --cp-text-muted: #919191;\r
+
+        \      --cp-text-soft: #b0b0b0;\r
+
+        \      --cp-accent: #fd8ea1;\r
+
+        \      --cp-accent-hover: #fb7b91;\r
+
+        \      --cp-accent-soft: rgba(253, 142, 161, 0.14);\r
+
+        \      --cp-accent-fg: #1a1a1a;\r
+
+        \      --cp-success: #4ade80;\r
+
+        \      --cp-danger: #f87171;\r
+
+        \      --cp-warning: #fbbf24;\r
+
+        \      --cp-link: #4da6ff;\r
+
+        \      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);\r
+
+        \      --cp-overlay: rgba(41, 41, 41, 0.88);\r
+
+        \      --cp-panel: rgba(41, 41, 41, 0.72);\r
+
+        \      --cp-panel-strong: rgba(41, 41, 41, 0.96);\r
+
+        \      --cp-sheen: rgba(255, 255, 255, 0.04);\r
+
+        \      --cp-highlight: rgba(253, 142, 161, 0.12);\r
+
+        \    }\r
+
+        \    * { box-sizing: border-box; }\r
+
+        \    body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.5 \"Segoe UI\", Aptos,
+        Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }\r
+
+        \    main { max-width: 640px; margin: 48px auto; padding: 24px; }\r
+
+        \    section { padding: 24px; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius:
+        16px; }\r
+
+        \    h1 { margin: 0 0 8px; }\r
+
+        \    p { color: var(--cp-text-muted); }\r
+
+        \    label { display: block; margin-top: 16px; font-weight: 600; }\r
+
+        \    input, select, button { width: 100%; min-height: 44px; padding: 12px; border: 1px solid
+        var(--cp-border-strong); border-radius: 0.625rem; font: inherit; background: var(--cp-surface); color:
+        var(--cp-text); }\r
+
+        \    button { margin-top: 24px; border-color: var(--cp-accent); background: var(--cp-accent); color:
+        var(--cp-accent-fg); cursor: pointer; }\r
+
+        \    button:hover { background: var(--cp-accent-hover); }\r
+
+        \    button:disabled { cursor: wait; }\r
+
+        \    :focus-visible { outline: 3px solid var(--cp-link); outline-offset: 3px; }\r
+
+        \    #result { display: block; margin-top: 24px; padding: 16px; background: var(--cp-surface-soft);
+        border-radius: 0.625rem; white-space: pre-line; }\r
+
+        \    #error { color: var(--cp-danger); }\r
+
+        \    footer { margin-top: 24px; color: var(--cp-text-muted); }\r
+
+        \  </style>\r
+
+        </head>\r
+
+        <body>\r
+
+        <main>\r
+
+        \  <h1>Mini Quote</h1>\r
+
+        \  <p>A small, synthetic order calculator. All amounts are in Canadian dollars.</p>\r
+
+        \  <section aria-label=\"Quote calculator\">\r
+
+        \    <p>Items cost $12.50 each. Order 10 or more for 10% off and free standard delivery.\r
+
+        \       Standard delivery otherwise costs $2.50; rush delivery always costs $7.50.</p>\r
+
+        \    <form id=\"quote-form\" novalidate>\r
+
+        \      <label for=\"quantity\">Quantity</label>\r
+
+        \      <input id=\"quantity\" name=\"quantity\" type=\"number\" min=\"1\" max=\"100\" step=\"1\" value=\"1\"
+        required>\r
+
+        \      <label for=\"delivery\">Delivery</label>\r
+
+        \      <select id=\"delivery\" name=\"delivery\">\r
+
+        \        <option value=\"standard\">Standard</option>\r
+
+        \        <option value=\"rush\">Rush</option>\r
+
+        \      </select>\r
+
+        \      <button type=\"submit\" id=\"calculate\">Calculate quote</button>\r
+
+        \    </form>\r
+
+        \    <output id=\"result\" aria-live=\"polite\">Enter a quantity and calculate a quote.</output>\r
+
+        \    <p id=\"error\" role=\"alert\"></p>\r
+
+        \  </section>\r
+
+        \  <footer>Synthetic demo only. No payment, sign-in, order storage, or external services.</footer>\r
+
+        </main>\r
+
+        <script>\r
+
+        \  const form = document.getElementById(\"quote-form\");\r
+
+        \  const button = document.getElementById(\"calculate\");\r
+
+        \  const result = document.getElementById(\"result\");\r
+
+        \  const error = document.getElementById(\"error\");\r
+
+        \  const money = cents => \"$\" + (cents / 100).toFixed(2);\r
+
+        \  form.addEventListener(\"submit\", async event => {\r
+
+        \    event.preventDefault();\r
+
+        \    button.disabled = true;\r
+
+        \    error.textContent = \"\";\r
+
+        \    result.textContent = \"\";\r
+
+        \    try {\r
+
+        \      const query = new URLSearchParams(new FormData(form));\r
+
+        \      const response = await fetch(\"/api/quote?\" + query);\r
+
+        \      const quote = await response.json();\r
+
+        \      if (!response.ok) {\r
+
+        \        error.textContent = quote.error || \"Unable to calculate quote.\";\r
+
+        \        return;\r
+
+        \      }\r
+
+        \      result.textContent = \"Subtotal: \" + money(quote.subtotalCents)\r
+
+        \        + \"\\nDiscount: \" + money(quote.discountCents)\r
+
+        \        + \"\\nDelivery: \" + money(quote.shippingCents)\r
+
+        \        + \"\\nTotal: \" + money(quote.totalCents) + \" CAD\";\r
+
+        \    } catch {\r
+
+        \      error.textContent = \"Unable to reach the quote service.\";\r
+
+        \    } finally {\r
+
+        \      button.disabled = false;\r
+
+        \    }\r
+
+        \  });\r
+
+        </script>\r
+
+        </body>\r
+
+        </html>\r\n"
+      events:
+        - name: submit:quote-form
+          handler: submit:quote-form
+          description: "Payload: any"
+      algorithm:
+        - step: 1
+          action: Initialize theme based on URL parameter or user system preference
+          details: Checks URL for 'scoutTheme' parameter; if absent, defaults to dark/light based on system preference.
+          calls: URLSearchParams, window.matchMedia
+        - step: 2
+          action: Add theme as a data attribute to <html>
+          details: Sets 'data-theme' attribute on document.documentElement ('light' or 'dark')
+          calls: document.documentElement.setAttribute
+        - step: 3
+          action: Render static page structure and main layout
+          details: "Renders a centered card layout with the following sections: title, description, form (with inputs for quantity
+            and delivery type), an actionable button, result display, and footer."
+          calls: null
+        - step: 4
+          action: Attach form submission handler to calculate a quote
+          details: Adds an event listener to the form to intercept its submit event for handling quote calculations via an API
+            call.
+          calls: form.addEventListener
+      sideEffects:
+        - type: dom-manipulation
+          description: Sets 'data-theme' attribute on the <html> tag.
+        - type: network-request
+          description: Sends a GET request to the '/api/quote' endpoint with query parameters derived from the form.
+        - type: state-mutation
+          description: Updates text content of result and error elements dynamically.
+        - type: dom-manipulation
+          description: Disables and re-enables the 'Calculate quote' button during API processing.
+      errorCases:
+        - condition: when the API fetch fails (e.g., server is unreachable)
+          errorType: network error
+          handling: Displays 'Unable to reach the quote service.' in the error section.
+          userFacing: User sees error message displaying the fetch failure.
+        - condition: if the API responds with an error HTTP status (e.g., 400 or 500)
+          errorType: server error
+          handling: Displays a specific error message extracted from the API response or a default fallback.
+          userFacing: User sees error message related to the quote calculation failure.
+      security:
+        - No significant risk of XSS since user input is not directly rendered into the DOM.
+        - API responses are assumed to be sanitized for client-side use.
+        - No tokens or sensitive information appear to be handled or stored.
+      invariants:
+        - The form requires 'quantity' to be between 1 and 100.
+        - Delivery type must be one of the predefined options ('standard' or 'rush').
+        - The API endpoint ('/api/quote') must accept and respond correctly to query parameters.
+      businessDomain: evaluation
+      dataFetching:
+        - when: on form submission
+          endpoint: /api/quote
+          caching: None, fresh data fetched on every submission.
+      interactions:
+        - trigger: Submit the 'quote-form' form
+          action: Fetch and display the calculated quote or display an error
+          steps:
+            - Prevent default form submission behavior.
+            - Disable the calculate button to prevent duplicate submissions.
+            - Clear any existing result or error messages.
+            - Construct a query string from form data and call the '/api/quote' endpoint.
+            - Parse the API response, and if successful, update the result output with calculated details.
+            - Handle errors by displaying an error message to the user.
+            - Re-enable the button.
+          calls:
+            - fetch('/api/quote')
+            - new URLSearchParams()
+            - response.json()
+        - trigger: Hover over or focus on the 'Calculate quote' button
+          action: Provide hover/focus visual feedback
+          steps:
+            - Apply hover styles to button background and border.
+          calls: []
+      accessibility:
+        - The calculator section includes an aria-label for screen readers.
+        - The output element updates aria-live for real-time updates.
+        - All form elements use labels for accessible form navigation.
+        - Focus-visible outlines are provided for keyboard navigation.
+      rendering:
+        - condition: on initial load
+          render: Static theme-aware structure with header, instructions, a form, and a footer.
+        - condition: after submitting the form and receiving a successful API response
+          render: Subtotal, discount, delivery cost, and total displayed in the result output element.
+        - condition: if there is an error during the API request
+          render: An error message is displayed in the error paragraph.
+      confidence: 1
+      confidenceDetails:
+        score: 1
+      templateEngine: static-html
+      meta:
+        title: Mini Quote
+        charset: utf-8
+        viewport: width=device-width, initial-scale=1
+      forms:
+        - id: quote-form
+          fields:
+            - name: quantity
+              type: number
+              required: true
+              label: Quantity
+            - name: delivery
+              type: select
+              required: false
+              label: Delivery
+      sections:
+        - tag: main
+        - tag: footer
+        - tag: section
+dataFlows:
+  - description: Complete data flow for the GET / endpoint, which serves the static HTML content from 'wwwroot/index.html'.
+    trigger:
+      type: http-request
+      component: GET /
+      action: HTTP GET request to /
+    steps:
+      - order: 1
+        location: Controllers/QuoteController.cs/Index
+        action: The HTTP GET request hits the '/' route, which is handled by the Index method in QuoteController.
+        dataShape:
+          urlPath: /
+          httpMethod: GET
+        sideEffects:
+          - Reads the 'wwwroot/index.html' file from disk.
+      - order: 2
+        location: System.IO.File.ReadAllText
+        action: Reads the content of the 'wwwroot/index.html' file from the file system.
+        dataShape:
+          filePath: wwwroot/index.html
+        sideEffects:
+          - File read operation from disk.
+      - order: 3
+        location: Controllers/QuoteController.cs/Index
+        action: The file content is wrapped in a ContentResult object and returned as the HTTP response.
+        dataShape:
+          fileContent: Raw HTML content
+  - description: This flow handles an HTTP GET request to the /api/health endpoint. It returns a JSON response indicating
+      the health status of the application.
+    trigger:
+      type: http-request
+      component: GET /api/health
+      action: HTTP GET request to /api/health
+    steps:
+      - order: 1
+        location: Controllers/QuoteController.cs, Health() method
+        action: The Health() method is invoked to handle the HTTP GET request. The method constructs a JSON object with health
+          status details and returns it as a response.
+        dataShape:
+          httpRequest: GET /api/health
+  - description: This data flow handles a GET request to the /api/quote endpoint. It validates query parameters, performs
+      calculations based on business rules, and returns a JSON response with the computed quote details.
+    trigger:
+      type: http-request
+      component: GET /api/quote
+      action: HTTP GET request to /api/quote
+    steps:
+      - order: 1
+        location: QuoteController.cs/Quote()
+        action: Extracts 'quantity' and 'delivery' query parameters from the HTTP request.
+        dataShape:
+          quantity: string[]
+          delivery: string[]
+      - order: 2
+        location: QuoteController.cs/Quote()
+        action: Validates the 'quantity' parameter to ensure it is a single, non-empty integer between 1 and 100.
+        dataShape:
+          quantityText: string
+        sideEffects:
+          - Returns HTTP 400 Bad Request if validation fails.
+      - order: 3
+        location: QuoteController.cs/Quote()
+        action: Validates the 'delivery' parameter to ensure it is either 'standard' or 'rush'.
+        dataShape:
+          delivery: string
+        sideEffects:
+          - Returns HTTP 400 Bad Request if validation fails.
+      - order: 4
+        location: QuoteController.cs/Quote()
+        action: Calculates the subtotal in cents based on the quantity and unit price (1250 cents per unit).
+        dataShape:
+          quantity: integer
+          unitPriceCents: integer
+      - order: 5
+        location: QuoteController.cs/Quote()
+        action: Calculates the discount in cents if the quantity is 10 or more.
+        dataShape:
+          quantity: integer
+          subtotalCents: integer
+      - order: 6
+        location: QuoteController.cs/Quote()
+        action: Calculates shipping costs in cents based on delivery type and quantity.
+        dataShape:
+          delivery: string
+          quantity: integer
+      - order: 7
+        location: QuoteController.cs/Quote()
+        action: Computes the total cost in cents by adding subtotal, subtracting discounts, and adding shipping costs.
+        dataShape:
+          subtotalCents: integer
+          discountCents: integer
+          shippingCents: integer
+      - order: 8
+        location: QuoteController.cs/Quote()
+        action: Returns a JSON response containing all calculated data including quantity, delivery type, subtotal, discount,
+          shipping, total, and currency.
+        dataShape:
+          quantity: integer
+          delivery: string
+          subtotalCents: integer
+          discountCents: integer
+          shippingCents: integer
+          totalCents: integer
+types: {}
+constraints:
+  invariants: []
+  preconditions:
+    - id: c-4
+      type: precondition
+      name: MiniQuote.Controllers.QuoteController.Quote_quantity_precond
+      description: 1 to 100
+      expression: '"1 to 100"'
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    - id: c-5
+      type: precondition
+      name: MiniQuote.Controllers.QuoteController.Quote_quantity_precond
+      description: integer only
+      expression: '"integer only"'
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    - id: c-6
+      type: precondition
+      name: MiniQuote.Controllers.QuoteController.Quote_delivery_precond
+      description: rush or standard
+      expression: '"rush or standard"'
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    - id: c-12
+      type: precondition
+      name: GET__api_quote_validation
+      description: "'quantity' query parameter must be present exactly once."
+      expression: "\"'quantity' query parameter must be present exactly once.\""
+      specRef: "#/routes/api/endpoints/GET__api_quote"
+    - id: c-13
+      type: precondition
+      name: GET__api_quote_validation
+      description: "'quantity' must be a non-empty string containing only digits."
+      expression: "\"'quantity' must be a non-empty string containing only digits.\""
+      specRef: "#/routes/api/endpoints/GET__api_quote"
+    - id: c-14
+      type: precondition
+      name: GET__api_quote_validation
+      description: "'quantity' must parse as an integer between 1 and 100 (inclusive)."
+      expression: "\"'quantity' must parse as an integer between 1 and 100 (inclusive).\""
+      specRef: "#/routes/api/endpoints/GET__api_quote"
+    - id: c-15
+      type: precondition
+      name: GET__api_quote_validation
+      description: "'delivery' query parameter must be present exactly once."
+      expression: "\"'delivery' query parameter must be present exactly once.\""
+      specRef: "#/routes/api/endpoints/GET__api_quote"
+    - id: c-16
+      type: precondition
+      name: GET__api_quote_validation
+      description: "'delivery' must be a string with value 'standard' or 'rush'."
+      expression: "\"'delivery' must be a string with value 'standard' or 'rush'.\""
+      specRef: "#/routes/api/endpoints/GET__api_quote"
+  postconditions:
+    - id: c-1
+      type: postcondition
+      name: MiniQuote.Controllers.QuoteController.Index_output_always
+      description: "When always: returns HTML content of wwwroot/index.html"
+      expression: '"returns HTML content of wwwroot/index.html"'
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Index'"
+    - id: c-2
+      type: postcondition
+      name: MiniQuote.Controllers.QuoteController.Index_error_IOException
+      description: "On error (file is missing): throw"
+      expression: Implies("file is missing", error_type == "IOException")
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Index'"
+    - id: c-3
+      type: postcondition
+      name: MiniQuote.Controllers.QuoteController.Health_output_always
+      description: "When always: returns HTTP 200 with a status message."
+      expression: '"returns HTTP 200 with a status message."'
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Health'"
+    - id: c-7
+      type: postcondition
+      name: MiniQuote.Controllers.QuoteController.Quote_output_when_valid_inputs
+      description: "When when valid inputs: returns cost breakdown object"
+      expression: '"returns cost breakdown object"'
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    - id: c-8
+      type: postcondition
+      name: MiniQuote.Controllers.QuoteController.Quote_error_ValidationError
+      description: "On error (when quantity input invalid): return"
+      expression: Implies("when quantity input invalid", error_type == "ValidationError")
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    - id: c-9
+      type: postcondition
+      name: MiniQuote.Controllers.QuoteController.Quote_error_ValidationError
+      description: "On error (when delivery input invalid): return"
+      expression: Implies("when delivery input invalid", error_type == "ValidationError")
+      specRef: "$ref: '#/modules/controllers/quotecontroller/functions/MiniQuote.Controllers.QuoteController.Quote'"
+    - id: c-10
+      type: postcondition
+      name: GET___response_200
+      description: "when the file 'wwwroot/index.html' exists and is readable: returns 200"
+      expression: Implies("when the file 'wwwroot/index.html' exists and is readable", status_code == 200)
+      specRef: "#/routes/api/endpoints/GET__"
+    - id: c-11
+      type: postcondition
+      name: GET__api_health_response_200
+      description: "when successful: returns 200"
+      expression: Implies("when successful", status_code == 200)
+      specRef: "#/routes/api/endpoints/GET__api_health"
+    - id: c-17
+      type: postcondition
+      name: GET__api_quote_response_200
+      description: "when both 'quantity' and 'delivery' parameters are valid: returns 200"
+      expression: Implies("when both 'quantity' and 'delivery' parameters are valid", status_code == 200)
+      specRef: "#/routes/api/endpoints/GET__api_quote"
+importGraph: {}
+invariantAnalysis:
+  entities:
+    - entity: quote
+      riskScore: 15
+      invariants:
+        - rule: Calculate quotes based on valid inputs
+          type: validation
+          enforcement: app-only
+          appEvidence: quantity and delivery validations
+          fields:
+            - quantity
+            - delivery
+          risk: medium
+          riskReason: Business rule enforced only in application code — direct database access bypasses it.
+          remediation: Consider adding a CHECK constraint or trigger on Quote for defense in depth.
+  summary:
+    totalInvariants: 1
+    enforcedBoth: 0
+    dbOnly: 0
+    appOnly: 1
+    implicit: 0
+    criticalGaps: 0
+    highRiskEntities: []
+    overallRiskScore: 15
+staticAssets:
+  - path: wwwroot/index.html
+    mimeType: application/octet-stream
+    sizeBytes: 5848
+    category: other
+_metadata:
+  specforgeVersion: 1.0.0
+  analysisDate: 2026-09-25T19:24:31.863Z
+  totalFiles: 5
+  totalSourceFiles: 5
+  totalLLMCalls: 16
+  totalTokensUsed: 24684
+  analysisTime: 2.4s
+  overallConfidence: 0.94
+  confidenceSummary:
+    overall:
+      score: 0.94
+      reason: Aggregated semantic fidelity across analyzed entities.
+      strategy: derived
+      evidence:
+        - "module role: controller"
+        - "callers: 0"
+        - "callees: 0"
+        - "sibling symbols: MiniQuote.Controllers.QuoteController.Health, MiniQuote.Controllers.QuoteController.Quote"
+        - "route handlers: GET /"
+        - "sibling symbols: MiniQuote.Controllers.QuoteController.Index, MiniQuote.Controllers.QuoteController.Quote"
+      warnings:
+        - Potential side effects were not explicitly described.
+      signals:
+        staticEvidence: 0.28
+        semanticCoverage: 0.68
+        graphContext: 0.23
+        determinism: 0.96
+    byPhase:
+      ingestion: 0.95
+      staticAnalysis: 0.9
+      semanticAnalysis: 0.94
+      graphContext: 0.23
+    byModule:
+      controllers/quotecontroller:
+        score: 0.98
+        reason: Aggregated confidence for module controllers/quotecontroller.
+        strategy: derived
+        evidence:
+          - "functions: 3"
+          - "exports: 4"
+          - "imports: 2"
+          - "module role: controller"
+          - "callers: 0"
+          - "callees: 0"
+        warnings:
+          - Potential side effects were not explicitly described.
+        signals:
+          staticEvidence: 0.32
+          semanticCoverage: 0.61
+          graphContext: 0.37
+          determinism: 1
+      program:
+        score: 0.94
+        reason: Aggregated confidence for module program.
+        strategy: derived
+        evidence:
+          - "functions: 1"
+          - "exports: 0"
+          - "imports: 0"
+          - "module role: module"
+          - "callers: 0"
+          - "callees: 0"
+        signals:
+          staticEvidence: 0.18
+          semanticCoverage: 0.75
+          graphContext: 0
+          determinism: 0.94
+      Wwwroot:
+        score: 1
+        reason: Aggregated confidence for component Wwwroot.
+        strategy: derived
+    hotspots: []
+  unresolvedItems: []
+  warnings: []

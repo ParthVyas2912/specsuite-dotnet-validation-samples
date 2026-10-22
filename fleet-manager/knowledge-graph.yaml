@@ -1,0 +1,5189 @@
+specforge_knowledge_graph: 1.0.0
+project: source
+entities:
+  - id: project:root
+    name: source
+    type: project
+    description: The application, 'source', is a fullstack system built using C# and the ASP.NET MVC framework, intended to
+      manage scheduling and reporting workflows within a fleet management domain. It enables efficient interaction with
+      9 distinct API endpoints and 9 user interface components to streamline operations, although no underlying data
+      models are defined in the provided architecture. It encapsulates its functionality into five key modules,
+      separating concerns across infrastructure, scheduling services, and reporting layers through a modular design.
+      While the architectural approach is not explicitly stated, the modular organization suggests an effort to promote
+      maintainability and reusability. The use of ASP.NET MVC hints at a structured, convention-based design suited for
+      rapid development of web applications. Core modules such as 'FleetManager.Business' and 'FleetManager.Domain'
+      appear central to the application's operation, focusing on scheduling logic and domain models.
+    sourceFiles: []
+    properties:
+      type: fullstack
+      totalFiles: 41
+      sourceFiles: 36
+    tags:
+      - project
+    confidence: 1
+  - id: module:FleetManager.Business
+    name: FleetManager.Business
+    type: module
+    description: "Module: FleetManager.Business"
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+      - FleetManager.Business/DriverAssignmentService.cs
+      - FleetManager.Business/FleetManager.Business.csproj
+      - FleetManager.Business/InventoryService.cs
+      - FleetManager.Business/MaintenanceScheduler.cs
+    properties:
+      directory: FleetManager.Business
+      fileCount: 5
+    tags:
+      - module
+    confidence: 1
+  - id: module:FleetManager.Data
+    name: FleetManager.Data
+    type: module
+    description: Handles persistence operations and database interactions specifically for fleet data
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+      - FleetManager.Data/DriverRepository.cs
+      - FleetManager.Data/FleetManager.Data.csproj
+      - FleetManager.Data/PartRepository.cs
+      - FleetManager.Data/VehicleRepository.cs
+      - FleetManager.Data/WorkOrderRepository.cs
+    domain: Data Management
+    properties:
+      directory: FleetManager.Data
+      fileCount: 6
+    tags:
+      - module
+    confidence: 1
+  - id: module:FleetManager.Domain
+    name: FleetManager.Domain
+    type: module
+    description: Defines core domain entities and behaviors for fleet management
+    sourceFiles:
+      - FleetManager.Domain/Driver.cs
+      - FleetManager.Domain/FleetManager.Domain.csproj
+      - FleetManager.Domain/Invoice.cs
+      - FleetManager.Domain/Part.cs
+      - FleetManager.Domain/Vehicle.cs
+      - FleetManager.Domain/WorkOrder.cs
+    domain: Fleet Management
+    properties:
+      directory: FleetManager.Domain
+      fileCount: 6
+    tags:
+      - module
+    confidence: 1
+  - id: module:FleetManager.Web/Controllers
+    name: FleetManager.Web/Controllers
+    type: module
+    description: "Module: FleetManager.Web/Controllers"
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+      - FleetManager.Web/Controllers/VehiclesController.cs
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      directory: FleetManager.Web/Controllers
+      fileCount: 3
+    tags:
+      - module
+    confidence: 1
+  - id: module:FleetManager.Web
+    name: FleetManager.Web
+    type: module
+    description: "Module: FleetManager.Web"
+    sourceFiles:
+      - FleetManager.Web/FleetManager.Web.csproj
+      - FleetManager.Web/RouteConfig.cs
+      - FleetManager.Web/packages.config
+    properties:
+      directory: FleetManager.Web
+      fileCount: 3
+    tags:
+      - module
+    confidence: 1
+  - id: module:FleetManager.Web/Views
+    name: FleetManager.Web/Views
+    type: module
+    description: "Module: FleetManager.Web/Views"
+    sourceFiles:
+      - FleetManager.Web/Views/Dashboard/Index.cshtml
+      - FleetManager.Web/Views/Dashboard/Inventory.cshtml
+      - FleetManager.Web/Views/Shared/NotFound.cshtml
+      - FleetManager.Web/Views/Shared/_Layout.cshtml
+      - FleetManager.Web/Views/Vehicles/Details.cshtml
+      - FleetManager.Web/Views/Vehicles/Index.cshtml
+      - FleetManager.Web/Views/WorkOrders/Details.cshtml
+      - FleetManager.Web/Views/WorkOrders/Index.cshtml
+      - FleetManager.Web/Views/WorkOrders/Invoice.cshtml
+    properties:
+      directory: FleetManager.Web/Views
+      fileCount: 9
+    tags:
+      - module
+    confidence: 1
+  - id: module:FleetManager.sln
+    name: FleetManager.sln
+    type: module
+    description: "Module: FleetManager.sln"
+    sourceFiles:
+      - FleetManager.sln
+    properties:
+      directory: FleetManager.sln
+      fileCount: 1
+    tags:
+      - module
+    confidence: 1
+  - id: module:database
+    name: database
+    type: module
+    description: Represents the underlying database supporting FleetManager
+    sourceFiles:
+      - database/01-schema.sql
+      - database/02-seed-data.sql
+    domain: Database
+    properties:
+      directory: database
+      fileCount: 2
+    tags:
+      - module
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.ConnectionString
+    name: ConnectionString
+    type: function
+    description: Function ConnectionString
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 24
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.CommandTimeoutSeconds
+    name: CommandTimeoutSeconds
+    type: function
+    description: Function CommandTimeoutSeconds
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 10
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.OpenConnection
+    name: OpenConnection
+    type: function
+    description: Function OpenConnection
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.ExecuteQuery
+    name: ExecuteQuery
+    type: function
+    description: Function ExecuteQuery
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 14
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.ExecuteNonQuery
+    name: ExecuteNonQuery
+    type: function
+    description: Function ExecuteNonQuery
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.ExecuteScalar
+    name: ExecuteScalar
+    type: function
+    description: Executes a query and returns a single value, often used for aggregations
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    domain: Data Operations
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.GetString
+    name: GetString
+    type: function
+    description: Function GetString
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.GetInt
+    name: GetInt
+    type: function
+    description: Function GetInt
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.GetDecimal
+    name: GetDecimal
+    type: function
+    description: Function GetDecimal
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.GetBool
+    name: GetBool
+    type: function
+    description: Function GetBool
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.GetNullableDate
+    name: GetNullableDate
+    type: function
+    description: Function GetNullableDate
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:DbHelper.cs/DbHelper.GetNullableInt
+    name: GetNullableInt
+    type: function
+    description: Function GetNullableInt
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.GetAll
+    name: GetAll
+    type: function
+    description: Function GetAll
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.GetById
+    name: GetById
+    type: function
+    description: Function GetById
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 11
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.GetByAssetTag
+    name: GetByAssetTag
+    type: function
+    description: Function GetByAssetTag
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 11
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.Search
+    name: Search
+    type: function
+    description: Free-text search across asset tag, VIN, make and model.
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 23
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.GetByDepot
+    name: GetByDepot
+    type: function
+    description: Function GetByDepot
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.GetDueForService
+    name: GetDueForService
+    type: function
+    description: Fetches vehicles due for service based on mileage or time intervals
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    domain: Fleet Maintenance Management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 10
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.Insert
+    name: Insert
+    type: function
+    description: Function Insert
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 14
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.UpdateOdometer
+    name: UpdateOdometer
+    type: function
+    description: Function UpdateOdometer
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.UpdateStatus
+    name: UpdateStatus
+    type: function
+    description: Function UpdateStatus
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.RecordService
+    name: RecordService
+    type: function
+    description: Records service history for a vehicle
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    domain: Fleet management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.AssignDriver
+    name: AssignDriver
+    type: function
+    description: Function AssignDriver
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.MapMany
+    name: MapMany
+    type: function
+    description: Function MapMany
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehicleRepository.cs/VehicleRepository.Map
+    name: Map
+    type: function
+    description: Function Map
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 18
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetAll
+    name: GetAll
+    type: function
+    description: Function GetAll
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetById
+    name: GetById
+    type: function
+    description: Function GetById
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 12
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetOpenOrders
+    name: GetOpenOrders
+    type: function
+    description: Function GetOpenOrders
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 10
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetByVehicle
+    name: GetByVehicle
+    type: function
+    description: Function GetByVehicle
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetByDepotAndStatus
+    name: GetByDepotAndStatus
+    type: function
+    description: Fetches work orders filtered by depot and status
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    domain: Work order management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 12
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetLines
+    name: GetLines
+    type: function
+    description: Function GetLines
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 21
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.Insert
+    name: Insert
+    type: function
+    description: Function Insert
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 33
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.InsertLine
+    name: InsertLine
+    type: function
+    description: Function InsertLine
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 13
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.UpdateStatus
+    name: UpdateStatus
+    type: function
+    description: Function UpdateStatus
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 9
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.AssignTechnician
+    name: AssignTechnician
+    type: function
+    description: Function AssignTechnician
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.CountOpenForVehicle
+    name: CountOpenForVehicle
+    type: function
+    description: Function CountOpenForVehicle
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.GetNextWorkOrderNumber
+    name: GetNextWorkOrderNumber
+    type: function
+    description: Function GetNextWorkOrderNumber
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 8
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.MapMany
+    name: MapMany
+    type: function
+    description: Function MapMany
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrderRepository.cs/WorkOrderRepository.Map
+    name: Map
+    type: function
+    description: Function Map
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 19
+    tags:
+      - function
+    confidence: 1
+  - id: function:RouteConfig.cs/RouteConfig.RegisterRoutes
+    name: RegisterRoutes
+    type: function
+    description: Function RegisterRoutes
+    sourceFiles:
+      - FleetManager.Web/RouteConfig.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 16
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.GenerateInvoice
+    name: BillingService.GenerateInvoice
+    type: function
+    description: Function BillingService.GenerateInvoice
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 88
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.CalculateShopSupplies
+    name: BillingService.CalculateShopSupplies
+    type: function
+    description: Function BillingService.CalculateShopSupplies
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.CalculateDiscount
+    name: BillingService.CalculateDiscount
+    type: function
+    description: Function BillingService.CalculateDiscount
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 14
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.CalculateTax
+    name: BillingService.CalculateTax
+    type: function
+    description: Calculates sales tax based on the province location of the respective depot
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    domain: Billing and tax compliance
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 6
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.GetTaxRate
+    name: BillingService.GetTaxRate
+    type: function
+    description: Function BillingService.GetTaxRate
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 29
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.GetLifetimeMaintenanceCost
+    name: BillingService.GetLifetimeMaintenanceCost
+    type: function
+    description: Total maintenance spend for a vehicle across its service life.
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 22
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.GetCostPerKilometre
+    name: BillingService.GetCostPerKilometre
+    type: function
+    description: Calculates the cost incurred for each kilometre driven by the fleet
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    domain: Fleet optimization
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 14
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.BuildLine
+    name: BillingService.BuildLine
+    type: function
+    description: Function BillingService.BuildLine
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 8
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.BuildInvoiceNumber
+    name: BillingService.BuildInvoiceNumber
+    type: function
+    description: Function BillingService.BuildInvoiceNumber
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:BillingService.cs/BillingService.BillingService.Round
+    name: BillingService.Round
+    type: function
+    description: Function BillingService.Round
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.Assign
+    name: DriverAssignmentService.Assign
+    type: function
+    description: Assigns drivers to vehicles based on availability and task requirements
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    domain: Driver management
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 107
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.MeetsLicenceRequirement
+    name: DriverAssignmentService.MeetsLicenceRequirement
+    type: function
+    description: Evaluates if a driver satisfies the licensing requirements for assignment.
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    domain: Driver Qualification
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 18
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.GetMinimumSafetyScore
+    name: DriverAssignmentService.GetMinimumSafetyScore
+    type: function
+    description: Function DriverAssignmentService.GetMinimumSafetyScore
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 11
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.FindEligibleDrivers
+    name: DriverAssignmentService.FindEligibleDrivers
+    type: function
+    description: Ranks and returns the most qualified drivers based on safety scores and availability.
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    domain: Driver Management
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 34
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.GetComplianceWatchList
+    name: DriverAssignmentService.GetComplianceWatchList
+    type: function
+    description: Function DriverAssignmentService.GetComplianceWatchList
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 3
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverAssignmentService.cs/AssignmentResult.AssignmentResult.AssignmentResult
+    name: AssignmentResult.AssignmentResult
+    type: function
+    description: Function AssignmentResult.AssignmentResult
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 3
+    tags:
+      - function
+    confidence: 1
+  - id: function:InventoryService.cs/InventoryService.InventoryService.IssuePartsForWorkOrder
+    name: InventoryService.IssuePartsForWorkOrder
+    type: function
+    description: Allocates parts to a work order and raises requisitions for shortages.
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    domain: Inventory Management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 64
+    tags:
+      - function
+    confidence: 1
+  - id: function:InventoryService.cs/InventoryService.InventoryService.RaiseRequisition
+    name: InventoryService.RaiseRequisition
+    type: function
+    description: Function InventoryService.RaiseRequisition
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 47
+    tags:
+      - function
+    confidence: 1
+  - id: function:InventoryService.cs/InventoryService.InventoryService.RunReorderSweep
+    name: InventoryService.RunReorderSweep
+    type: function
+    description: Analyzes inventory levels to identify items below reorder points and raises requisitions accordingly.
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    domain: Inventory Optimization
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 23
+    tags:
+      - function
+    confidence: 1
+  - id: function:InventoryService.cs/InventoryService.InventoryService.ReceiveRequisition
+    name: InventoryService.ReceiveRequisition
+    type: function
+    description: Function InventoryService.ReceiveRequisition
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:InventoryService.cs/InventoryService.InventoryService.GetDepotInventoryValue
+    name: InventoryService.GetDepotInventoryValue
+    type: function
+    description: Function InventoryService.GetDepotInventoryValue
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 3
+    tags:
+      - function
+    confidence: 1
+  - id: function:InventoryService.cs/IssueResult.IssueResult.IssueResult
+    name: IssueResult.IssueResult
+    type: function
+    description: Function IssueResult.IssueResult
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.BuildSchedule
+    name: MaintenanceScheduler.BuildSchedule
+    type: function
+    description: Function MaintenanceScheduler.BuildSchedule
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 116
+    tags:
+      - function
+    confidence: 1
+  - id: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.GetServiceIntervalKm
+    name: MaintenanceScheduler.GetServiceIntervalKm
+    type: function
+    description: Function MaintenanceScheduler.GetServiceIntervalKm
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 17
+    tags:
+      - function
+    confidence: 1
+  - id: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.RaiseDueWorkOrders
+    name: MaintenanceScheduler.RaiseDueWorkOrders
+    type: function
+    description: Identifies vehicles due for maintenance and raises corresponding work orders.
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    domain: Fleet Maintenance
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 43
+    tags:
+      - function
+    confidence: 1
+  - id: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.AddStandardLines
+    name: MaintenanceScheduler.AddStandardLines
+    type: function
+    description: Function MaintenanceScheduler.AddStandardLines
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 27
+    tags:
+      - function
+    confidence: 1
+  - id: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.BuildLine
+    name: MaintenanceScheduler.BuildLine
+    type: function
+    description: Function MaintenanceScheduler.BuildLine
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 15
+    tags:
+      - function
+    confidence: 1
+  - id: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.GetLabourRate
+    name: MaintenanceScheduler.GetLabourRate
+    type: function
+    description: Function MaintenanceScheduler.GetLabourRate
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 18
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.GetAll
+    name: DriverRepository.GetAll
+    type: function
+    description: Function DriverRepository.GetAll
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 11
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.GetById
+    name: DriverRepository.GetById
+    type: function
+    description: Function DriverRepository.GetById
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 15
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.GetByEmployeeNumber
+    name: DriverRepository.GetByEmployeeNumber
+    type: function
+    description: Function DriverRepository.GetByEmployeeNumber
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 15
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.GetAvailableAtDepot
+    name: DriverRepository.GetAvailableAtDepot
+    type: function
+    description: Function DriverRepository.GetAvailableAtDepot
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 16
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.GetExpiringLicences
+    name: DriverRepository.GetExpiringLicences
+    type: function
+    description: Function DriverRepository.GetExpiringLicences
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.GetEndorsements
+    name: DriverRepository.GetEndorsements
+    type: function
+    description: Function DriverRepository.GetEndorsements
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 11
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.UpdateSafetyScore
+    name: DriverRepository.UpdateSafetyScore
+    type: function
+    description: Function DriverRepository.UpdateSafetyScore
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.Deactivate
+    name: DriverRepository.Deactivate
+    type: function
+    description: Function DriverRepository.Deactivate
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 4
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.MapMany
+    name: DriverRepository.MapMany
+    type: function
+    description: Function DriverRepository.MapMany
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:DriverRepository.cs/DriverRepository.DriverRepository.Map
+    name: DriverRepository.Map
+    type: function
+    description: Function DriverRepository.Map
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 17
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.GetAll
+    name: PartRepository.GetAll
+    type: function
+    description: Function PartRepository.GetAll
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.GetByPartNumber
+    name: PartRepository.GetByPartNumber
+    type: function
+    description: Function PartRepository.GetByPartNumber
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 12
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.GetBelowReorderPoint
+    name: PartRepository.GetBelowReorderPoint
+    type: function
+    description: Function PartRepository.GetBelowReorderPoint
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 12
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.GetByCategory
+    name: PartRepository.GetByCategory
+    type: function
+    description: Fetch parts based on their category, often used for filtering or reporting.
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    domain: inventory_management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.TryConsume
+    name: PartRepository.TryConsume
+    type: function
+    description: Attempt to deduct parts from inventory, ensuring stock levels are consistent.
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    domain: inventory_management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 13
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.Receive
+    name: PartRepository.Receive
+    type: function
+    description: Add parts to inventory as part of restocking operations.
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    domain: inventory_management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 8
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.GetInventoryValue
+    name: PartRepository.GetInventoryValue
+    type: function
+    description: Function PartRepository.GetInventoryValue
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 9
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.InsertRequisition
+    name: PartRepository.InsertRequisition
+    type: function
+    description: Function PartRepository.InsertRequisition
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 15
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.GetOpenRequisitions
+    name: PartRepository.GetOpenRequisitions
+    type: function
+    description: Function PartRepository.GetOpenRequisitions
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 22
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.MapMany
+    name: PartRepository.MapMany
+    type: function
+    description: Function PartRepository.MapMany
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 8
+    tags:
+      - function
+    confidence: 1
+  - id: function:PartRepository.cs/PartRepository.PartRepository.Map
+    name: PartRepository.Map
+    type: function
+    description: Function PartRepository.Map
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 15
+    tags:
+      - function
+    confidence: 1
+  - id: function:Driver.cs/Driver.Driver.HasEndorsement
+    name: Driver.HasEndorsement
+    type: function
+    description: Function Driver.HasEndorsement
+    sourceFiles:
+      - FleetManager.Domain/Driver.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 10
+    tags:
+      - function
+    confidence: 1
+  - id: function:Invoice.cs/Invoice.Invoice.Invoice
+    name: Invoice.Invoice
+    type: function
+    description: Function Invoice.Invoice
+    sourceFiles:
+      - FleetManager.Domain/Invoice.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 5
+    tags:
+      - function
+    confidence: 1
+  - id: function:Part.cs/Part.Part.NeedsReorder
+    name: Part.NeedsReorder
+    type: function
+    description: Determine whether a specific part has fallen below the reorder threshold.
+    sourceFiles:
+      - FleetManager.Domain/Part.cs
+    domain: inventory_management
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 3
+    tags:
+      - function
+    confidence: 1
+  - id: function:Part.cs/Part.Part.InventoryValue
+    name: Part.InventoryValue
+    type: function
+    description: Function Part.InventoryValue
+    sourceFiles:
+      - FleetManager.Domain/Part.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 3
+    tags:
+      - function
+    confidence: 1
+  - id: function:Vehicle.cs/Vehicle.Vehicle.ToString
+    name: Vehicle.ToString
+    type: function
+    description: Function Vehicle.ToString
+    sourceFiles:
+      - FleetManager.Domain/Vehicle.cs
+    properties:
+      async: false
+      exported: true
+      complexity: 1
+      lineCount: 3
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrder.cs/WorkOrder.WorkOrder.WorkOrder
+    name: WorkOrder.WorkOrder
+    type: function
+    description: Function WorkOrder.WorkOrder
+    sourceFiles:
+      - FleetManager.Domain/WorkOrder.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:DashboardController.cs/DashboardController.DashboardController.Index
+    name: DashboardController.Index
+    type: function
+    description: Function DashboardController.Index
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 66
+    tags:
+      - function
+    confidence: 1
+  - id: function:DashboardController.cs/DashboardController.DashboardController.Inventory
+    name: DashboardController.Inventory
+    type: function
+    description: Function DashboardController.Inventory
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 9
+    tags:
+      - function
+    confidence: 1
+  - id: function:DashboardController.cs/DashboardController.DashboardController.RunReorderSweep
+    name: DashboardController.RunReorderSweep
+    type: function
+    description: Evaluate inventory and flag items that need to be reordered.
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    domain: inventory_management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:DashboardController.cs/DashboardViewModel.DashboardViewModel.DashboardViewModel
+    name: DashboardViewModel.DashboardViewModel
+    type: function
+    description: Function DashboardViewModel.DashboardViewModel
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 9
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehiclesController.cs/VehiclesController.VehiclesController.Index
+    name: VehiclesController.Index
+    type: function
+    description: Function VehiclesController.Index
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 20
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehiclesController.cs/VehiclesController.VehiclesController.Details
+    name: VehiclesController.Details
+    type: function
+    description: Function VehiclesController.Details
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 19
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehiclesController.cs/VehiclesController.VehiclesController.UpdateOdometer
+    name: VehiclesController.UpdateOdometer
+    type: function
+    description: Function VehiclesController.UpdateOdometer
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 27
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehiclesController.cs/VehiclesController.VehiclesController.AssignDriver
+    name: VehiclesController.AssignDriver
+    type: function
+    description: Assign a driver to a vehicle as part of fleet management.
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    domain: fleet_management
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 19
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehiclesController.cs/VehiclesController.VehiclesController.Retire
+    name: VehiclesController.Retire
+    type: function
+    description: Function VehiclesController.Retire
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 11
+    tags:
+      - function
+    confidence: 1
+  - id: function:VehiclesController.cs/VehiclesController.VehiclesController.DueForService
+    name: VehiclesController.DueForService
+    type: function
+    description: Function VehiclesController.DueForService
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 7
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Index
+    name: WorkOrdersController.Index
+    type: function
+    description: Function WorkOrdersController.Index
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 20
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Details
+    name: WorkOrdersController.Details
+    type: function
+    description: Function WorkOrdersController.Details
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 17
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.IssueParts
+    name: WorkOrdersController.IssueParts
+    type: function
+    description: Allocate parts to a specific work order to support repair activities.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    domain: work_order_processing
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 13
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.AssignTechnician
+    name: WorkOrdersController.AssignTechnician
+    type: function
+    description: Function WorkOrdersController.AssignTechnician
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 18
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Close
+    name: WorkOrdersController.Close
+    type: function
+    description: Function WorkOrdersController.Close
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 41
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.GenerateInvoice
+    name: WorkOrdersController.GenerateInvoice
+    type: function
+    description: Function WorkOrdersController.GenerateInvoice
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 16
+    tags:
+      - function
+    confidence: 1
+  - id: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.RaiseDueOrders
+    name: WorkOrdersController.RaiseDueOrders
+    type: function
+    description: Function WorkOrdersController.RaiseDueOrders
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      async: false
+      exported: false
+      complexity: 1
+      lineCount: 10
+    tags:
+      - function
+    confidence: 1
+  - id: class:BillingService
+    name: BillingService
+    type: class
+    description: Handles pricing and invoicing for work orders using tax and discount rules from configuration.
+    sourceFiles:
+      - FleetManager.Business/BillingService.cs
+    domain: billing
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 10
+    tags:
+      - class
+    confidence: 1
+  - id: class:DriverAssignmentService
+    name: DriverAssignmentService
+    type: class
+    description: Allocates drivers to vehicles based on compliance and safety criteria.
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    domain: logistics
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 5
+    tags:
+      - class
+    confidence: 1
+  - id: class:AssignmentResult
+    name: AssignmentResult
+    type: class
+    description: Class AssignmentResult
+    sourceFiles:
+      - FleetManager.Business/DriverAssignmentService.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:InventoryService
+    name: InventoryService
+    type: class
+    description: Manages depot inventory and stock thresholds for maintenance operations.
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    domain: supply chain
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 5
+    tags:
+      - class
+    confidence: 1
+  - id: class:IssueResult
+    name: IssueResult
+    type: class
+    description: Class IssueResult
+    sourceFiles:
+      - FleetManager.Business/InventoryService.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:MaintenanceScheduler
+    name: MaintenanceScheduler
+    type: class
+    description: Schedules preventive maintenance for fleet vehicles.
+    sourceFiles:
+      - FleetManager.Business/MaintenanceScheduler.cs
+    domain: operations
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 6
+    tags:
+      - class
+    confidence: 1
+  - id: class:DbHelper
+    name: DbHelper
+    type: class
+    description: Utility for providing shared database connections.
+    sourceFiles:
+      - FleetManager.Data/DbHelper.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 12
+    tags:
+      - class
+    confidence: 1
+  - id: class:DriverRepository
+    name: DriverRepository
+    type: class
+    description: Data access for drivers and their licence endorsements.
+    sourceFiles:
+      - FleetManager.Data/DriverRepository.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 10
+    tags:
+      - class
+    confidence: 1
+  - id: class:PartRepository
+    name: PartRepository
+    type: class
+    description: Data access for the parts inventory and purchase requisitions.
+    sourceFiles:
+      - FleetManager.Data/PartRepository.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 11
+    tags:
+      - class
+    confidence: 1
+  - id: class:VehicleRepository
+    name: VehicleRepository
+    type: class
+    description: Data access for vehicles. Queries are assembled as inline SQL text.
+    sourceFiles:
+      - FleetManager.Data/VehicleRepository.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 13
+    tags:
+      - class
+    confidence: 1
+  - id: class:WorkOrderRepository
+    name: WorkOrderRepository
+    type: class
+    description: |-
+      /// <summary>
+          /// Data access for work orders and their line items.
+          /// </summary>
+    sourceFiles:
+      - FleetManager.Data/WorkOrderRepository.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 14
+    tags:
+      - class
+    confidence: 1
+  - id: class:Driver
+    name: Driver
+    type: class
+    description: A licensed driver eligible for vehicle assignment.
+    sourceFiles:
+      - FleetManager.Domain/Driver.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:Invoice
+    name: Invoice
+    type: class
+    description: A billing document produced when a work order is closed.
+    sourceFiles:
+      - FleetManager.Domain/Invoice.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:InvoiceLine
+    name: InvoiceLine
+    type: class
+    description: Class InvoiceLine
+    sourceFiles:
+      - FleetManager.Domain/Invoice.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:MaintenanceSchedule
+    name: MaintenanceSchedule
+    type: class
+    description: A scheduled preventive-maintenance recommendation produced by the scheduler.
+    sourceFiles:
+      - FleetManager.Domain/Invoice.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:Part
+    name: Part
+    type: class
+    description: An inventory part held at a depot parts crib.
+    sourceFiles:
+      - FleetManager.Domain/Part.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 2
+    tags:
+      - class
+    confidence: 1
+  - id: class:PartRequisition
+    name: PartRequisition
+    type: class
+    description: A purchase requisition raised when stock falls below the reorder point.
+    sourceFiles:
+      - FleetManager.Domain/Part.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:Vehicle
+    name: Vehicle
+    type: class
+    description: A vehicle in the managed fleet. Mirrors the dbo.Vehicles table 1:1.
+    sourceFiles:
+      - FleetManager.Domain/Vehicle.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:WorkOrder
+    name: WorkOrder
+    type: class
+    description: A maintenance work order raised against a vehicle.
+    sourceFiles:
+      - FleetManager.Domain/WorkOrder.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:WorkOrderLine
+    name: WorkOrderLine
+    type: class
+    description: Class WorkOrderLine
+    sourceFiles:
+      - FleetManager.Domain/WorkOrder.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:DashboardController
+    name: DashboardController
+    type: class
+    description: Depot-level operational reporting.
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 3
+    tags:
+      - class
+    confidence: 1
+  - id: class:DashboardViewModel
+    name: DashboardViewModel
+    type: class
+    description: Class DashboardViewModel
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:VehiclesController
+    name: VehiclesController
+    type: class
+    description: Class VehiclesController
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 6
+    tags:
+      - class
+    confidence: 1
+  - id: class:WorkOrdersController
+    name: WorkOrdersController
+    type: class
+    description: Handles HTTP requests for managing work orders and triggers related business processes.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    domain: web operations
+    properties:
+      abstract: false
+      exported: false
+      methodCount: 7
+    tags:
+      - class
+    confidence: 1
+  - id: class:RouteConfig
+    name: RouteConfig
+    type: class
+    description: Class RouteConfig
+    sourceFiles:
+      - FleetManager.Web/RouteConfig.cs
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 1
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.Vehicles
+    name: dbo.Vehicles
+    type: class
+    description: "SQL Table: dbo.Vehicles"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.Drivers
+    name: dbo.Drivers
+    type: class
+    description: "SQL Table: dbo.Drivers"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.DriverEndorsements
+    name: dbo.DriverEndorsements
+    type: class
+    description: "SQL Table: dbo.DriverEndorsements"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.WorkOrders
+    name: dbo.WorkOrders
+    type: class
+    description: "SQL Table: dbo.WorkOrders"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.WorkOrderLines
+    name: dbo.WorkOrderLines
+    type: class
+    description: "SQL Table: dbo.WorkOrderLines"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.Parts
+    name: dbo.Parts
+    type: class
+    description: "SQL Table: dbo.Parts"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.PartRequisitions
+    name: dbo.PartRequisitions
+    type: class
+    description: "SQL Table: dbo.PartRequisitions"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.Invoices
+    name: dbo.Invoices
+    type: class
+    description: "SQL Table: dbo.Invoices"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: class:dbo.InvoiceLines
+    name: dbo.InvoiceLines
+    type: class
+    description: "SQL Table: dbo.InvoiceLines"
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      abstract: false
+      exported: true
+      methodCount: 0
+    tags:
+      - class
+    confidence: 1
+  - id: type:LicenceClass
+    name: LicenceClass
+    type: type
+    description: enum LicenceClass
+    sourceFiles:
+      - FleetManager.Domain/Driver.cs
+    properties:
+      kind: enum
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:VehicleClass
+    name: VehicleClass
+    type: type
+    description: enum VehicleClass
+    sourceFiles:
+      - FleetManager.Domain/Vehicle.cs
+    properties:
+      kind: enum
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:VehicleStatus
+    name: VehicleStatus
+    type: type
+    description: enum VehicleStatus
+    sourceFiles:
+      - FleetManager.Domain/Vehicle.cs
+    properties:
+      kind: enum
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:MaintenanceType
+    name: MaintenanceType
+    type: type
+    description: enum MaintenanceType
+    sourceFiles:
+      - FleetManager.Domain/WorkOrder.cs
+    properties:
+      kind: enum
+      exported: false
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:WorkOrderStatus
+    name: WorkOrderStatus
+    type: type
+    description: enum WorkOrderStatus
+    sourceFiles:
+      - FleetManager.Domain/WorkOrder.cs
+    properties:
+      kind: enum
+      exported: false
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:PriorityLevel
+    name: PriorityLevel
+    type: type
+    description: enum PriorityLevel
+    sourceFiles:
+      - FleetManager.Domain/WorkOrder.cs
+    properties:
+      kind: enum
+      exported: false
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_Vehicles_HomeDepot
+    name: IX_Vehicles_HomeDepot
+    type: type
+    description: Index on Vehicles
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_Vehicles_Status
+    name: IX_Vehicles_Status
+    type: type
+    description: Index on Vehicles
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_DriverEndorsements_DriverId
+    name: IX_DriverEndorsements_DriverId
+    type: type
+    description: Index on DriverEndorsements
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_WorkOrders_VehicleId
+    name: IX_WorkOrders_VehicleId
+    type: type
+    description: Index on WorkOrders
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_WorkOrders_Status
+    name: IX_WorkOrders_Status
+    type: type
+    description: Index on WorkOrders
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_WorkOrders_DepotCode
+    name: IX_WorkOrders_DepotCode
+    type: type
+    description: Index on WorkOrders
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:IX_WorkOrderLines_WorkOrderId
+    name: IX_WorkOrderLines_WorkOrderId
+    type: type
+    description: Index on WorkOrderLines
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: type:UX_Parts_PartNumber_Depot
+    name: UX_Parts_PartNumber_Depot
+    type: type
+    description: Index on Parts
+    sourceFiles:
+      - database/01-schema.sql
+    properties:
+      kind: type-alias
+      exported: true
+      fieldCount: 0
+    tags:
+      - type
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/DashboardController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/VehiclesController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: route:POST /
+    name: POST /
+    type: route
+    description: This endpoint handles multiple operations for managing work orders, including issuing parts, assigning
+      technicians, and closing work orders.
+    sourceFiles:
+      - FleetManager.Web/Controllers/WorkOrdersController.cs
+    properties:
+      method: POST
+      path: /
+    tags:
+      - route
+    confidence: 1
+  - id: component:Dashboard
+    name: Dashboard
+    type: component
+    description: The Dashboard component provides an overview of the vehicle fleet management system. It displays key
+      metrics, such as vehicle counts, availability percentages, work orders, inventory, and prioritized lists for
+      service, licenses, and parts. The component is essential for monitoring fleet operations and ensuring timely
+      actions in maintenance, licensing, and inventory management.
+    sourceFiles:
+      - FleetManager.Web/Views/Dashboard/Index.cshtml
+    properties:
+      type: template
+      framework: razor
+      propCount: 13
+    tags:
+      - component
+    confidence: 1
+  - id: component:Inventory
+    name: Inventory
+    type: component
+    description: The Inventory component displays a dashboard view for managing parts in a depot, including their current
+      quantities, reorder details, and associated requisitions. It visually structures data in a tabular format and
+      provides a form to initiate a 'reorder sweep.' The component plays a key role in inventory management within the
+      application.
+    sourceFiles:
+      - FleetManager.Web/Views/Dashboard/Inventory.cshtml
+    properties:
+      type: template
+      framework: razor
+      propCount: 2
+    tags:
+      - component
+    confidence: 1
+  - id: component:NotFound
+    name: NotFound
+    type: component
+    description: A simple yet highly reusable component for handling invalid routes or missing resources in the FleetManager
+      application.
+    sourceFiles:
+      - FleetManager.Web/Views/Shared/NotFound.cshtml
+    domain: error handling
+    properties:
+      type: template
+      framework: razor
+      propCount: 1
+    tags:
+      - component
+    confidence: 1
+  - id: component:Layout
+    name: Layout
+    type: component
+    description: Primary structural template that maintains application consistency in visuals and navigation.
+    sourceFiles:
+      - FleetManager.Web/Views/Shared/_Layout.cshtml
+    domain: UI framework
+    properties:
+      type: template
+      framework: razor
+      propCount: 5
+    tags:
+      - component
+    confidence: 1
+  - id: component:Details
+    name: Details
+    type: component
+    description: Detailed UI for displaying and interacting with fleet work orders, including assignment and invoice workflows.
+    sourceFiles:
+      - FleetManager.Web/Views/Vehicles/Details.cshtml
+    domain: work order management
+    properties:
+      type: template
+      framework: razor
+      propCount: 14
+    tags:
+      - component
+    confidence: 1
+  - id: component:Vehicles
+    name: Vehicles
+    type: component
+    description: Overview interface for managing and filtering vehicle data in the fleet management system.
+    sourceFiles:
+      - FleetManager.Web/Views/Vehicles/Index.cshtml
+    domain: fleet operations
+    properties:
+      type: template
+      framework: razor
+      propCount: 5
+    tags:
+      - component
+    confidence: 1
+  - id: component:Details
+    name: Details
+    type: component
+    description: This Razor view renders a detailed summary of a work order in a fleet management system, including
+      metadata, line items, and control forms for technician assignment, parts issuance, order closure, and invoice
+      generation. It serves as a UI for interacting with individual work order details and is designed for both display
+      and user action.
+    sourceFiles:
+      - FleetManager.Web/Views/WorkOrders/Details.cshtml
+    properties:
+      type: template
+      framework: razor
+      propCount: 14
+    tags:
+      - component
+    confidence: 1
+  - id: component:WorkOrders
+    name: WorkOrders
+    type: component
+    description: Work order management interface providing an overview, filters, and links to details for operational efficiency.
+    sourceFiles:
+      - FleetManager.Web/Views/WorkOrders/Index.cshtml
+    domain: work order management
+    properties:
+      type: template
+      framework: razor
+      propCount: 3
+    tags:
+      - component
+    confidence: 1
+  - id: component:Invoice
+    name: Invoice
+    type: component
+    description: A read-only interface for presenting structured invoice data with links to associated work orders.
+    sourceFiles:
+      - FleetManager.Web/Views/WorkOrders/Invoice.cshtml
+    domain: financial operations
+    properties:
+      type: template
+      framework: razor
+      propCount: 11
+    tags:
+      - component
+    confidence: 1
+relationships:
+  - id: rel-1
+    source: module:FleetManager.Business
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-2
+    source: module:FleetManager.Data
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-3
+    source: module:FleetManager.Domain
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-4
+    source: module:FleetManager.Web/Controllers
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-5
+    source: module:FleetManager.Web
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-6
+    source: module:FleetManager.Web/Views
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-7
+    source: module:FleetManager.sln
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-8
+    source: module:database
+    target: project:root
+    type: contained-in
+    label: part of project
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-9
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.ConnectionString
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-10
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.CommandTimeoutSeconds
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-11
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.OpenConnection
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-12
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.ExecuteQuery
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-13
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.ExecuteNonQuery
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-14
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.ExecuteScalar
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-15
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.GetString
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-16
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.GetInt
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-17
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.GetDecimal
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-18
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.GetBool
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-19
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.GetNullableDate
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-20
+    source: module:FleetManager.Data
+    target: function:DbHelper.cs/DbHelper.GetNullableInt
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-21
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.GetAll
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-22
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.GetById
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-23
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.GetByAssetTag
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-24
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.Search
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-25
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.GetByDepot
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-26
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.GetDueForService
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-27
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.Insert
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-28
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.UpdateOdometer
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-29
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.UpdateStatus
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-30
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.RecordService
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-31
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.AssignDriver
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-32
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.MapMany
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-33
+    source: module:FleetManager.Data
+    target: function:VehicleRepository.cs/VehicleRepository.Map
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-34
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetAll
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-35
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetById
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-36
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetOpenOrders
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-37
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetByVehicle
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-38
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetByDepotAndStatus
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-39
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetLines
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-40
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.Insert
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-41
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.InsertLine
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-42
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.UpdateStatus
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-43
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.AssignTechnician
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-44
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.CountOpenForVehicle
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-45
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetNextWorkOrderNumber
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-46
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.MapMany
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-47
+    source: module:FleetManager.Data
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.Map
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-48
+    source: module:FleetManager.Web
+    target: function:RouteConfig.cs/RouteConfig.RegisterRoutes
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-49
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.GenerateInvoice
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-50
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.CalculateShopSupplies
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-51
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.CalculateDiscount
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-52
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.CalculateTax
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-53
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.GetTaxRate
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-54
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.GetLifetimeMaintenanceCost
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-55
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.GetCostPerKilometre
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-56
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.BuildLine
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-57
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.BuildInvoiceNumber
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-58
+    source: module:FleetManager.Business
+    target: function:BillingService.cs/BillingService.BillingService.Round
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-59
+    source: module:FleetManager.Business
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.Assign
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-60
+    source: module:FleetManager.Business
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.MeetsLicenceRequirement
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-61
+    source: module:FleetManager.Business
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.GetMinimumSafetyScore
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-62
+    source: module:FleetManager.Business
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.FindEligibleDrivers
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-63
+    source: module:FleetManager.Business
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.GetComplianceWatchList
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-64
+    source: module:FleetManager.Business
+    target: function:DriverAssignmentService.cs/AssignmentResult.AssignmentResult.AssignmentResult
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-65
+    source: module:FleetManager.Business
+    target: function:InventoryService.cs/InventoryService.InventoryService.IssuePartsForWorkOrder
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-66
+    source: module:FleetManager.Business
+    target: function:InventoryService.cs/InventoryService.InventoryService.RaiseRequisition
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-67
+    source: module:FleetManager.Business
+    target: function:InventoryService.cs/InventoryService.InventoryService.RunReorderSweep
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-68
+    source: module:FleetManager.Business
+    target: function:InventoryService.cs/InventoryService.InventoryService.ReceiveRequisition
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-69
+    source: module:FleetManager.Business
+    target: function:InventoryService.cs/InventoryService.InventoryService.GetDepotInventoryValue
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-70
+    source: module:FleetManager.Business
+    target: function:InventoryService.cs/IssueResult.IssueResult.IssueResult
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-71
+    source: module:FleetManager.Business
+    target: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.BuildSchedule
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-72
+    source: module:FleetManager.Business
+    target: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.GetServiceIntervalKm
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-73
+    source: module:FleetManager.Business
+    target: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.RaiseDueWorkOrders
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-74
+    source: module:FleetManager.Business
+    target: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.AddStandardLines
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-75
+    source: module:FleetManager.Business
+    target: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.BuildLine
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-76
+    source: module:FleetManager.Business
+    target: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.GetLabourRate
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-77
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetAll
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-78
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetById
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-79
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetByEmployeeNumber
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-80
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetAvailableAtDepot
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-81
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetExpiringLicences
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-82
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetEndorsements
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-83
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.UpdateSafetyScore
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-84
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.Deactivate
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-85
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.MapMany
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-86
+    source: module:FleetManager.Data
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.Map
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-87
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetAll
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-88
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetByPartNumber
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-89
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetBelowReorderPoint
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-90
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetByCategory
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-91
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.TryConsume
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-92
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.Receive
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-93
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetInventoryValue
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-94
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.InsertRequisition
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-95
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetOpenRequisitions
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-96
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.MapMany
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-97
+    source: module:FleetManager.Data
+    target: function:PartRepository.cs/PartRepository.PartRepository.Map
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-98
+    source: module:FleetManager.Domain
+    target: function:Driver.cs/Driver.Driver.HasEndorsement
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-99
+    source: module:FleetManager.Domain
+    target: function:Invoice.cs/Invoice.Invoice.Invoice
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-100
+    source: module:FleetManager.Domain
+    target: function:Part.cs/Part.Part.NeedsReorder
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-101
+    source: module:FleetManager.Domain
+    target: function:Part.cs/Part.Part.InventoryValue
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-102
+    source: module:FleetManager.Domain
+    target: function:Vehicle.cs/Vehicle.Vehicle.ToString
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-103
+    source: module:FleetManager.Domain
+    target: function:WorkOrder.cs/WorkOrder.WorkOrder.WorkOrder
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-104
+    source: module:FleetManager.Web/Controllers
+    target: function:DashboardController.cs/DashboardController.DashboardController.Index
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-105
+    source: module:FleetManager.Web/Controllers
+    target: function:DashboardController.cs/DashboardController.DashboardController.Inventory
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-106
+    source: module:FleetManager.Web/Controllers
+    target: function:DashboardController.cs/DashboardController.DashboardController.RunReorderSweep
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-107
+    source: module:FleetManager.Web/Controllers
+    target: function:DashboardController.cs/DashboardViewModel.DashboardViewModel.DashboardViewModel
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-108
+    source: module:FleetManager.Web/Controllers
+    target: function:VehiclesController.cs/VehiclesController.VehiclesController.Index
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-109
+    source: module:FleetManager.Web/Controllers
+    target: function:VehiclesController.cs/VehiclesController.VehiclesController.Details
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-110
+    source: module:FleetManager.Web/Controllers
+    target: function:VehiclesController.cs/VehiclesController.VehiclesController.UpdateOdometer
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-111
+    source: module:FleetManager.Web/Controllers
+    target: function:VehiclesController.cs/VehiclesController.VehiclesController.AssignDriver
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-112
+    source: module:FleetManager.Web/Controllers
+    target: function:VehiclesController.cs/VehiclesController.VehiclesController.Retire
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-113
+    source: module:FleetManager.Web/Controllers
+    target: function:VehiclesController.cs/VehiclesController.VehiclesController.DueForService
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-114
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Index
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-115
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Details
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-116
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.IssueParts
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-117
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.AssignTechnician
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-118
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Close
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-119
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.GenerateInvoice
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-120
+    source: module:FleetManager.Web/Controllers
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.RaiseDueOrders
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-121
+    source: module:FleetManager.Business
+    target: class:BillingService
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-122
+    source: module:FleetManager.Business
+    target: class:DriverAssignmentService
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-123
+    source: module:FleetManager.Business
+    target: class:AssignmentResult
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-124
+    source: module:FleetManager.Business
+    target: class:InventoryService
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-125
+    source: module:FleetManager.Business
+    target: class:IssueResult
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-126
+    source: module:FleetManager.Business
+    target: class:MaintenanceScheduler
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-127
+    source: module:FleetManager.Data
+    target: class:DbHelper
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-128
+    source: module:FleetManager.Data
+    target: class:DriverRepository
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-129
+    source: module:FleetManager.Data
+    target: class:PartRepository
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-130
+    source: module:FleetManager.Data
+    target: class:VehicleRepository
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-131
+    source: module:FleetManager.Data
+    target: class:WorkOrderRepository
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-132
+    source: module:FleetManager.Domain
+    target: class:Driver
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-133
+    source: module:FleetManager.Domain
+    target: class:Invoice
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-134
+    source: module:FleetManager.Domain
+    target: class:InvoiceLine
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-135
+    source: module:FleetManager.Domain
+    target: class:MaintenanceSchedule
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-136
+    source: module:FleetManager.Domain
+    target: class:Part
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-137
+    source: module:FleetManager.Domain
+    target: class:PartRequisition
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-138
+    source: module:FleetManager.Domain
+    target: class:Vehicle
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-139
+    source: module:FleetManager.Domain
+    target: class:WorkOrder
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-140
+    source: module:FleetManager.Domain
+    target: class:WorkOrderLine
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-141
+    source: module:FleetManager.Web/Controllers
+    target: class:DashboardController
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-142
+    source: class:DashboardController
+    target: class:Controller
+    type: inherits-from
+    label: extends Controller
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-143
+    source: module:FleetManager.Web/Controllers
+    target: class:DashboardViewModel
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-144
+    source: module:FleetManager.Web/Controllers
+    target: class:VehiclesController
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-145
+    source: class:VehiclesController
+    target: class:Controller
+    type: inherits-from
+    label: extends Controller
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-146
+    source: module:FleetManager.Web/Controllers
+    target: class:WorkOrdersController
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-147
+    source: class:WorkOrdersController
+    target: class:Controller
+    type: inherits-from
+    label: extends Controller
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-148
+    source: module:FleetManager.Web
+    target: class:RouteConfig
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-149
+    source: module:database
+    target: class:dbo.Vehicles
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-150
+    source: module:database
+    target: class:dbo.Drivers
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-151
+    source: module:database
+    target: class:dbo.DriverEndorsements
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-152
+    source: module:database
+    target: class:dbo.WorkOrders
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-153
+    source: module:database
+    target: class:dbo.WorkOrderLines
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-154
+    source: module:database
+    target: class:dbo.Parts
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-155
+    source: module:database
+    target: class:dbo.PartRequisitions
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-156
+    source: module:database
+    target: class:dbo.Invoices
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-157
+    source: module:database
+    target: class:dbo.InvoiceLines
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-158
+    source: module:FleetManager.Domain
+    target: type:LicenceClass
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-159
+    source: module:FleetManager.Domain
+    target: type:VehicleClass
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-160
+    source: module:FleetManager.Domain
+    target: type:VehicleStatus
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-161
+    source: module:FleetManager.Domain
+    target: type:MaintenanceType
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-162
+    source: module:FleetManager.Domain
+    target: type:WorkOrderStatus
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-163
+    source: module:FleetManager.Domain
+    target: type:PriorityLevel
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-164
+    source: module:database
+    target: type:IX_Vehicles_HomeDepot
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-165
+    source: module:database
+    target: type:IX_Vehicles_Status
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-166
+    source: module:database
+    target: type:IX_DriverEndorsements_DriverId
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-167
+    source: module:database
+    target: type:IX_WorkOrders_VehicleId
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-168
+    source: module:database
+    target: type:IX_WorkOrders_Status
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-169
+    source: module:database
+    target: type:IX_WorkOrders_DepotCode
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-170
+    source: module:database
+    target: type:IX_WorkOrderLines_WorkOrderId
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-171
+    source: module:database
+    target: type:UX_Parts_PartNumber_Depot
+    type: contains
+    label: defines
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-172
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-173
+    source: route:POST /
+    target: function:DashboardController.cs/RunReorderSweep
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-174
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-175
+    source: route:POST /
+    target: function:VehiclesController.cs/UpdateOdometer
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-176
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-177
+    source: route:POST /
+    target: function:VehiclesController.cs/AssignDriver
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-178
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-179
+    source: route:POST /
+    target: function:VehiclesController.cs/Retire
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-180
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-181
+    source: route:POST /
+    target: function:WorkOrdersController.cs/IssueParts
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-182
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-183
+    source: route:POST /
+    target: function:WorkOrdersController.cs/AssignTechnician
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-184
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-185
+    source: route:POST /
+    target: function:WorkOrdersController.cs/Close
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-186
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-187
+    source: route:POST /
+    target: function:WorkOrdersController.cs/GenerateInvoice
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-188
+    source: module:FleetManager.Web/Controllers
+    target: route:POST /
+    type: contains
+    label: defines route
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-189
+    source: route:POST /
+    target: function:WorkOrdersController.cs/RaiseDueOrders
+    type: handles
+    label: handled by
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-190
+    source: module:FleetManager.Web
+    target: component:Dashboard
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-191
+    source: module:FleetManager.Web
+    target: component:Inventory
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-192
+    source: module:FleetManager.Web
+    target: component:NotFound
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-193
+    source: module:FleetManager.Web
+    target: component:Layout
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-194
+    source: module:FleetManager.Web
+    target: component:Details
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-195
+    source: module:FleetManager.Web
+    target: component:Vehicles
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-196
+    source: module:FleetManager.Web
+    target: component:Details
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-197
+    source: module:FleetManager.Web
+    target: component:WorkOrders
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-198
+    source: module:FleetManager.Web
+    target: component:Invoice
+    type: contains
+    label: defines component
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-199
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-200
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-201
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-202
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 4 → 5 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-203
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 5 → 6 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-204
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 6 → 7 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-205
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 7 → 8 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-206
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 8 → 9 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-207
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 9 → 10 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-208
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 10 → 11 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-209
+    source: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    target: FleetManager.Web/Controllers/DashboardController.cs (Index method)
+    type: triggers
+    label: step 11 → 12 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-210
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-211
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-212
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-213
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 4 → 5 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-214
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 5 → 6 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-215
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-216
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-217
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-218
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 4 → 5 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-219
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 5 → 6 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-220
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 6 → 7 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-221
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-222
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-223
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-224
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 4 → 5 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-225
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 5 → 6 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-226
+    source: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    target: FleetManager.Web/Controllers/VehiclesController.cs/UpdateOdometer
+    type: triggers
+    label: step 6 → 7 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-227
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-228
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-229
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-230
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-231
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-232
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    type: triggers
+    label: step 4 → 5 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-233
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    type: triggers
+    label: step 5 → 6 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-234
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    type: triggers
+    label: step 6 → 7 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-235
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 7 → 8 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-236
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 8 → 9 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-237
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 9 → 10 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-238
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 10 → 11 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-239
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 11 → 12 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-240
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    target: FleetManager.Business/InventoryService.cs/IssuePartsForWorkOrder
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-241
+    source: FleetManager.Business/InventoryService.cs/IssuePartsForWorkOrder
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-242
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    target: FleetManager.Data/Repositories/WorkOrderRepository.cs/AssignTechnician
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-243
+    source: FleetManager.Data/Repositories/WorkOrderRepository.cs/AssignTechnician
+    target: FleetManager.Data/Repositories/WorkOrderRepository.cs/UpdateStatus
+    type: triggers
+    label: step 4 → 5 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-244
+    source: FleetManager.Data/Repositories/WorkOrderRepository.cs/UpdateStatus
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 5 → 6 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-245
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    target: FleetManager.Data/Repositories/WorkOrderRepository.cs/GetById
+    type: triggers
+    label: step 6 → 7 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-246
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/ActionMethod
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-247
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/IssueParts
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-248
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs/AssignTechnician
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs/Close
+    type: triggers
+    label: step 3 → 4 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-249
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs > IssueParts(int id)
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs > AssignTechnician(int id, string technician)
+    type: triggers
+    label: step 1 → 2 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-250
+    source: FleetManager.Web/Controllers/WorkOrdersController.cs > AssignTechnician(int id, string technician)
+    target: FleetManager.Web/Controllers/WorkOrdersController.cs > Close(int id)
+    type: triggers
+    label: step 2 → 3 in POST /
+    directed: true
+    properties: {}
+    confidence: 1
+  - id: rel-251
+    source: component:Layout
+    target: component:NotFound
+    type: conceptual
+    label: Handles 404 scenarios within structural layout
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-252
+    source: component:Layout
+    target: component:Details
+    type: structural
+    label: Renders work order details as part of dynamic content area
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-253
+    source: component:Details
+    target: component:WorkOrders
+    type: conceptual
+    label: Details interface ties back to work orders overview
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-254
+    source: component:Details
+    target: component:Vehicles
+    type: shared domain
+    label: Shared data domain in fleet management workflows
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-255
+    source: component:Vehicles
+    target: component:WorkOrders
+    type: conceptual
+    label: Vehicles provide context filtering for work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-256
+    source: component:Invoice
+    target: component:Details
+    type: contextual
+    label: Invoice links back to related work order details
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-257
+    source: component:Invoice
+    target: component:WorkOrders
+    type: shared domain
+    label: Invoices rely on work orders' metadata
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-258
+    source: function:PartRepository.cs/PartRepository.PartRepository.GetByCategory
+    target: function:DashboardController.cs/DashboardController.DashboardController.Inventory
+    type: conceptual_coupling
+    label: Inventory-related operations
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-259
+    source: function:PartRepository.cs/PartRepository.PartRepository.TryConsume
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.IssueParts
+    type: data_sharing
+    label: Part consumption for work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-260
+    source: function:PartRepository.cs/PartRepository.PartRepository.Receive
+    target: function:DashboardController.cs/DashboardController.DashboardController.RunReorderSweep
+    type: event_driven
+    label: Reorder and restocking
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-261
+    source: function:PartRepository.cs/PartRepository.PartRepository.GetInventoryValue
+    target: function:Part.cs/Part.Part.InventoryValue
+    type: conceptual_coupling
+    label: Inventory valuation
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-262
+    source: function:PartRepository.cs/PartRepository.PartRepository.InsertRequisition
+    target: function:Part.cs/Part.Part.NeedsReorder
+    type: business_dependency
+    label: Requisition based on reorder need
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-263
+    source: function:DashboardController.cs/DashboardController.DashboardController.RunReorderSweep
+    target: function:Part.cs/Part.Part.NeedsReorder
+    type: event_driven
+    label: Trigger reorder evaluation
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-264
+    source: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.Close
+    target: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.GenerateInvoice
+    type: business_dependency
+    label: Invoice generation upon closing
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-265
+    source: function:WorkOrdersController.cs/WorkOrdersController.WorkOrdersController.IssueParts
+    target: function:PartRepository.cs/PartRepository.PartRepository.TryConsume
+    type: data_sharing
+    label: Consume parts during issuance
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-266
+    source: function:VehiclesController.cs/VehiclesController.VehiclesController.Details
+    target: function:Driver.cs/Driver.Driver.HasEndorsement
+    type: conceptual_coupling
+    label: Driver endorsement check
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-267
+    source: module:FleetManager.Web/Controllers
+    target: module:FleetManager.Business
+    type: conceptual
+    label: Handles business logic calls
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-268
+    source: module:FleetManager.Web/Views
+    target: module:FleetManager.Web/Controllers
+    type: conceptual
+    label: Renders data from controllers
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-269
+    source: module:FleetManager.Web
+    target: module:FleetManager.Data
+    type: conceptual
+    label: Accesses data layer for persistence
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-270
+    source: module:FleetManager.Business
+    target: module:FleetManager.Domain
+    type: conceptual
+    label: Implements domain-specific logic
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-271
+    source: module:FleetManager.Data
+    target: module:database
+    type: data-sharing
+    label: Manages database operations
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-272
+    source: function:DbHelper.cs/DbHelper.ExecuteQuery
+    target: module:FleetManager.Data
+    type: data-sharing
+    label: Supports query execution in data module
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-273
+    source: function:DbHelper.cs/DbHelper.ExecuteNonQuery
+    target: module:FleetManager.Data
+    type: data-sharing
+    label: Supports non-query execution in data module
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-274
+    source: function:VehicleRepository.cs/VehicleRepository.GetByDepot
+    target: module:FleetManager.Data
+    type: data-sharing
+    label: Queries data by depot
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-275
+    source: function:VehicleRepository.cs/VehicleRepository.UpdateOdometer
+    target: module:FleetManager.Business
+    type: conceptual
+    label: Relates to business logic for updates
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-276
+    source: function:VehicleRepository.cs/VehicleRepository.GetDueForService
+    target: module:FleetManager.Business
+    type: conceptual
+    label: Used for service scheduling logic
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-277
+    source: module:FleetManager.Web
+    target: module:FleetManager.sln
+    type: modular-organization
+    label: Part of main solution
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-278
+    source: module:FleetManager.Business
+    target: module:FleetManager.sln
+    type: modular-organization
+    label: Part of main solution
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-279
+    source: module:FleetManager.Data
+    target: module:FleetManager.sln
+    type: modular-organization
+    label: Part of main solution
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-280
+    source: function:VehicleRepository.cs/VehicleRepository.RecordService
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetByVehicle
+    type: data_dependency
+    label: Records service history retrieved by vehicle
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-281
+    source: function:WorkOrderRepository.cs/WorkOrderRepository.CountOpenForVehicle
+    target: function:VehicleRepository.cs/VehicleRepository.AssignDriver
+    type: business_logic_dependency
+    label: Prevents assignment when open work orders exist
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-282
+    source: function:BillingService.cs/BillingService.BillingService.GetLifetimeMaintenanceCost
+    target: function:WorkOrderRepository.cs/WorkOrderRepository.GetByVehicle
+    type: data_analysis
+    label: Calculates total maintenance costs for a vehicle
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-283
+    source: function:WorkOrderRepository.cs/WorkOrderRepository.UpdateStatus
+    target: function:BillingService.cs/BillingService.BillingService.GenerateInvoice
+    type: event_correlation
+    label: Invoice generation triggered on status update
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-284
+    source: function:VehicleRepository.cs/VehicleRepository.AssignDriver
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.Assign
+    type: workflow_dependency
+    label: Uses driver assignment service to assign drivers
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-285
+    source: function:BillingService.cs/BillingService.BillingService.BuildInvoiceNumber
+    target: function:BillingService.cs/BillingService.BillingService.GenerateInvoice
+    type: data_generation
+    label: Generates invoice number for invoice creation
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-286
+    source: function:WorkOrderRepository.cs/WorkOrderRepository.InsertLine
+    target: function:BillingService.cs/BillingService.BillingService.BuildLine
+    type: conceptual_coupling
+    label: Work order lines inform invoice line generation
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-287
+    source: function:BillingService.cs/BillingService.BillingService.CalculateTax
+    target: function:BillingService.cs/BillingService.BillingService.GetTaxRate
+    type: data_dependency
+    label: Uses tax rate to compute sales tax
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-288
+    source: function:BillingService.cs/BillingService.BillingService.GetCostPerKilometre
+    target: function:BillingService.cs/BillingService.BillingService.GetLifetimeMaintenanceCost
+    type: business_kpi_dependency
+    label: Cost-per-kilometre depends on lifetime maintenance costs
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-289
+    source: class:BillingService
+    target: class:Invoice
+    type: data_flow
+    label: Produces billing document
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-290
+    source: class:BillingService
+    target: class:WorkOrder
+    type: data_dependency
+    label: Costs work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-291
+    source: class:InventoryService
+    target: class:Part
+    type: data_dependency
+    label: Reserves inventory parts
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-292
+    source: class:InventoryService
+    target: class:PartRequisition
+    type: event
+    label: Raises purchase requisitions
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-293
+    source: class:InventoryService
+    target: class:WorkOrder
+    type: conceptual
+    label: Linked through work-order parts management
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-294
+    source: class:MaintenanceScheduler
+    target: class:MaintenanceSchedule
+    type: event
+    label: Produces maintenance schedule
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-295
+    source: class:MaintenanceScheduler
+    target: class:WorkOrder
+    type: event
+    label: Raises maintenance work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-296
+    source: class:WorkOrdersController
+    target: class:WorkOrderRepository
+    type: data_access
+    label: CRUD operations for work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-297
+    source: class:DashboardController
+    target: class:DashboardViewModel
+    type: view_binding
+    label: Controllers mapping to view models
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-298
+    source: class:DriverAssignmentService
+    target: class:Driver
+    type: data_dependency
+    label: Handles driver assignment
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-299
+    source: class:DriverAssignmentService
+    target: class:Vehicle
+    type: conceptual
+    label: Assigns drivers to vehicles
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-300
+    source: class:DriverAssignmentService
+    target: class:AssignmentResult
+    type: event
+    label: Produces assignment result
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-301
+    source: class:DbHelper
+    target: class:DriverRepository
+    type: shared_utility
+    label: Shared database connectivity
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-302
+    source: class:DbHelper
+    target: class:PartRepository
+    type: shared_utility
+    label: Shared database connectivity
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-303
+    source: class:DbHelper
+    target: class:VehicleRepository
+    type: shared_utility
+    label: Shared database connectivity
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-304
+    source: class:DbHelper
+    target: class:WorkOrderRepository
+    type: shared_utility
+    label: Shared database connectivity
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-305
+    source: class:Vehicle
+    target: class:dbo.Vehicles
+    type: data_model
+    label: Mapped to SQL table dbo.Vehicles
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-306
+    source: class:Driver
+    target: class:dbo.Drivers
+    type: data_model
+    label: Mapped to SQL table dbo.Drivers
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-307
+    source: class:WorkOrder
+    target: class:dbo.WorkOrders
+    type: data_model
+    label: Mapped to SQL table dbo.WorkOrders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-308
+    source: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.FindEligibleDrivers
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetAvailableAtDepot
+    type: data_dependency
+    label: Fetches available drivers for eligibility checks
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-309
+    source: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.MeetsLicenceRequirement
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetExpiringLicences
+    type: data_dependency
+    label: Checks licence compliance using expiring licences data
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-310
+    source: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.GetMinimumSafetyScore
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.UpdateSafetyScore
+    type: conceptual_coupling
+    label: Interacts with safety score mechanism
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-311
+    source: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.GetComplianceWatchList
+    target: function:DriverRepository.cs/DriverRepository.DriverRepository.GetEndorsements
+    type: data_dependency
+    label: Generates watchlist using driver endorsements
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-312
+    source: function:InventoryService.cs/InventoryService.InventoryService.IssuePartsForWorkOrder
+    target: function:InventoryService.cs/InventoryService.InventoryService.RaiseRequisition
+    type: event_driven
+    label: Raises requisitions for part shortfall
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-313
+    source: function:InventoryService.cs/InventoryService.InventoryService.RunReorderSweep
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetBelowReorderPoint
+    type: data_dependency
+    label: Identifies parts needing reorder
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-314
+    source: function:MaintenanceScheduler.cs/MaintenanceScheduler.MaintenanceScheduler.RaiseDueWorkOrders
+    target: function:DriverAssignmentService.cs/DriverAssignmentService.DriverAssignmentService.FindEligibleDrivers
+    type: event_driven
+    label: Assigns eligible drivers for due work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-315
+    source: function:InventoryService.cs/InventoryService.InventoryService.IssuePartsForWorkOrder
+    target: function:PartRepository.cs/PartRepository.PartRepository.GetByPartNumber
+    type: data_dependency
+    label: Fetches parts by part number for work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+  - id: rel-316
+    source: function:InventoryService.cs/InventoryService.InventoryService.ReceiveRequisition
+    target: function:InventoryService.cs/InventoryService.InventoryService.IssuePartsForWorkOrder
+    type: event_driven
+    label: Processes requisitioned parts for pending work orders
+    directed: true
+    properties: {}
+    confidence: 0.7
+metadata:
+  totalEntities: 187
+  totalRelationships: 316
+  entityTypeCounts:
+    project: 1
+    module: 8
+    function: 112
+    class: 34
+    type: 14
+    route: 9
+    component: 9
+  relationshipTypeCounts:
+    contained-in: 8
+    contains: 178
+    inherits-from: 3
+    handles: 9
+    triggers: 52
+    conceptual: 11
+    structural: 1
+    shared domain: 2
+    contextual: 1
+    conceptual_coupling: 5
+    data_sharing: 2
+    event_driven: 5
+    business_dependency: 2
+    data-sharing: 4
+    modular-organization: 3
+    data_dependency: 10
+    business_logic_dependency: 1
+    data_analysis: 1
+    event_correlation: 1
+    workflow_dependency: 1
+    data_generation: 1
+    business_kpi_dependency: 1
+    data_flow: 1
+    event: 4
+    data_access: 1
+    view_binding: 1
+    shared_utility: 4
+    data_model: 3
+  averageConfidence: 1
+  generatedAt: 2026-09-09T15:29:50.389Z

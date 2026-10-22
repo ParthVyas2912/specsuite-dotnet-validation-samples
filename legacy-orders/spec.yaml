@@ -1,0 +1,1080 @@
+# ═══════════════════════════════════════════════════════
+# SpecForge Specification — LegacyOrderProcessor
+# Generated: 2026-09-09T19:11:40.567Z
+# Version: 1.0.0
+# ═══════════════════════════════════════════════════════
+specforge: 1.0.0
+project:
+  name: LegacyOrderProcessor
+  description: The application 'source' is a fullstack software solution intended to address an e-commerce-related
+    problem, specifically through the use of a LegacyOrderProcessor module. Despite its small scale and minimal modular
+    complexity, the primary functionality revolves around processing orders, which is key to its purpose. Its core is
+    built using C# and the ASP.NET Core framework, indicating a focus on modern, maintainable, and web-based solutions.
+    The data model for 'Order' suggests that the application's primary task is to manage or handle orders in some
+    capacity, potentially as a service-driven backend. Although the exact architectural approach is unclear, the modular
+    composition points toward separation of concerns, albeit in a simplified structure. With no API endpoints or UI
+    components, the application appears to act purely as a backend service rather than a full user-facing system. This
+    reconstruction effort will involve understanding the relationships within the provided module and re-architecting
+    the underlying workflows to align with modern standards as guided by this high-level overview.
+  source:
+    type: local
+    rootPath: /work/source
+    analyzedAt: 2026-09-09T19:11:40.558Z
+  projectType: fullstack
+  architecturePattern: unknown
+  coreDomains:
+    - e-commerce
+  keyWorkflows:
+    - Processing and managing orders
+  designPhilosophy: The design appears to adhere to a service-oriented and highly modular approach aimed at simplicity and
+    maintainability.
+stack:
+  languages:
+    primary: csharp
+    secondary:
+      - sln
+  runtime:
+    - name: csharp
+      version: latest
+    - name: sln
+      version: latest
+  frameworks:
+    backend:
+      - name: ASP.NET Core
+        config: {}
+      - name: ASP.NET MVC
+        version: 4.7.2
+        config: {}
+  infrastructure: {}
+dependencies:
+  runtime: []
+  development: []
+configuration:
+  environment_variables: []
+  config_files: []
+models:
+  Order:
+    description: "Data model: Order"
+    fields:
+      Id:
+        type: integer
+        primaryKey: true
+        nullable: false
+        validation: []
+      CustomerName:
+        type: string
+        nullable: false
+        validation: []
+      TotalAmount:
+        type: float
+        nullable: false
+        validation: []
+    sourceFile: LegacyOrderProcessor/Program.cs
+    sourceLines:
+      - 28
+      - 28
+modules:
+  legacyorderprocessor/discountengine:
+    description: This module is part of an e-commerce system, handling the application of discounts to orders based on
+      certain thresholds and conditions. It also integrates with repositories for loading and saving order data, as well
+      as processing order information from CSV files.
+    domain: e-commerce
+    role: service
+    sourcePath: LegacyOrderProcessor
+    dependencies: []
+    exports:
+      - "$ref: '#/modules/legacyorderprocessor/discountengine/functions/DiscountEngine'"
+      - "$ref: '#/modules/legacyorderprocessor/discountengine/functions/Apply'"
+    functions:
+      DiscountEngine:
+        description: Initialize instance-level discount parameters for high-value orders.
+        parameters:
+          - name: highValueThreshold
+            type: float
+            description: Minimum value for discount
+          - name: highValueDiscountPercent
+            type: float
+            description: Discount percentage
+        returns:
+          type: object
+          description: Initialized DiscountEngine instance
+        algorithm:
+          - step: 1
+            action: Set instance fields
+            details: Assign parameters to private fields
+            references: []
+            expression: _highValueThreshold = highValueThreshold; _highValueDiscountPercent = highValueDiscountPercent;
+        sideEffects: []
+        security: []
+        implementation: full
+        sourceFile: LegacyOrderProcessor/DiscountEngine.cs
+        sourceLines:
+          - 8
+          - 12
+        sourceCode: |2-
+                  public DiscountEngine(decimal highValueThreshold, decimal highValueDiscountPercent)
+                  {
+                      _highValueThreshold = highValueThreshold;
+                      _highValueDiscountPercent = highValueDiscountPercent;
+                  }
+        confidence: 1
+        confidenceDetails:
+          score: 1
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: Apply"
+          warnings: []
+          signals:
+            staticEvidence: 0.22
+            semanticCoverage: 0.42
+            graphContext: 0.06
+            determinism: 1
+      Apply:
+        description: Apply a discount to high-value amounts.
+        parameters:
+          - name: amount
+            type: float
+            description: Total order amount.
+        returns:
+          type: decimal
+          description: Discounted or original amount.
+        algorithm:
+          - step: 1
+            action: Check amount threshold.
+            details: Compare input amount to _highValueThreshold.
+            expression: amount >= _highValueThreshold
+            controlFlow:
+              type: branch
+              condition: amount >= _highValueThreshold
+              branches:
+                - condition: "true"
+                  action: Apply discount.
+                - condition: "false"
+                  action: Return original amount.
+          - step: 2
+            action: Apply discount if needed.
+            details: Calculate discount using _highValueDiscountPercent.
+            literals:
+              _highValueDiscountPercent: percentage value
+            expression: amount - (amount * _highValueDiscountPercent / 100m)
+        sideEffects: []
+        security: []
+        preconditions:
+          - "amount: non-negative"
+        postconditions:
+          - amount >= _highValueThreshold => returns discounted amount
+          - amount < _highValueThreshold => returns original amount
+        implementation: full
+        sourceFile: LegacyOrderProcessor/DiscountEngine.cs
+        sourceLines:
+          - 14
+          - 22
+        sourceCode: |2-
+                  public decimal Apply(decimal amount)
+                  {
+                      if (amount >= _highValueThreshold)
+                      {
+                          return amount - (amount * _highValueDiscountPercent / 100m);
+                      }
+
+                      return amount;
+                  }
+        confidence: 1
+        confidenceDetails:
+          score: 1
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: DiscountEngine"
+          warnings: []
+          signals:
+            staticEvidence: 0.27
+            semanticCoverage: 0.49
+            graphContext: 0.06
+            determinism: 1
+        referencedConstants:
+          - _highValueThreshold
+          - _highValueDiscountPercent
+    confidence: 0.97
+    confidenceDetails:
+      score: 0.97
+      reason: LLM module classification grounded in module exports, imports, and code snippet.
+      strategy: derived
+      evidence:
+        - "functions: 6"
+        - "exports: 9"
+        - "imports: 8"
+        - "module role: module"
+        - "callers: 0"
+        - "callees: 0"
+      signals:
+        staticEvidence: 0.5
+        semanticCoverage: 0.55
+        graphContext: 0.37
+        determinism: 0.97
+  legacyorderprocessor/orderrepository:
+    description: This module is part of an e-commerce system, handling the application of discounts to orders based on
+      certain thresholds and conditions. It also integrates with repositories for loading and saving order data, as well
+      as processing order information from CSV files.
+    domain: e-commerce
+    role: service
+    sourcePath: LegacyOrderProcessor
+    dependencies: []
+    exports:
+      - "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/OrderRepository'"
+      - "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    functions:
+      OrderRepository:
+        description: Initialize repository with a connection string for database operations.
+        parameters:
+          - name: connectionString
+            type: string
+            description: Database connection string
+        returns:
+          type: any
+          description: No explicit return value.
+        algorithm:
+          - step: 1
+            action: Assign input to field
+            details: Save parameter to private field.
+            references: []
+            expression: _connectionString = connectionString;
+        sideEffects: []
+        security: []
+        preconditions:
+          - "connectionString: not null"
+          - "connectionString: non-empty"
+        implementation: full
+        sourceFile: LegacyOrderProcessor/OrderRepository.cs
+        sourceLines:
+          - 10
+          - 13
+        sourceCode: |2-
+                  public OrderRepository(string connectionString)
+                  {
+                      _connectionString = connectionString;
+                  }
+        confidence: 0.95
+        confidenceDetails:
+          score: 0.95
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: Save"
+          warnings: []
+          signals:
+            staticEvidence: 0.2
+            semanticCoverage: 0.42
+            graphContext: 0.06
+            determinism: 0.95
+      Save:
+        description: Persists processed order details to the database.
+        parameters:
+          - name: orderId
+            type: integer
+            description: Unique order identifier
+          - name: customerName
+            type: string
+            description: Customer's full name
+          - name: originalAmount
+            type: float
+            description: Initial order amount
+          - name: finalAmount
+            type: float
+            description: Final discounted amount
+          - name: processedUtc
+            type: datetime
+            description: Order processed timestamp
+        returns:
+          type: void
+          description: Does not return any value
+        algorithm:
+          - step: 1
+            action: Create SQL connection
+            details: Initialize SqlConnection with connection string
+            calls: constructor
+            literals:
+              _connectionString: DB connection string
+            controlFlow:
+              type: branch
+          - step: 2
+            action: Construct SQL command
+            details: SQL to insert processed order data
+            literals:
+              SQL: INSERT INTO ProcessedOrders...
+            controlFlow:
+              type: try-catch
+              condition: DB operations
+              branches:
+                - condition: success
+                  action: Run query
+                - condition: error
+                  action: Dispose & log
+          - step: 3
+            action: Add parameters to command
+            details: Map function inputs to SQL parameters
+            references:
+              - parameters
+            controlFlow:
+              type: loop
+              condition: for each param
+              branches:
+                - condition: parse success
+                  action: Apply param
+        sideEffects:
+          - type: database-write
+            description: Inserts record into ProcessedOrders table
+        security:
+          - Potential SQL injection risk with AddWithValue; should validate inputs.
+        preconditions:
+          - "orderId: required"
+          - "orderId: >=0"
+          - "customerName: non-empty"
+          - "originalAmount: >=0"
+          - "finalAmount: >=0"
+          - "processedUtc: UTC format"
+        postconditions:
+          - "on Connection fails: raises SqlException"
+        implementation: full
+        sourceFile: LegacyOrderProcessor/OrderRepository.cs
+        sourceLines:
+          - 15
+          - 33
+        sourceCode: >2-
+                  public void Save(int orderId, string customerName, decimal originalAmount, decimal finalAmount,
+          DateTime processedUtc)
+                  {
+                      using (var connection = new SqlConnection(_connectionString))
+                      using (var command = connection.CreateCommand())
+                      {
+                          command.CommandText = @"
+          INSERT INTO ProcessedOrders (OrderId, CustomerName, OriginalAmount, FinalAmount, ProcessedUtc)
+
+          VALUES (@OrderId, @CustomerName, @OriginalAmount, @FinalAmount, @ProcessedUtc);";
+
+                          command.Parameters.AddWithValue("@OrderId", orderId);
+                          command.Parameters.AddWithValue("@CustomerName", customerName);
+                          command.Parameters.AddWithValue("@OriginalAmount", originalAmount);
+                          command.Parameters.AddWithValue("@FinalAmount", finalAmount);
+                          command.Parameters.AddWithValue("@ProcessedUtc", processedUtc);
+
+                          connection.Open();
+                          command.ExecuteNonQuery();
+                      }
+                  }
+        confidence: 1
+        confidenceDetails:
+          score: 1
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: OrderRepository"
+          warnings: []
+          signals:
+            staticEvidence: 0.4
+            semanticCoverage: 0.6849999999999999
+            graphContext: 0.06
+            determinism: 1
+        errorCases:
+          - condition: Connection fails
+            errorType: SqlException
+            handling: throw
+        databaseInteractions:
+          - operation: insert
+            tables:
+              - ProcessedOrders
+            columns: &a1
+              - OrderId
+              - CustomerName
+              - OriginalAmount
+              - FinalAmount
+              - ProcessedUtc
+            pattern: INSERT INTO ProcessedOrders (OrderId, CustomerName...)
+        businessInvariants:
+          - rule: Processed orders must have non-negative final amounts
+            enforcement: app-only
+        validationRules:
+          - field: orderId
+            rule: Must be positive integer
+            expression: orderId >= 0
+            errorType: ConstraintError
+    validationRules:
+      - field: orderId
+        entity: Save
+        rules:
+          - type: custom
+            value: orderId >= 0
+            message: Must be positive integer
+        usedIn:
+          - Save
+    confidence: 0.95
+    confidenceDetails:
+      score: 0.95
+      reason: LLM module classification grounded in module exports, imports, and code snippet.
+      strategy: derived
+      evidence:
+        - "functions: 6"
+        - "exports: 9"
+        - "imports: 8"
+        - "module role: module"
+        - "callers: 0"
+        - "callees: 0"
+      signals:
+        staticEvidence: 0.53
+        semanticCoverage: 0.62
+        graphContext: 0.37
+        determinism: 0.95
+  legacyorderprocessor/program:
+    description: This module is part of an e-commerce system, handling the application of discounts to orders based on
+      certain thresholds and conditions. It also integrates with repositories for loading and saving order data, as well
+      as processing order information from CSV files.
+    domain: e-commerce
+    role: service
+    sourcePath: LegacyOrderProcessor
+    dependencies: []
+    exports:
+      - "$ref: '#/modules/legacyorderprocessor/program/functions/Load'"
+    functions:
+      Main:
+        description: Processes orders from a CSV file and applies discounts.
+        parameters:
+          - name: args
+            type: array<string>
+            description: CLI args, first is file path
+        returns:
+          type: void
+          description: Performs order processing and logging.
+        algorithm:
+          - step: 1
+            action: Parse input path
+            details: Defaults to `orders.csv` if not provided
+            literals:
+              defaultInput: orders.csv
+            references:
+              - $ref:args
+            expression: 'args.Length > 0 ? args[0] : "orders.csv"'
+          - step: 2
+            action: Initialize repository
+            details: Connects to DB using AppSettings.
+            calls: OrderRepository
+            references:
+              - $ref:ConfigurationManager.AppSettings["DbConnection"]
+            expression: new OrderRepository(...)
+          - step: 3
+            action: Setup discount engine
+            details: Parses thresholds and discount configs.
+            calls: DiscountEngine
+            literals:
+              settingsKeys: HighValueThreshold,HighValueDiscountPercent
+            references:
+              - $ref:ConfigurationManager.AppSettings
+            expression: new DiscountEngine(...)
+          - step: 4
+            action: Load and process orders
+            details: Loads CSV and applies discounts
+            calls: CsvOrderLoader.Load
+            references:
+              - CsvOrderLoader
+            expression: foreach (var order in orders)
+            controlFlow:
+              type: loop
+              condition: foreach
+              maxIterations: 100
+              branches: []
+          - step: 5
+            action: Persist and log results
+            details: Updates DB and logs console output
+            calls: repository.Save, Console.WriteLine
+            references:
+              - $ref:repository
+              - $ref:Console
+            expression: repository.Save(...); Console.WriteLine(...);
+        sideEffects:
+          - type: database-write
+            description: Saves processed orders.
+          - type: logging
+            description: Logs processed orders to the console.
+        security:
+          - Sensitive DB connection string read from config.
+        preconditions:
+          - "args: optional"
+          - "args: first is file path"
+        postconditions:
+          - "on AppSettings value parse fails: raises FormatException"
+          - "on File does not exist: raises FileNotFoundException"
+        invariants:
+          - Orders processed sequentially.
+          - Discounts applied based on config thresholds.
+        implementation: full
+        sourceFile: LegacyOrderProcessor/Program.cs
+        sourceLines:
+          - 11
+          - 26
+        sourceCode: >2-
+                  static void Main(string[] args)
+                  {
+                      var input = args.Length > 0 ? args[0] : "orders.csv";
+                      var repository = new OrderRepository(ConfigurationManager.AppSettings["DbConnection"]);
+                      var processor = new DiscountEngine(
+                          decimal.Parse(ConfigurationManager.AppSettings["HighValueThreshold"], CultureInfo.InvariantCulture),
+                          decimal.Parse(ConfigurationManager.AppSettings["HighValueDiscountPercent"], CultureInfo.InvariantCulture));
+
+                      var orders = CsvOrderLoader.Load(input);
+                      foreach (var order in orders)
+                      {
+                          var finalAmount = processor.Apply(order.TotalAmount);
+                          repository.Save(order.Id, order.CustomerName, order.TotalAmount, finalAmount, DateTime.UtcNow);
+                          Console.WriteLine($"Processed order {order.Id}: {order.TotalAmount:C} -> {finalAmount:C}");
+                      }
+                  }
+        confidence: 0.95
+        confidenceDetails:
+          score: 0.95
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: Load"
+          warnings: []
+          signals:
+            staticEvidence: 0.49
+            semanticCoverage: 0.95
+            graphContext: 0.06
+            determinism: 0.95
+        errorCases:
+          - condition: AppSettings value parse fails
+            errorType: FormatException
+            handling: throw
+          - condition: File does not exist
+            errorType: FileNotFoundException
+            handling: log and exit
+        externalCalls:
+          - service: CsvOrderLoader
+            method: Load
+            endpoint: reads file system
+            params:
+              - filePath
+            responseShape: List<Order>
+        databaseInteractions:
+          - operation: insert
+            tables:
+              - Orders
+            columns: &a2
+              - Id
+              - CustomerName
+              - TotalAmount
+              - DiscountedAmount
+              - ProcessedDate
+            pattern: INSERT INTO Orders (...)
+        referencedConstants:
+          - orders.csv
+          - HighValueThreshold
+          - HighValueDiscountPercent
+          - DbConnection
+        businessInvariants:
+          - rule: Discount applied based on order amount above threshold
+            enforcement: app-only
+        validationRules:
+          - field: args[0]
+            rule: Valid file path
+            expression: File.Exists(args[0])
+            errorType: ArgumentException
+      Load:
+        description: Load and parse order data from a CSV file.
+        parameters:
+          - name: path
+            type: string
+            description: Path to CSV file
+        returns:
+          type: IEnumerable<Order>
+          description: List of parsed order objects
+        algorithm:
+          - step: 1
+            action: Check file existence
+            details: Throw if file doesn't exist
+            controlFlow:
+              type: branch
+              condition: "!File.Exists(path)"
+              branches:
+                - condition: not found
+                  action: throw FileNotFoundException
+          - step: 2
+            action: Read all lines
+            details: Load file content into an array
+            calls: File.ReadAllLines
+          - step: 3
+            action: Parse orders
+            details: Split lines and create Order objects
+            controlFlow:
+              type: loop
+              condition: i < lines.Length
+              maxIterations: 10
+        sideEffects:
+          - type: filesystem-read
+            description: Reads the content of a CSV file
+        security:
+          - Ensure 'path' is sanitized to prevent path traversal
+        preconditions:
+          - "path: must exist"
+          - "path: non-empty string"
+        postconditions:
+          - if file exists and parses correctly => returns parsed list of orders
+          - "on file not found: raises FileNotFoundException"
+          - "on parsing fails: raises FormatException"
+        implementation: full
+        sourceFile: LegacyOrderProcessor/Program.cs
+        sourceLines:
+          - 38
+          - 59
+        sourceCode: |2-
+                  public static IEnumerable<Order> Load(string path)
+                  {
+                      if (!File.Exists(path))
+                      {
+                          throw new FileNotFoundException("Order input file not found", path);
+                      }
+
+                      var lines = File.ReadAllLines(path);
+                      var result = new List<Order>();
+                      for (var i = 1; i < lines.Length; i++)
+                      {
+                          var parts = lines[i].Split(',');
+                          result.Add(new Order
+                          {
+                              Id = int.Parse(parts[0], CultureInfo.InvariantCulture),
+                              CustomerName = parts[1],
+                              TotalAmount = decimal.Parse(parts[2], CultureInfo.InvariantCulture)
+                          });
+                      }
+
+                      return result;
+                  }
+        confidence: 1
+        confidenceDetails:
+          score: 1
+          reason: High-confidence LLM analysis supported by local graph context.
+          strategy: llm
+          evidence:
+            - "module role: module"
+            - "callers: 0"
+            - "callees: 0"
+            - "sibling symbols: Main"
+          warnings: []
+          signals:
+            staticEvidence: 0.57
+            semanticCoverage: 0.76
+            graphContext: 0.06
+            determinism: 1
+        errorCases:
+          - condition: file not found
+            errorType: FileNotFoundException
+            handling: throw
+          - condition: parsing fails
+            errorType: FormatException
+            handling: throw
+    validationRules:
+      - field: args[0]
+        entity: Main
+        rules:
+          - type: custom
+            value: File.Exists(args[0])
+            message: Valid file path
+        usedIn:
+          - Main
+    sdkCalls:
+      - sdk: CsvOrderLoader
+        method: Load
+        options:
+          filePath: unknown
+        usedIn:
+          - Main
+        responseShape: List<Order>
+    confidence: 0.95
+    confidenceDetails:
+      score: 0.95
+      reason: LLM module classification grounded in module exports, imports, and code snippet.
+      strategy: derived
+      evidence:
+        - "functions: 6"
+        - "exports: 9"
+        - "imports: 8"
+        - "module role: module"
+        - "callers: 0"
+        - "callees: 0"
+      signals:
+        staticEvidence: 0.69
+        semanticCoverage: 0.82
+        graphContext: 0.37
+        determinism: 0.95
+dataFlows: []
+types: {}
+constraints:
+  invariants:
+    - id: c-1
+      type: invariant
+      name: Order.Id_required
+      description: Id must not be null
+      expression: Order.Id != null
+      specRef: "#/models/Order/fields/Id"
+    - id: c-2
+      type: invariant
+      name: Order.Id_integer
+      description: Id must be an integer
+      expression: IsInt(Order.Id)
+      specRef: "#/models/Order/fields/Id"
+    - id: c-3
+      type: invariant
+      name: Order.CustomerName_required
+      description: CustomerName must not be null
+      expression: Order.CustomerName != null
+      specRef: "#/models/Order/fields/CustomerName"
+    - id: c-4
+      type: invariant
+      name: Order.TotalAmount_required
+      description: TotalAmount must not be null
+      expression: Order.TotalAmount != null
+      specRef: "#/models/Order/fields/TotalAmount"
+    - id: c-21
+      type: invariant
+      name: Main_invariant
+      description: Orders processed sequentially.
+      expression: '"Orders processed sequentially."'
+      specRef: "#/modules/legacyorderprocessor/program/functions/Main"
+    - id: c-22
+      type: invariant
+      name: Main_invariant
+      description: Discounts applied based on config thresholds.
+      expression: '"Discounts applied based on config thresholds."'
+      specRef: "#/modules/legacyorderprocessor/program/functions/Main"
+  preconditions:
+    - id: c-5
+      type: precondition
+      name: Apply_amount_precond
+      description: non-negative
+      expression: '"non-negative"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/discountengine/functions/Apply'"
+    - id: c-8
+      type: precondition
+      name: OrderRepository_connectionString_precond
+      description: not null
+      expression: '"not null"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/OrderRepository'"
+    - id: c-9
+      type: precondition
+      name: OrderRepository_connectionString_precond
+      description: non-empty
+      expression: '"non-empty"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/OrderRepository'"
+    - id: c-10
+      type: precondition
+      name: Save_orderId_precond
+      description: required
+      expression: '"required"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-11
+      type: precondition
+      name: Save_orderId_precond
+      description: ">=0"
+      expression: orderId >=0
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-12
+      type: precondition
+      name: Save_customerName_precond
+      description: non-empty
+      expression: '"non-empty"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-13
+      type: precondition
+      name: Save_originalAmount_precond
+      description: ">=0"
+      expression: originalAmount >=0
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-14
+      type: precondition
+      name: Save_finalAmount_precond
+      description: ">=0"
+      expression: finalAmount >=0
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-15
+      type: precondition
+      name: Save_processedUtc_precond
+      description: UTC format
+      expression: '"UTC format"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-17
+      type: precondition
+      name: Main_args_precond
+      description: optional
+      expression: '"optional"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Main'"
+    - id: c-18
+      type: precondition
+      name: Main_args_precond
+      description: first is file path
+      expression: '"first is file path"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Main'"
+    - id: c-23
+      type: precondition
+      name: Load_path_precond
+      description: must exist
+      expression: '"must exist"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Load'"
+    - id: c-24
+      type: precondition
+      name: Load_path_precond
+      description: non-empty string
+      expression: '"non-empty string"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Load'"
+  postconditions:
+    - id: c-6
+      type: postcondition
+      name: Apply_output_amount_>=__highValue
+      description: "When amount >= _highValueThreshold: returns discounted amount"
+      expression: '"returns discounted amount"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/discountengine/functions/Apply'"
+    - id: c-7
+      type: postcondition
+      name: Apply_output_amount_<__highValueT
+      description: "When amount < _highValueThreshold: returns original amount"
+      expression: '"returns original amount"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/discountengine/functions/Apply'"
+    - id: c-16
+      type: postcondition
+      name: Save_error_SqlException
+      description: "On error (Connection fails): throw"
+      expression: Implies("Connection fails", error_type == "SqlException")
+      specRef: "$ref: '#/modules/legacyorderprocessor/orderrepository/functions/Save'"
+    - id: c-19
+      type: postcondition
+      name: Main_error_FormatException
+      description: "On error (AppSettings value parse fails): throw"
+      expression: Implies("AppSettings value parse fails", error_type == "FormatException")
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Main'"
+    - id: c-20
+      type: postcondition
+      name: Main_error_FileNotFoundException
+      description: "On error (File does not exist): log and exit"
+      expression: Implies("File does not exist", error_type == "FileNotFoundException")
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Main'"
+    - id: c-25
+      type: postcondition
+      name: Load_output_if_file_exists_and_p
+      description: "When if file exists and parses correctly: returns parsed list of orders"
+      expression: '"returns parsed list of orders"'
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Load'"
+    - id: c-26
+      type: postcondition
+      name: Load_error_FileNotFoundException
+      description: "On error (file not found): throw"
+      expression: Implies("file not found", error_type == "FileNotFoundException")
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Load'"
+    - id: c-27
+      type: postcondition
+      name: Load_error_FormatException
+      description: "On error (parsing fails): throw"
+      expression: Implies("parsing fails", error_type == "FormatException")
+      specRef: "$ref: '#/modules/legacyorderprocessor/program/functions/Load'"
+importGraph: {}
+queryMap:
+  tables:
+    - table: processedorders
+      readBy: []
+      writtenBy:
+        - functionPath: LegacyOrderProcessor/OrderRepository.cs.Save
+          operation: insert
+          columns: *a1
+          pattern: INSERT INTO ProcessedOrders (OrderId, CustomerName...)
+          batch: false
+          conditions: []
+          orm: raw-sql
+      queriedColumns:
+        - orderid
+        - customername
+        - originalamount
+        - finalamount
+        - processedutc
+      accessPattern: write-heavy
+      totalQueries: 1
+    - table: orders
+      readBy: []
+      writtenBy:
+        - functionPath: LegacyOrderProcessor/Program.cs.Main
+          operation: insert
+          columns: *a2
+          pattern: INSERT INTO Orders (...)
+          batch: false
+          conditions: []
+          orm: raw-sql
+      queriedColumns:
+        - id
+        - customername
+        - totalamount
+        - discountedamount
+        - processeddate
+      accessPattern: write-heavy
+      totalQueries: 1
+  totalInteractions: 2
+  dbFunctions: 2
+  method: llm
+invariantAnalysis:
+  entities:
+    - entity: order
+      riskScore: 60
+      invariants:
+        - rule: Id must not be null
+          type: validation
+          enforcement: app-only
+          appEvidence: Model field Id declared as non-nullable
+          fields:
+            - Id
+          risk: medium
+          riskReason: Business rule enforced only in application code — direct database access bypasses it.
+          remediation: Consider adding a CHECK constraint or trigger on order for defense in depth.
+        - rule: CustomerName must not be null
+          type: validation
+          enforcement: app-only
+          appEvidence: Model field CustomerName declared as non-nullable
+          fields:
+            - CustomerName
+          risk: medium
+          riskReason: Business rule enforced only in application code — direct database access bypasses it.
+          remediation: Consider adding a CHECK constraint or trigger on order for defense in depth.
+        - rule: TotalAmount must not be null
+          type: validation
+          enforcement: app-only
+          appEvidence: Model field TotalAmount declared as non-nullable
+          fields:
+            - TotalAmount
+          risk: medium
+          riskReason: Business rule enforced only in application code — direct database access bypasses it.
+          remediation: Consider adding a CHECK constraint or trigger on order for defense in depth.
+        - rule: Discount applied based on order amount above threshold
+          type: validation
+          enforcement: app-only
+          appEvidence: processor.Apply(order.TotalAmount)
+          fields:
+            - TotalAmount
+            - DiscountedAmount
+          risk: medium
+          riskReason: Business rule enforced only in application code — direct database access bypasses it.
+          remediation: Consider adding a CHECK constraint or trigger on Order for defense in depth.
+    - entity: processedorders
+      riskScore: 15
+      invariants:
+        - rule: Processed orders must have non-negative final amounts
+          type: validation
+          enforcement: app-only
+          appEvidence: AddWithValue('@FinalAmount', finalAmount)
+          fields:
+            - FinalAmount
+          risk: medium
+          riskReason: Business rule enforced only in application code — direct database access bypasses it.
+          remediation: Consider adding a CHECK constraint or trigger on ProcessedOrders for defense in depth.
+  summary:
+    totalInvariants: 5
+    enforcedBoth: 0
+    dbOnly: 0
+    appOnly: 5
+    implicit: 0
+    criticalGaps: 0
+    highRiskEntities:
+      - order
+    overallRiskScore: 38
+_metadata:
+  specforgeVersion: 1.0.0
+  analysisDate: 2026-09-09T19:11:40.567Z
+  totalFiles: 8
+  totalSourceFiles: 7
+  totalLLMCalls: 12
+  totalTokensUsed: 18490
+  analysisTime: 0.0s
+  overallConfidence: 0.97
+  confidenceSummary:
+    overall:
+      score: 0.97
+      reason: Aggregated semantic fidelity across analyzed entities.
+      strategy: derived
+      evidence:
+        - "module role: module"
+        - "callers: 0"
+        - "callees: 0"
+        - "sibling symbols: Apply"
+        - "sibling symbols: DiscountEngine"
+        - "sibling symbols: Save"
+      signals:
+        staticEvidence: 0.45
+        semanticCoverage: 0.64
+        graphContext: 0.19
+        determinism: 0.97
+    byPhase:
+      ingestion: 0.95
+      staticAnalysis: 0.9
+      semanticAnalysis: 0.97
+      graphContext: 0.19
+    byModule:
+      legacyorderprocessor/discountengine:
+        score: 0.99
+        reason: Aggregated confidence for module legacyorderprocessor/discountengine.
+        strategy: derived
+        evidence:
+          - "functions: 6"
+          - "exports: 9"
+          - "imports: 8"
+          - "module role: module"
+          - "callers: 0"
+          - "callees: 0"
+        signals:
+          staticEvidence: 0.33
+          semanticCoverage: 0.49
+          graphContext: 0.16
+          determinism: 0.99
+      legacyorderprocessor/orderrepository:
+        score: 0.97
+        reason: Aggregated confidence for module legacyorderprocessor/orderrepository.
+        strategy: derived
+        evidence:
+          - "functions: 6"
+          - "exports: 9"
+          - "imports: 8"
+          - "module role: module"
+          - "callers: 0"
+          - "callees: 0"
+        signals:
+          staticEvidence: 0.38
+          semanticCoverage: 0.58
+          graphContext: 0.16
+          determinism: 0.97
+      legacyorderprocessor/program:
+        score: 0.97
+        reason: Aggregated confidence for module legacyorderprocessor/program.
+        strategy: derived
+        evidence:
+          - "functions: 6"
+          - "exports: 9"
+          - "imports: 8"
+          - "module role: module"
+          - "callers: 0"
+          - "callees: 0"
+        signals:
+          staticEvidence: 0.58
+          semanticCoverage: 0.84
+          graphContext: 0.16
+          determinism: 0.97
+    hotspots: []
+  unresolvedItems: []
+  warnings: []

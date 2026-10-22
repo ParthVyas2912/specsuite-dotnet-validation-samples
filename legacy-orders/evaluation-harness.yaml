@@ -1,0 +1,422 @@
+specforge_evaluation: 1.0.0
+project: source
+setup:
+  description: These test cases describe the expected behavior of the reconstructed application. Each test should be
+    translated into a concrete test in the target framework and executed against the rebuilt system.
+  requiredEnvVars: []
+  requiredServices: []
+  steps:
+    - Install dependencies in the reconstructed project
+    - Run the application (or its test suite) to verify each test case
+    - Compare results against the assertions listed in each test case
+test_cases:
+  - id: data-model-0001
+    name: Model "Order" schema
+    category: data-model
+    target: Order
+    description: 'Model "Order" must exist with fields: Id, CustomerName, TotalAmount.'
+    assertions:
+      - type: exists
+        subject: Order
+        expected: "true"
+        explanation: The 'Order' model must be defined in the schema.
+      - type: matches-schema
+        subject: Order
+        expected: Id, CustomerName, TotalAmount
+        explanation: The 'Order' model must have exactly these fields with the specified names.
+    priority: critical
+    sourceRef: LegacyOrderProcessor/Program.cs
+  - id: data-model-0002
+    name: '"Order.Id" is required'
+    category: data-model
+    target: Order.Id
+    description: Field "Id" on model "Order" must not accept null.
+    assertions:
+      - type: type-check
+        subject: Order.Id
+        expected: non-nullable
+        explanation: The 'Id' field must not accept null values.
+    priority: high
+  - id: data-model-0003
+    name: '"Order.CustomerName" is required'
+    category: data-model
+    target: Order.CustomerName
+    description: Field "CustomerName" on model "Order" must not accept null.
+    assertions:
+      - type: type-check
+        subject: Order.CustomerName
+        expected: non-nullable
+        explanation: The 'CustomerName' field must not accept null values.
+    priority: high
+  - id: data-model-0004
+    name: '"Order.TotalAmount" is required'
+    category: data-model
+    target: Order.TotalAmount
+    description: Field "TotalAmount" on model "Order" must not accept null.
+    assertions:
+      - type: type-check
+        subject: Order.TotalAmount
+        expected: non-nullable
+        explanation: The 'TotalAmount' field must not accept null values.
+    priority: high
+  - id: business-logic-0005
+    name: 'Function "LegacyOrderProcessor/DiscountEngine.cs#DiscountEngine" implements: Initialize instance-level discount
+      parameters for high-value orders.'
+    category: business-logic
+    target: LegacyOrderProcessor/DiscountEngine.cs#DiscountEngine
+    description: Initialize instance-level discount parameters for high-value orders.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/DiscountEngine.cs#DiscountEngine
+        expected: Initialize instance-level discount parameters for high-value orders.
+        explanation: The function should correctly initialize necessary parameters for high-value orders.
+    priority: high
+    sourceRef: LegacyOrderProcessor/DiscountEngine.cs:DiscountEngine
+  - id: business-logic-0006
+    name: 'Function "LegacyOrderProcessor/DiscountEngine.cs#Apply" implements: Apply a discount to high-value amounts.'
+    category: business-logic
+    target: LegacyOrderProcessor/DiscountEngine.cs#Apply
+    description: Apply a discount to high-value amounts.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/DiscountEngine.cs#Apply
+        expected: Apply a discount to high-value amounts.
+        explanation: The function should correctly apply discounts based on predefined rules to high-value transaction amounts.
+    priority: high
+    sourceRef: LegacyOrderProcessor/DiscountEngine.cs:Apply
+  - id: business-logic-0007
+    name: 'Function "LegacyOrderProcessor/OrderRepository.cs#OrderRepository" implements: Initialize repository with a
+      connection string for database operations.'
+    category: business-logic
+    target: LegacyOrderProcessor/OrderRepository.cs#OrderRepository
+    description: Initialize repository with a connection string for database operations.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/OrderRepository.cs#OrderRepository
+        expected: Initialize repository with a connection string for database operations.
+        explanation: The constructor for 'OrderRepository' should initialize the repository using a valid connection string.
+    priority: high
+    sourceRef: LegacyOrderProcessor/OrderRepository.cs:OrderRepository
+  - id: business-logic-0008
+    name: 'Function "LegacyOrderProcessor/OrderRepository.cs#Save" implements: Persists processed order details to the
+      database.'
+    category: business-logic
+    target: LegacyOrderProcessor/OrderRepository.cs#Save
+    description: Persists processed order details to the database.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/OrderRepository.cs#Save
+        expected: Persists processed order details to the database.
+        explanation: The function must save all necessary details of processed orders in the database.
+    priority: high
+    sourceRef: LegacyOrderProcessor/OrderRepository.cs:Save
+  - id: error-handling-0009
+    name: '"LegacyOrderProcessor/OrderRepository.cs#Save" handles: Connection fails'
+    category: error-handling
+    target: LegacyOrderProcessor/OrderRepository.cs#Save
+    description: When Connection fails, the function should throw.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/OrderRepository.cs#Save error
+        expected: SqlException
+        explanation: The function should throw a specific exception (e.g., SqlException) when database connection fails.
+    priority: high
+  - id: side-effect-0010
+    name: '"LegacyOrderProcessor/OrderRepository.cs#Save" side-effect: Inserts record into ProcessedOrders table'
+    category: side-effect
+    target: LegacyOrderProcessor/OrderRepository.cs#Save
+    description: 'Function "LegacyOrderProcessor/OrderRepository.cs#Save" must produce side-effect: Inserts record into
+      ProcessedOrders table'
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/OrderRepository.cs#Save side-effect
+        expected: database-write
+        explanation: Inserts record into ProcessedOrders table
+    priority: medium
+  - id: business-logic-0011
+    name: 'Function "LegacyOrderProcessor/Program.cs#Main" implements: Processes orders from a CSV file and applies
+      discounts.'
+    category: business-logic
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: Processes orders from a CSV file and applies discounts.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Main
+        expected: Processes orders from a CSV file and applies discounts.
+        explanation: The Main method should process all orders in the CSV file and correctly apply discounts.
+    priority: high
+    sourceRef: LegacyOrderProcessor/Program.cs:Main
+  - id: error-handling-0012
+    name: '"LegacyOrderProcessor/Program.cs#Main" handles: AppSettings value parse fails'
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: When AppSettings value parse fails, the function should throw.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Main error
+        expected: FormatException
+        explanation: The function must throw a FormatException when parsing AppSettings values fails.
+    priority: high
+  - id: error-handling-0013
+    name: '"LegacyOrderProcessor/Program.cs#Main" handles: File does not exist'
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: When File does not exist, the function should log and exit.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Main error
+        expected: FileNotFoundException
+        explanation: The function should handle missing files gracefully by logging the error and exiting the application.
+    priority: high
+  - id: side-effect-0014
+    name: '"LegacyOrderProcessor/Program.cs#Main" side-effect: Saves processed orders.'
+    category: side-effect
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: 'Function "LegacyOrderProcessor/Program.cs#Main" must produce side-effect: Saves processed orders.'
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Main side-effect
+        expected: database-write
+        explanation: Saves processed orders.
+    priority: medium
+  - id: side-effect-0015
+    name: '"LegacyOrderProcessor/Program.cs#Main" side-effect: Logs processed orders to the console.'
+    category: side-effect
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: 'Function "LegacyOrderProcessor/Program.cs#Main" must produce side-effect: Logs processed orders to the console.'
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Main side-effect
+        expected: logging
+        explanation: Logs processed orders to the console.
+    priority: medium
+  - id: business-logic-0016
+    name: 'Function "LegacyOrderProcessor/Program.cs#Load" implements: Load and parse order data from a CSV file.'
+    category: business-logic
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: Load and parse order data from a CSV file.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Load
+        expected: Load and parse order data from a CSV file.
+        explanation: The function must correctly load and parse all order data from the provided CSV file.
+    priority: high
+    sourceRef: LegacyOrderProcessor/Program.cs:Load
+  - id: error-handling-0017
+    name: '"LegacyOrderProcessor/Program.cs#Load" handles: file not found'
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: When file not found, the function should throw.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Load error
+        expected: FileNotFoundException
+        explanation: The function should handle cases where the specified CSV file is not found.
+    priority: high
+  - id: error-handling-0018
+    name: '"LegacyOrderProcessor/Program.cs#Load" handles: parsing fails'
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: When parsing fails, the function should throw.
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Load error
+        expected: FormatException
+        explanation: When CSV parsing fails, the function should raise a FormatException to indicate invalid file content.
+    priority: high
+  - id: side-effect-0019
+    name: '"LegacyOrderProcessor/Program.cs#Load" side-effect: Reads the content of a CSV file'
+    category: side-effect
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: 'Function "LegacyOrderProcessor/Program.cs#Load" must produce side-effect: Reads the content of a CSV file'
+    assertions:
+      - type: behavior-check
+        subject: LegacyOrderProcessor/Program.cs#Load side-effect
+        expected: filesystem-read
+        explanation: Reads the content of a CSV file
+    priority: medium
+  - id: data-model-0020
+    name: Incorrect field data types
+    category: data-model
+    target: Order
+    description: Ensure the fields in the 'Order' model have the correct data types.
+    assertions:
+      - type: behavior-check
+        subject: Order.Id
+        expected: integer
+        explanation: The 'Id' field should have an integer type.
+      - type: behavior-check
+        subject: Order.CustomerName
+        expected: string
+        explanation: The 'CustomerName' field should have a string type.
+      - type: behavior-check
+        subject: Order.TotalAmount
+        expected: decimal
+        explanation: The 'TotalAmount' field should have a decimal type.
+    priority: medium
+  - id: data-model-0021
+    name: Default value for Order.Id
+    category: data-model
+    target: Order.Id
+    description: Check if a default value exists for 'Order.Id' when another field is entered.
+    assertions:
+      - type: behavior-check
+        subject: Order.Id
+        expected: auto-generated value or error
+        explanation: The system should populate 'Id' automatically or enforce a non-null constraint.
+    priority: medium
+  - id: data-model-0022
+    name: Empty string in Order.CustomerName
+    category: data-model
+    target: Order.CustomerName
+    description: Ensure empty strings are not treated as valid 'CustomerName' values.
+    assertions:
+      - type: behavior-check
+        subject: Order.CustomerName
+        expected: error
+        explanation: An error should occur if 'CustomerName' is empty (e.g., '').
+    priority: medium
+  - id: data-model-0023
+    name: Negative TotalAmount values
+    category: data-model
+    target: Order.TotalAmount
+    description: Ensure that negative values are not accepted for 'TotalAmount'.
+    assertions:
+      - type: behavior-check
+        subject: Order.TotalAmount
+        expected: error
+        explanation: An error should occur if 'TotalAmount' has a negative value.
+    priority: medium
+  - id: business-logic-0024
+    name: No high-value orders
+    category: business-logic
+    target: LegacyOrderProcessor/DiscountEngine.cs#DiscountEngine
+    description: Test the function's behavior when there are no high-value orders.
+    assertions:
+      - type: behavior-check
+        subject: DiscountEngine initialization
+        expected: parameters remain at default state
+        explanation: The function should maintain default values if no high-value orders are provided.
+    priority: medium
+  - id: business-logic-0025
+    name: Boundary value just below discount threshold
+    category: business-logic
+    target: LegacyOrderProcessor/DiscountEngine.cs#Apply
+    description: Test the case where the transaction amount is just below the threshold for discounts.
+    assertions:
+      - type: behavior-check
+        subject: ApplyDiscount
+        expected: no discount applied
+        explanation: The function should not apply a discount to amounts below the minimum threshold for high-value orders.
+    priority: medium
+  - id: business-logic-0026
+    name: Empty connection string
+    category: business-logic
+    target: LegacyOrderProcessor/OrderRepository.cs#OrderRepository
+    description: Handle initialization when no connection string is provided.
+    assertions:
+      - type: behavior-check
+        subject: Connection string
+        expected: error thrown
+        explanation: The repository should throw an error or handle the exception when the connection string is missing or empty.
+    priority: medium
+  - id: business-logic-0027
+    name: Retry on transient database failure
+    category: business-logic
+    target: LegacyOrderProcessor/OrderRepository.cs#Save
+    description: Ensure the function retries on transient database connectivity issues.
+    assertions:
+      - type: behavior-check
+        subject: Save with retry logic
+        expected: retries and succeeds after transient error
+        explanation: The save function should implement retry logic to handle temporary database failures.
+    priority: medium
+  - id: error-handling-0028
+    name: Graceful fallback after failure
+    category: error-handling
+    target: LegacyOrderProcessor/OrderRepository.cs#Save
+    description: Ensure that the system gracefully handles database connection failure scenarios.
+    assertions:
+      - type: behavior-check
+        subject: Save
+        expected: error logged and user notified
+        explanation: System should log the error and alert the user without crashing the application.
+    priority: medium
+  - id: business-logic-0029
+    name: Malformed CSV file
+    category: business-logic
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: Test the behavior when the CSV file has invalid formatting.
+    assertions:
+      - type: behavior-check
+        subject: CSV parsing
+        expected: error thrown and logged
+        explanation: The system should raise descriptive error messages for malformed CSV inputs.
+    priority: medium
+  - id: error-handling-0030
+    name: Malformed AppSettings key
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: Ensure the function fails gracefully when provided with an incorrectly formatted key.
+    assertions:
+      - type: behavior-check
+        subject: AppSettings parsing
+        expected: error thrown and descriptive message logged
+        explanation: Help the user diagnose incorrectly formatted keys by providing descriptive error messages.
+    priority: medium
+  - id: error-handling-0031
+    name: File exists but is inaccessible
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Main
+    description: Check behavior when the file exists but is inaccessible due to permission issues.
+    assertions:
+      - type: behavior-check
+        subject: File access
+        expected: AccessException thrown and logged
+        explanation: The system should handle access denied errors gracefully.
+    priority: medium
+  - id: business-logic-0032
+    name: CSV with additional columns
+    category: business-logic
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: Ensure the function ignores extra columns in the CSV file.
+    assertions:
+      - type: behavior-check
+        subject: CSV loading
+        expected: success and extra columns ignored
+        explanation: Only predefined columns should be processed, and extra columns should not affect functionality.
+    priority: medium
+  - id: error-handling-0033
+    name: Empty file path
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: Handle cases when the file path is empty.
+    assertions:
+      - type: behavior-check
+        subject: Load function
+        expected: error thrown
+        explanation: The function should raise an error and not proceed with an unspecified file path.
+    priority: medium
+  - id: error-handling-0034
+    name: Null CSV input
+    category: error-handling
+    target: LegacyOrderProcessor/Program.cs#Load
+    description: Test the behavior when the CSV input is null.
+    assertions:
+      - type: behavior-check
+        subject: CSV parsing
+        expected: error thrown
+        explanation: The function should raise an error when attempting to parse a null input.
+    priority: medium
+summary:
+  total: 34
+  byCategory:
+    data-model: 8
+    business-logic: 12
+    error-handling: 10
+    side-effect: 4
+  byPriority:
+    critical: 1
+    high: 14
+    medium: 19
+  criticalCount: 1

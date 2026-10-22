@@ -1,0 +1,50 @@
+{
+  "schemaValid": true,
+  "referentialIntegrity": {
+    "totalRefs": 26,
+    "resolvedRefs": 26,
+    "brokenRefs": []
+  },
+  "completeness": {
+    "score": 100,
+    "measures": "transcription-of-extractor-output",
+    "blindSpots": [
+      "routes",
+      "commands",
+      "components",
+      "types"
+    ],
+    "coverage": {
+      "functions": {
+        "total": 6,
+        "captured": 6
+      },
+      "routes": {
+        "total": 0,
+        "captured": 0
+      },
+      "commands": {
+        "total": 0,
+        "captured": 0
+      },
+      "components": {
+        "total": 0,
+        "captured": 0
+      },
+      "models": {
+        "total": 1,
+        "captured": 1
+      },
+      "types": {
+        "total": 0,
+        "captured": 0
+      }
+    },
+    "missingEntities": []
+  },
+  "confidenceDistribution": {
+    "high (>0.9)": "86%",
+    "medium (0.7-0.9)": "14%",
+    "low (<0.7)": "0%"
+  }
+}

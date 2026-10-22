@@ -1,0 +1,11 @@
+graph LR
+  subgraph "LegacyOrderProcessor"
+    LegacyOrderProcessor_App_config["LegacyOrderProcessor/App"]
+    LegacyOrderProcessor_DiscountEngine_cs["LegacyOrderProcessor/DiscountEngine"]
+    LegacyOrderProcessor_LegacyOrderProcessor_csproj["LegacyOrderProcessor/LegacyOrderProcessor"]
+    LegacyOrderProcessor_OrderRepository_cs["LegacyOrderProcessor/OrderRepository"]
+    LegacyOrderProcessor_Program_cs["LegacyOrderProcessor/Program"]
+  end
+  subgraph "LegacyOrderProcessor.sln"
+    LegacyOrderProcessor_sln["LegacyOrderProcessor"]
+  end
